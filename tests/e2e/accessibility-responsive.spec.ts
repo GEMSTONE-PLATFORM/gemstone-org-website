@@ -47,9 +47,9 @@ test.describe("accessibility and responsive reflow matrix", () => {
         await expect(page.locator("iframe[title]")).toHaveCount(await iframes.count());
 
         const newTabLinks = page.locator('a[target="_blank"]');
-        await expect(newTabLinks.filter({ hasText: "opens in a new tab" })).toHaveCount(
-          await newTabLinks.count(),
-        );
+        for (const link of await newTabLinks.all()) {
+          await expect(link).toHaveAttribute("aria-label", /opens in a new tab/i);
+        }
 
         const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze();
         expect(results.violations).toEqual([]);

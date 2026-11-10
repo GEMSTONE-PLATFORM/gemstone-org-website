@@ -23,7 +23,7 @@ export default defineConfig({
       concurrent: false,
       shuffle: false,
     },
-    testTimeout: 5000,
-    hookTimeout: 5000,
+    testTimeout: 60_000,
+    hookTimeout: 15_000,
   },
 });

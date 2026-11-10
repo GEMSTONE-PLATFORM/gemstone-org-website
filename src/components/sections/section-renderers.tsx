@@ -9,7 +9,14 @@ import type {
 } from "@/types";
 
 import { briefingConfig } from "@/config/integration-config";
-import { Card, Icon, MediaViewer, MicrosoftFormEmbed, AnimatedSection } from "@/components/ui";
+import {
+  Card,
+  Icon,
+  MediaViewer,
+  MicrosoftFormEmbed,
+  AnimatedSection,
+  ExternalLink,
+} from "@/components/ui";
 
 type SectionId =
   | "hero"
@@ -44,13 +51,18 @@ function SectionFrame({ id, title, children }: SectionFrameProps) {
 }
 
 function ContentLinkView({ link }: { readonly link: ContentLink }) {
-  const externalProps =
-    link.kind === "external" && link.newTab
-      ? { target: "_blank", rel: "noopener noreferrer" }
-      : undefined;
+  const className = "gemstone-button-motion gemstone-link";
+
+  if (link.kind === "external") {
+    return (
+      <ExternalLink href={link.href} newTab={link.newTab} className={className}>
+        {link.label}
+      </ExternalLink>
+    );
+  }
 
   return (
-    <a className="gemstone-button-motion gemstone-link" href={link.href} {...externalProps}>
+    <a className={className} href={link.href}>
       {link.label}
     </a>
   );

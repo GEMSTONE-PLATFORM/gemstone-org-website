@@ -23,9 +23,14 @@ export interface MotionProviderProps {
   readonly children: ReactNode;
 }
 
+const defaultBrowserMotionState = {
+  prefersReducedMotion: false,
+  isSmallScreen: false,
+};
+
 function getBrowserMotionState() {
   if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
-    return { prefersReducedMotion: false, isSmallScreen: false };
+    return defaultBrowserMotionState;
   }
 
   return {
@@ -39,7 +44,7 @@ function getBrowserMotionState() {
  * The wrapper also exposes the result to CSS so non-JavaScript content keeps its static layout.
  */
 export function MotionProvider({ config = defaultMotionConfig, children }: MotionProviderProps) {
-  const [browserState, setBrowserState] = useState(getBrowserMotionState);
+  const [browserState, setBrowserState] = useState(defaultBrowserMotionState);
 
   useEffect(() => {
     if (typeof window === "undefined" || typeof window.matchMedia !== "function") return;

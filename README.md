@@ -8,7 +8,7 @@ completes.
 
 ## Prerequisites
 
-- A current Node.js version supported by the project's Next.js 15 dependency.
+- Node.js 24 LTS and npm 11, matching the CI workflow and package engine requirements.
 - npm, which is used by the committed `package-lock.json`.
 - Playwright browser binaries for browser, accessibility, and integration tests.
   Install them once when they are not already available:

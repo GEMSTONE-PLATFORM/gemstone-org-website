@@ -21,12 +21,16 @@ export function ExternalLink({
   className,
   ...props
 }: ExternalLinkProps) {
+  const accessibleName =
+    newTab && typeof children === "string" ? `${children} (opens in a new tab)` : undefined;
+
   return (
     <a
       {...props}
       href={href}
       target={newTab ? "_blank" : undefined}
       rel={newTab ? safeExternalRel(rel) : rel}
+      aria-label={accessibleName}
       className={cn(
         "inline-flex min-h-11 items-center gap-2 rounded-gemstone-sm px-1 text-gemstone-accent underline decoration-gemstone-cyan/70 underline-offset-4 transition-colors hover:text-gemstone-text",
         "focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-gemstone-focus",
