@@ -1,0 +1,375 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+
+  /* GEMSTONE semantic color tokens. Components consume these through semantic classes. */
+  --gemstone-bg-rgb: 5 11 21;
+  --gemstone-surface-rgb: 10 22 39;
+  --gemstone-surface-raised-rgb: 15 33 55;
+  --gemstone-surface-elevated-rgb: 20 45 72;
+  --gemstone-overlay-rgb: 5 11 21;
+  --gemstone-cyan-rgb: 0 212 255;
+  --gemstone-blue-rgb: 55 125 255;
+  --gemstone-accent-rgb: 126 224 255;
+  --gemstone-magenta-rgb: 210 97 255;
+  --gemstone-text-rgb: 248 250 252;
+  --gemstone-text-muted-rgb: 180 199 214;
+  --gemstone-text-subtle-rgb: 128 151 172;
+  --gemstone-border-rgb: 126 224 255;
+  --gemstone-focus-rgb: 255 255 255;
+  --gemstone-danger-rgb: 255 139 139;
+
+  /* Shared geometry and type tokens. */
+  --gemstone-content-max: 80rem;
+  --gemstone-reading-max: 48rem;
+  --gemstone-section-space: clamp(4rem, 8vw, 8rem);
+  --gemstone-radius-sm: 0.5rem;
+  --gemstone-radius-md: 0.875rem;
+  --gemstone-radius-lg: 1.25rem;
+  --gemstone-font-sans:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --gemstone-font-display: "Arial Narrow", Inter, ui-sans-serif, system-ui, sans-serif;
+  --gemstone-font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --gemstone-shadow-panel: 0 1.5rem 4rem rgb(0 0 0 / 0.28);
+  --gemstone-shadow-glow: 0 0 2.5rem rgb(var(--gemstone-cyan-rgb) / 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: rgb(var(--gemstone-bg-rgb));
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  overflow-x: hidden;
+  background: rgb(var(--gemstone-bg-rgb));
+  color: rgb(var(--gemstone-text-rgb));
+  font-family: var(--gemstone-font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgb(var(--gemstone-cyan-rgb) / 0.3);
+  color: rgb(var(--gemstone-text-rgb));
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 3px solid rgb(var(--gemstone-focus-rgb));
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgb(var(--gemstone-cyan-rgb) / 0.42);
+}
+
+.gemstone-skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 50;
+  transform: translateY(-200%);
+  border: 1px solid rgb(var(--gemstone-border-rgb) / 0.6);
+  border-radius: var(--gemstone-radius-sm);
+  background: rgb(var(--gemstone-surface-elevated-rgb));
+  padding: 0.75rem 1rem;
+  color: rgb(var(--gemstone-text-rgb));
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 160ms ease;
+}
+
+.gemstone-skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    margin-block: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: rgb(var(--gemstone-text-rgb));
+    font-family: var(--gemstone-font-display);
+    font-weight: 650;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  button,
+  a,
+  summary {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  .gemstone-page {
+    position: relative;
+    isolation: isolate;
+    overflow-x: clip;
+    background: rgb(var(--gemstone-bg-rgb));
+  }
+
+  .gemstone-container {
+    width: min(calc(100% - 2rem), var(--gemstone-content-max));
+    margin-inline: auto;
+  }
+
+  .gemstone-reading-width {
+    max-width: var(--gemstone-reading-max);
+  }
+
+  .gemstone-section {
+    position: relative;
+    padding-block: var(--gemstone-section-space);
+    scroll-margin-top: 5rem;
+  }
+
+  .gemstone-surface {
+    background: rgb(var(--gemstone-surface-rgb) / 0.9);
+    border: 1px solid rgb(var(--gemstone-border-rgb) / 0.2);
+    box-shadow: var(--gemstone-shadow-panel);
+  }
+
+  .gemstone-surface-raised {
+    background: linear-gradient(
+      135deg,
+      rgb(var(--gemstone-surface-raised-rgb) / 0.94),
+      rgb(var(--gemstone-surface-rgb) / 0.88)
+    );
+    border: 1px solid rgb(var(--gemstone-border-rgb) / 0.24);
+  }
+
+  .gemstone-grid {
+    background-image:
+      linear-gradient(rgb(var(--gemstone-border-rgb) / 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--gemstone-border-rgb) / 0.08) 1px, transparent 1px);
+    background-position: center;
+    background-size: 3rem 3rem;
+    mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+  }
+
+  .gemstone-network {
+    background-image:
+      radial-gradient(circle at 12% 18%, rgb(var(--gemstone-cyan-rgb) / 0.18), transparent 22%),
+      radial-gradient(circle at 86% 28%, rgb(var(--gemstone-blue-rgb) / 0.16), transparent 25%),
+      radial-gradient(circle at 58% 82%, rgb(var(--gemstone-magenta-rgb) / 0.1), transparent 22%);
+  }
+
+  .gemstone-illumination {
+    box-shadow: var(--gemstone-shadow-glow);
+  }
+
+  .gemstone-eyebrow {
+    color: rgb(var(--gemstone-accent-rgb));
+    font-family: var(--gemstone-font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .gemstone-display {
+    font-size: clamp(2.5rem, 7vw, 5.75rem);
+    max-width: 13ch;
+  }
+
+  .gemstone-body {
+    color: rgb(var(--gemstone-text-muted-rgb));
+    font-size: clamp(1rem, 1.2vw, 1.25rem);
+    max-width: var(--gemstone-reading-max);
+  }
+
+  .gemstone-link {
+    color: rgb(var(--gemstone-accent-rgb));
+    text-decoration-color: rgb(var(--gemstone-cyan-rgb) / 0.65);
+    text-decoration-thickness: 0.1em;
+    text-underline-offset: 0.2em;
+    transition:
+      color 160ms ease,
+      text-decoration-color 160ms ease;
+  }
+
+  .gemstone-link:hover {
+    color: rgb(var(--gemstone-text-rgb));
+    text-decoration-color: rgb(var(--gemstone-cyan-rgb));
+  }
+
+  .gemstone-motion {
+    will-change: transform, opacity;
+  }
+
+  [data-continuous-motion="enabled"] .gemstone-motion {
+    animation: gemstone-breathe 8s ease-in-out infinite;
+  }
+
+  .gemstone-section-reveal[data-motion-reveal="active"] {
+    animation: gemstone-section-reveal var(--gemstone-motion-duration, 320ms) ease-out both;
+  }
+
+  .gemstone-network-path {
+    stroke-dasharray: 8 12;
+  }
+
+  [data-continuous-motion="enabled"] .gemstone-network-path {
+    animation: gemstone-path-flow 5s linear infinite;
+  }
+
+  .gemstone-card-motion,
+  .gemstone-button-motion,
+  .gemstone-header-motion {
+    transition-duration: var(--gemstone-motion-duration, 200ms);
+    transition-property: transform, box-shadow, border-color, background-color, color;
+    transition-timing-function: ease-out;
+  }
+
+  .gemstone-card-motion:hover,
+  .gemstone-card-motion:focus-within {
+    transform: translateY(calc(var(--gemstone-motion-translate, 4px) * -0.5));
+  }
+
+  .gemstone-button-motion:hover,
+  .gemstone-button-motion:focus-visible {
+    transform: translateY(-1px);
+  }
+
+  .gemstone-about-path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-dasharray: 8 12;
+  }
+
+  [data-continuous-motion="enabled"] .gemstone-about-path {
+    animation: gemstone-path-flow 5s linear infinite;
+  }
+
+  .motion-reduced .gemstone-motion,
+  [data-motion="reduced"] .gemstone-motion,
+  .motion-reduced .gemstone-section-reveal,
+  [data-motion="reduced"] .gemstone-section-reveal,
+  .motion-reduced .gemstone-network-path,
+  [data-motion="reduced"] .gemstone-network-path,
+  [data-continuous-motion="disabled"] .gemstone-network-path,
+  .motion-reduced .gemstone-card-motion,
+  .motion-reduced .gemstone-button-motion,
+  .motion-reduced .gemstone-header-motion,
+  [data-motion="reduced"] .gemstone-card-motion,
+  [data-motion="reduced"] .gemstone-button-motion,
+  [data-motion="reduced"] .gemstone-header-motion,
+  .motion-reduced .gemstone-about-path,
+  [data-motion="reduced"] .gemstone-about-path {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+}
+
+@keyframes gemstone-breathe {
+  0%,
+  100% {
+    opacity: 0.76;
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate3d(0, -0.25rem, 0);
+  }
+}
+
+@media (min-width: 640px) {
+  .gemstone-container {
+    width: min(calc(100% - 3rem), var(--gemstone-content-max));
+  }
+}
+
+@media (min-width: 1024px) {
+  .gemstone-container {
+    width: min(calc(100% - 4rem), var(--gemstone-content-max));
+  }
+}
+
+@keyframes gemstone-section-reveal {
+  from {
+    opacity: 0.88;
+    transform: translate3d(0, var(--gemstone-motion-translate, 4px), 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes gemstone-path-flow {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .gemstone-motion,
+  .gemstone-about-path,
+  .gemstone-network {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 374px) {
+  .gemstone-section {
+    padding-block: clamp(3.5rem, 14vw, 4.5rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .gemstone-grid {
+    background-size: 2rem 2rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .gemstone-container {
+    width: min(calc(100% - 6rem), var(--gemstone-content-max));
+  }
+}

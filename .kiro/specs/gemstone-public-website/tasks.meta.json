@@ -1,0 +1,1324 @@
+{
+  "pbtResults": {
+    "2.4 Write property tests for typed source boundaries.": {
+      "status": "passed",
+      "lastRunTimestamp": 1794254730432
+    },
+    "4.5 Write the section visibility property test.": {
+      "status": "passed",
+      "lastRunTimestamp": 1794279829613
+    },
+    "4.6 Write the navigation integrity property test.": {
+      "status": "passed",
+      "lastRunTimestamp": 1794256292476
+    },
+    "11.2 Write the metadata mapping property test.": {
+      "status": "passed",
+      "lastRunTimestamp": 1794258910649
+    },
+    "9.2 Write the missing-integration property test.": {
+      "status": "passed",
+      "lastRunTimestamp": 1794259036709
+    },
+    "7.2 Write the architecture graph endpoint property test.": {
+      "status": "passed",
+      "lastRunTimestamp": 1794258972970
+    },
+    "8.2 Write the FAQ state synchronization property test.": {
+      "status": "passed",
+      "lastRunTimestamp": 1794259167897
+    },
+    "7.4 Write the distributed-architecture semantics property test.": {
+      "status": "passed",
+      "lastRunTimestamp": 1794262228653
+    },
+    "10.2 Write the reduced-motion precedence property test.": {
+      "status": "passed",
+      "lastRunTimestamp": 1794273528662
+    },
+    "7.6 Write the matrix relationship property test.": {
+      "status": "passed",
+      "lastRunTimestamp": 1794273858808
+    },
+    "9.6 Write the new-tab external-link safety property test.": {
+      "status": "passed",
+      "lastRunTimestamp": 1794273860404
+    },
+    "9.5 Write the integration recovery property test.": {
+      "status": "passed",
+      "lastRunTimestamp": 1794274855056
+    },
+    "12.2 Write the fallback comprehension property test.": {
+      "status": "passed",
+      "lastRunTimestamp": 1794279829786
+    },
+    "12.3 Write the configuration-isolation property test.": {
+      "status": "passed",
+      "lastRunTimestamp": 1794278526765
+    }
+  },
+  "executionHistory": {
+    "1.1 Initialize the Next.js App Router project with TypeScript and the required dependencies: Tailwind CSS, Framer Motion, Lucide React Icons, Vitest, React Testing Library, `@testing-library/jest-dom`, `@axe-core/playwright`, and Playwright.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252635631
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252648576
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794253231409
+      }
+    ],
+    "1.2 Configure static export and static asset handling.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252637357
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794253233831
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254115365
+      }
+    ],
+    "1.3 Configure ESLint, Prettier, TypeScript no-emit validation, Vitest, React Testing Library, axe accessibility checks, and Playwright.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252637527
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794253234058
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254115568
+      }
+    ],
+    "1.4 Define shared TypeScript contracts for content, site configuration, assets, integrations, motion, metadata, sections, links, architecture graphs, matrix relationships, and fallback states.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252637672
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794253234217
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254115787
+      }
+    ],
+    "2.1 Create typed content files for the approved hero, About, Why GEMSTONE, architecture, Modeling and Simulation Matrix, ecosystem, analyst benefits, capabilities, differentiators, FAQs, footer, privacy placeholder, and public-release wording.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252637857
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254119086
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254454200
+      }
+    ],
+    "2.2 Create centralized site, navigation, asset, integration, motion, and SEO configuration.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252637993
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254119217
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254454483
+      }
+    ],
+    "2.3 Add branding placeholders and reference-material handling without treating reference assets as production content.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252638129
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254119371
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254454659
+      }
+    ],
+    "2.4 Write property tests for typed source boundaries.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252638263
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254456895
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254745767
+      }
+    ],
+    "3.1 Implement centralized GEMSTONE design tokens, Tailwind mappings, typography, focus styles, responsive containers, dark layered surfaces, controlled cyan/blue illumination, grid/network treatments, and reduced-motion CSS fallbacks.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252638404
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254457077
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254746010
+      }
+    ],
+    "3.2 Implement reusable `SectionContainer`, `SectionHeading`, `Button`, `Card`, icon resolution, status/fallback, responsive media, and external-link primitives.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252638545
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254748323
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794255211521
+      }
+    ],
+    "3.3 Add component-level visual and interaction test helpers for responsive viewport setup, reduced-motion preference, keyboard activation, and static fallback assertions.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252638671
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794255214536
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794255892388
+      }
+    ],
+    "4.1 Implement the explicit section registry and `src/app/page.tsx` composition in approved order.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252638847
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254748467
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794255211703
+      }
+    ],
+    "4.2 Implement the skip link, semantic landmarks, section IDs, stable `main` target, focus-visible styling, and page-level heading hierarchy.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252638987
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794255214695
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794255892635
+      }
+    ],
+    "4.3 Implement the sticky responsive header and desktop/mobile navigation.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252639185
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794255214828
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794255892830
+      }
+    ],
+    "4.4 Implement the configurable footer with GEMSTONE identity, full name, release statement, approved links, optional privacy/accessibility/logo/social/copyright/back-to-top elements, and empty-value filtering.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252639322
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794255214957
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794255892972
+      }
+    ],
+    "4.5 Write the section visibility property test.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252639443
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794255895310
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794256013965
+      }
+    ],
+    "4.6 Write the navigation integrity property test.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252639581
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794255895452
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794256299448
+      }
+    ],
+    "4.7 Write the optional-footer filtering property test.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252639714
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794255895581
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794256299571
+      }
+    ],
+    "5.1 Implement `HeroSection` with the exact approved headline and subheadline, CTA anchors, ecosystem labels, layered network visualization, readable content layer, and static no-animation/no-image fallback.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252639861
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794256303003
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257335945
+      }
+    ],
+    "5.2 Implement `AboutSection` for “What is GEMSTONE?” with the approved definition and an accessible Organizations/Tools/Data/Compute/GEMSTONE relationship representation.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252639994
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794256303200
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257336089
+      }
+    ],
+    "5.3 Write hero and About component tests.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252640179
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257340284
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257863800
+      }
+    ],
+    "6.1 Implement `WhyGemstoneSection` with Bring Your Own Environment, Controlled Collaboration, Security First, and Reuse Instead of Rebuild.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252640303
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794256303346
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257336241
+      }
+    ],
+    "6.2 Implement the generic `CapabilitiesSection` from the approved typed capability array.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252640432
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794256303483
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257336465
+      }
+    ],
+    "6.3 Implement the generic `DifferentiatorsSection` from the reviewable approved claims array.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252640567
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794256303611
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257336634
+      }
+    ],
+    "6.4 Write unit and component tests for Why GEMSTONE, capabilities, and differentiators.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252640690
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257343556
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257864063
+      }
+    ],
+    "7.1 Implement pure architecture graph validation and selection utilities.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252640844
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257343829
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257864282
+      }
+    ],
+    "7.2 Write the architecture graph endpoint property test.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252640975
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794258757518
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794260235789
+      }
+    ],
+    "7.3 Implement the accessible `ArchitectureDiagram` and `ArchitectureSection`.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252641096
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794258757942
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794260239070
+      }
+    ],
+    "7.4 Write the distributed-architecture semantics property test.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252641226
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794262138641
+      },
+      {
+        "executionId": "85edd3d7-05b1-4b15-8b01-484847e51a7c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794272723249
+      }
+    ],
+    "7.5 Implement the Modeling and Simulation Matrix and ecosystem content presentation.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252641372
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794262138908
+      },
+      {
+        "executionId": "85edd3d7-05b1-4b15-8b01-484847e51a7c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794272723388
+      }
+    ],
+    "7.6 Write the matrix relationship property test.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252641495
+      },
+      {
+        "executionId": "8449a41a-6ae0-42f2-b427-71724869eea7",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794273721970
+      },
+      {
+        "executionId": "8449a41a-6ae0-42f2-b427-71724869eea7",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794274502932
+      }
+    ],
+    "7.7 Write architecture and matrix component/accessibility tests.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252641621
+      },
+      {
+        "executionId": "8449a41a-6ae0-42f2-b427-71724869eea7",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794273722228
+      },
+      {
+        "executionId": "8449a41a-6ae0-42f2-b427-71724869eea7",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794274503253
+      }
+    ],
+    "8.1 Implement pure FAQ state transition utilities for known and unknown IDs.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252641823
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257344018
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257864464
+      }
+    ],
+    "8.2 Write the FAQ state synchronization property test.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252641955
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794258758152
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794260236031
+      }
+    ],
+    "8.3 Implement the accessible `Accordion` and `FAQSection` with approved questions and answers.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252642087
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794262139102
+      },
+      {
+        "executionId": "85edd3d7-05b1-4b15-8b01-484847e51a7c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794272723505
+      }
+    ],
+    "8.4 Write FAQ integration tests.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252642201
+      },
+      {
+        "executionId": "8449a41a-6ae0-42f2-b427-71724869eea7",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794273722394
+      },
+      {
+        "executionId": "8449a41a-6ae0-42f2-b427-71724869eea7",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794274503794
+      }
+    ],
+    "9.1 Implement pure integration URL/state resolution and external-link helpers.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252642318
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257344172
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257864585
+      }
+    ],
+    "9.2 Write the missing-integration property test.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252642437
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794258758433
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794260236245
+      }
+    ],
+    "9.3 Implement `BriefingSection` and `MediaViewer` using one centralized briefing configuration value.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252642556
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794262139468
+      },
+      {
+        "executionId": "85edd3d7-05b1-4b15-8b01-484847e51a7c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794273221707
+      }
+    ],
+    "9.4 Implement `RequestInformationSection` and `MicrosoftFormEmbed` using `NEXT_PUBLIC_MICROSOFT_FORM_URL`.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252642674
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794262139702
+      },
+      {
+        "executionId": "85edd3d7-05b1-4b15-8b01-484847e51a7c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794272723596
+      }
+    ],
+    "9.5 Write the integration recovery property test.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252642786
+      },
+      {
+        "executionId": "8449a41a-6ae0-42f2-b427-71724869eea7",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794273722511
+      },
+      {
+        "executionId": "fcf99ac7-a59c-423b-8719-718255875aee",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794275132834
+      }
+    ],
+    "9.6 Write the new-tab external-link safety property test.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252642898
+      },
+      {
+        "executionId": "8449a41a-6ae0-42f2-b427-71724869eea7",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794273722636
+      },
+      {
+        "executionId": "8449a41a-6ae0-42f2-b427-71724869eea7",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794274504419
+      }
+    ],
+    "9.7 Write integration tests for configured and missing briefing/form flows.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252643084
+      },
+      {
+        "executionId": "1b26f14c-bbf3-435d-8ec2-8d3e391f6b76",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794277053905
+      },
+      {
+        "executionId": "1b26f14c-bbf3-435d-8ec2-8d3e391f6b76",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794277842034
+      }
+    ],
+    "10.1 Implement motion configuration and pure motion resolution.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252643193
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257344319
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794258753449
+      }
+    ],
+    "10.2 Write the reduced-motion precedence property test.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252643308
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794262139923
+      },
+      {
+        "executionId": "85edd3d7-05b1-4b15-8b01-484847e51a7c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794272726866
+      },
+      {
+        "executionId": "85edd3d7-05b1-4b15-8b01-484847e51a7c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794272727089
+      },
+      {
+        "executionId": "bd5b6225-b3bc-4dbc-9016-0abe12b5f510",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794273541596
+      }
+    ],
+    "10.3 Wire purposeful motion into hero, section reveals, network paths, architecture, cards, FAQ, buttons, header, and background layers with static fallbacks.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252643426
+      },
+      {
+        "executionId": "8449a41a-6ae0-42f2-b427-71724869eea7",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794273722744
+      },
+      {
+        "executionId": "fcf99ac7-a59c-423b-8719-718255875aee",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794274538549
+      },
+      {
+        "executionId": "9cb67b86-dfba-4f3c-84d4-1198df0c9194",
+        "chatSessionId": "sess_a9500dd8-2b34-472e-a3dd-1ec03a5c9d72",
+        "timestamp": 1794275166736
+      },
+      {
+        "executionId": "9cb67b86-dfba-4f3c-84d4-1198df0c9194",
+        "chatSessionId": "sess_a9500dd8-2b34-472e-a3dd-1ec03a5c9d72",
+        "timestamp": 1794275175708
+      },
+      {
+        "executionId": "c0b842a1-c17d-4862-a4a1-7cfcf19dd413",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794275240765
+      },
+      {
+        "executionId": "c0b842a1-c17d-4862-a4a1-7cfcf19dd413",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794275900763
+      }
+    ],
+    "10.4 Add performance and browser-support checks.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252643538
+      },
+      {
+        "executionId": "8449a41a-6ae0-42f2-b427-71724869eea7",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794273722839
+      },
+      {
+        "executionId": "fcf99ac7-a59c-423b-8719-718255875aee",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794274538703
+      },
+      {
+        "executionId": "9cb67b86-dfba-4f3c-84d4-1198df0c9194",
+        "chatSessionId": "sess_a9500dd8-2b34-472e-a3dd-1ec03a5c9d72",
+        "timestamp": 1794275166860
+      },
+      {
+        "executionId": "9cb67b86-dfba-4f3c-84d4-1198df0c9194",
+        "chatSessionId": "sess_a9500dd8-2b34-472e-a3dd-1ec03a5c9d72",
+        "timestamp": 1794275175817
+      },
+      {
+        "executionId": "c0b842a1-c17d-4862-a4a1-7cfcf19dd413",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794275240898
+      },
+      {
+        "executionId": "c0b842a1-c17d-4862-a4a1-7cfcf19dd413",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794275900985
+      }
+    ],
+    "11.1 Implement `buildMetadata` through the Next.js Metadata API from centralized approved configuration.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252643658
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257344460
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794258753814
+      }
+    ],
+    "11.2 Write the metadata mapping property test.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252643781
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794258758810
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794260236441
+      }
+    ],
+    "11.3 Implement responsive/static asset loading and failure behavior.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252643895
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794262140202
+      },
+      {
+        "executionId": "85edd3d7-05b1-4b15-8b01-484847e51a7c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794272726963
+      },
+      {
+        "executionId": "85edd3d7-05b1-4b15-8b01-484847e51a7c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794272727185
+      },
+      {
+        "executionId": "85edd3d7-05b1-4b15-8b01-484847e51a7c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794273221919
+      }
+    ],
+    "11.4 Add static-export inspection tests.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252644022
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794262140523
+      }
+    ],
+    "11.5 Write an end-to-end accessibility and reflow test matrix.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252644141
+      },
+      {
+        "executionId": "8449a41a-6ae0-42f2-b427-71724869eea7",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794273722957
+      },
+      {
+        "executionId": "fcf99ac7-a59c-423b-8719-718255875aee",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794274538790
+      },
+      {
+        "executionId": "9cb67b86-dfba-4f3c-84d4-1198df0c9194",
+        "chatSessionId": "sess_a9500dd8-2b34-472e-a3dd-1ec03a5c9d72",
+        "timestamp": 1794275166953
+      },
+      {
+        "executionId": "9cb67b86-dfba-4f3c-84d4-1198df0c9194",
+        "chatSessionId": "sess_a9500dd8-2b34-472e-a3dd-1ec03a5c9d72",
+        "timestamp": 1794275175932
+      },
+      {
+        "executionId": "c0b842a1-c17d-4862-a4a1-7cfcf19dd413",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794275241059
+      },
+      {
+        "executionId": "c0b842a1-c17d-4862-a4a1-7cfcf19dd413",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794275901277
+      }
+    ],
+    "12.1 Implement shared failure/fallback composition for missing logo, missing image, unavailable animation, unavailable JavaScript, missing briefing/form URLs, blocked embeds, unsupported documents, and unavailable observers.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252644274
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794258759082
+      },
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794262134280
+      }
+    ],
+    "12.2 Write the fallback comprehension property test.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252644382
+      },
+      {
+        "executionId": "8449a41a-6ae0-42f2-b427-71724869eea7",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794273723068
+      },
+      {
+        "executionId": "fcf99ac7-a59c-423b-8719-718255875aee",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794274538927
+      },
+      {
+        "executionId": "9cb67b86-dfba-4f3c-84d4-1198df0c9194",
+        "chatSessionId": "sess_a9500dd8-2b34-472e-a3dd-1ec03a5c9d72",
+        "timestamp": 1794275167046
+      },
+      {
+        "executionId": "9cb67b86-dfba-4f3c-84d4-1198df0c9194",
+        "chatSessionId": "sess_a9500dd8-2b34-472e-a3dd-1ec03a5c9d72",
+        "timestamp": 1794275176042
+      },
+      {
+        "executionId": "c0b842a1-c17d-4862-a4a1-7cfcf19dd413",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794275241175
+      },
+      {
+        "executionId": "727f34c8-9688-45a9-a2c7-4ae6660968d3",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794276898485
+      }
+    ],
+    "12.3 Write the configuration-isolation property test.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252644500
+      },
+      {
+        "executionId": "1b26f14c-bbf3-435d-8ec2-8d3e391f6b76",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794277054262
+      },
+      {
+        "executionId": "473f12c0-bf1b-4087-9944-b3573f9b1b1c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794278550706
+      }
+    ],
+    "12.4 Add fallback integration tests for missing assets, disabled JavaScript, reduced motion, disabled sections, and configured/missing external integrations.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252644622
+      },
+      {
+        "executionId": "1b26f14c-bbf3-435d-8ec2-8d3e391f6b76",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794277055269
+      },
+      {
+        "executionId": "1b26f14c-bbf3-435d-8ec2-8d3e391f6b76",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794277842469
+      }
+    ],
+    "13.1 Write `README.md` with installation, local development, linting, TypeScript validation, unit/component/accessibility/integration tests, formatting, production build, static deployment, and rebuild/redeploy conditions.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252644730
+      },
+      {
+        "executionId": "1b26f14c-bbf3-435d-8ec2-8d3e391f6b76",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794277055877
+      },
+      {
+        "executionId": "1b26f14c-bbf3-435d-8ec2-8d3e391f6b76",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794277843584
+      }
+    ],
+    "13.2 Add `.env.example` with `NEXT_PUBLIC_MICROSOFT_FORM_URL=` and document static-host deployment guidance.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252644897
+      },
+      {
+        "executionId": "1b26f14c-bbf3-435d-8ec2-8d3e391f6b76",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794277056069
+      },
+      {
+        "executionId": "1b26f14c-bbf3-435d-8ec2-8d3e391f6b76",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794277844210
+      }
+    ],
+    "13.3 Add maintainability checks for content/config separation.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252645016
+      },
+      {
+        "executionId": "1b26f14c-bbf3-435d-8ec2-8d3e391f6b76",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794277056674
+      },
+      {
+        "executionId": "473f12c0-bf1b-4087-9944-b3573f9b1b1c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794277958938
+      },
+      {
+        "executionId": "473f12c0-bf1b-4087-9944-b3573f9b1b1c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794277959188
+      },
+      {
+        "executionId": "473f12c0-bf1b-4087-9944-b3573f9b1b1c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794278550937
+      }
+    ],
+    "14.1 Implement the `validate:release` command and release checklist runner.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252645136
+      },
+      {
+        "executionId": "473f12c0-bf1b-4087-9944-b3573f9b1b1c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794278562959
+      },
+      {
+        "executionId": "cc480f08-0f24-4683-86af-169f1feabb06",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794318948285
+      },
+      {
+        "executionId": "cc480f08-0f24-4683-86af-169f1feabb06",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794322930195
+      }
+    ],
+    "14.2 Complete the final review task and record release gates in `README.md` or a review artifact.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252645244
+      },
+      {
+        "executionId": "cc480f08-0f24-4683-86af-169f1feabb06",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794322936518
+      },
+      {
+        "executionId": "cc480f08-0f24-4683-86af-169f1feabb06",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794324286772
+      }
+    ],
+    "14.3 Final checkpoint: ensure all automated tests, formatting, type validation, static export, and release checks pass; leave the repository ready for implementation task execution and ask the user if any release-gate question remains.": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794252645360
+      },
+      {
+        "executionId": "cc480f08-0f24-4683-86af-169f1feabb06",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794324289672
+      },
+      {
+        "executionId": "cc480f08-0f24-4683-86af-169f1feabb06",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794325124486
+      }
+    ],
+    "1. Establish the Next.js application foundation and validation toolchain": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254115919
+      }
+    ],
+    "2. Build the typed content, configuration, branding, and reference-asset boundaries": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794254745875
+      }
+    ],
+    "3. Create the visual foundations and reusable UI primitives": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794255892499
+      }
+    ],
+    "4. Assemble the accessible page shell, navigation, and footer": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794256299711
+      }
+    ],
+    "5. Implement the hero and GEMSTONE introduction": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257863936
+      }
+    ],
+    "6. Implement Why GEMSTONE, capabilities, and differentiators": [
+      {
+        "executionId": "40118742-6eb9-4320-bd54-638b701b57e1",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794257864158
+      }
+    ],
+    "7. Implement architecture, Modeling and Simulation Matrix, and ecosystem explanations": [
+      {
+        "executionId": "8449a41a-6ae0-42f2-b427-71724869eea7",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794274503419
+      }
+    ],
+    "8. Implement the FAQ accordion": [
+      {
+        "executionId": "8449a41a-6ae0-42f2-b427-71724869eea7",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794274504144
+      }
+    ],
+    "10. Apply centralized motion, reduced-motion, performance, and browser-support behavior": [
+      {
+        "executionId": "c0b842a1-c17d-4862-a4a1-7cfcf19dd413",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794275901117
+      }
+    ],
+    "11. Implement SEO metadata, image strategy, and static-export content preservation": [
+      {
+        "executionId": "c0b842a1-c17d-4862-a4a1-7cfcf19dd413",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794275901438
+      }
+    ],
+    "9. Implement briefing and Microsoft Forms integrations with safe fallbacks": [
+      {
+        "executionId": "1b26f14c-bbf3-435d-8ec2-8d3e391f6b76",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794277842143
+      }
+    ],
+    "12. Complete fallback composition and configuration-isolation coverage": [
+      {
+        "executionId": "473f12c0-bf1b-4087-9944-b3573f9b1b1c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794278550813
+      }
+    ],
+    "13. Complete maintainability documentation and deployment guidance": [
+      {
+        "executionId": "473f12c0-bf1b-4087-9944-b3573f9b1b1c",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794278551045
+      }
+    ],
+    "14. Run final automated validation and complete release-readiness review": [
+      {
+        "executionId": "cc480f08-0f24-4683-86af-169f1feabb06",
+        "chatSessionId": "sess_9d5f29bc-2dc9-4537-a69b-8744aff41d87",
+        "timestamp": 1794325124682
+      }
+    ]
+  }
+}

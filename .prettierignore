@@ -1,0 +1,18 @@
+# Generated and dependency directories
+.next/
+out/
+node_modules/
+test-results/
+
+# Source materials and Kiro specification artifacts
+.git/
+.kiro/
+initial-images/
+
+# TypeScript incremental metadata
+tsconfig.tsbuildinfo
+
+# Pre-existing source contracts remain owned by their implementation task
+kiroprompt.md
+src/types/
+tests/unit/types-contracts.test.ts
