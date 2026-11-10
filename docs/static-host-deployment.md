@@ -25,6 +25,14 @@ The briefing URL is deliberately not an environment variable. Update the single 
 5. Associate the approved domain, enable TLS with a valid certificate, redirect HTTP to HTTPS, and verify the canonical public URL after deployment.
 6. Test the deployed site over HTTPS, including the missing and configured form states, briefing fallback actions, internal links, and browser console/network policy errors.
 
+## GitHub Pages project-site deployment
+
+The repository includes `.github/workflows/deploy-pages.yml` for a GitHub Pages project site. It runs after pushes to `main` and can also be started manually. In repository **Settings → Pages**, select **GitHub Actions** as the publishing source.
+
+The workflow obtains the project path from `actions/configure-pages` and passes it to the build as `NEXT_PUBLIC_BASE_PATH`. This keeps Next.js files and public branding assets under the repository path, such as `/gemstone-org-website/`, rather than incorrectly requesting them from the GitHub Pages origin root. It uploads only `out/` as a Pages artifact, and creates `out/.nojekyll` so the generated `_next/` directory is served unchanged.
+
+To enable the optional form, add a repository or environment variable named `NEXT_PUBLIC_MICROSOFT_FORM_URL` in GitHub before the build. Its value is public in the deployed site. Leave the variable unset to deploy the intentional no-form fallback. Do not store a real form URL in a committed `.env` file or in a GitHub secret because it is embedded in the generated assets.
+
 ## Content Security Policy and external origins
 
 Set a deployment-level Content Security Policy (CSP) before release. Start from a restrictive same-origin policy for static site assets and allow only explicitly reviewed origins.
