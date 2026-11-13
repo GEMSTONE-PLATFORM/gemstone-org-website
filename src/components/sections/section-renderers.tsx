@@ -10,12 +10,12 @@ import type {
 
 import { briefingConfig } from "@/config/integration-config";
 import {
+  AnimatedSection,
   Card,
+  ExternalLink,
   Icon,
   MediaViewer,
   MicrosoftFormEmbed,
-  AnimatedSection,
-  ExternalLink,
 } from "@/components/ui";
 
 type SectionId =
@@ -68,19 +68,6 @@ function ContentLinkView({ link }: { readonly link: ContentLink }) {
   );
 }
 
-const ecosystemLabels = [
-  "Organizations",
-  "Environments",
-  "Nodes",
-  "Tools",
-  "Data",
-  "Compute",
-  "Models",
-  "Simulations",
-  "Users",
-  "Hub services",
-] as const;
-
 interface HeroSectionProps {
   readonly content: HeroContent;
   readonly enabledSections?: Pick<SiteSections, "briefing" | "requestInformation">;
@@ -94,120 +81,110 @@ export function HeroSection({ content, enabledSections }: HeroSectionProps) {
     <section
       id="hero"
       aria-labelledby="hero-heading"
-      data-visualization-mode="static"
       className="gemstone-page gemstone-grid gemstone-network relative overflow-hidden"
     >
-      <div
-        className="gemstone-motion pointer-events-none absolute inset-0 opacity-70"
-        aria-hidden="true"
-      >
-        <svg
-          className="h-full w-full"
-          viewBox="0 0 1200 760"
-          preserveAspectRatio="none"
-          focusable="false"
-          aria-hidden="true"
-        >
-          <path
-            d="M0 120C180 40 250 240 430 170S700 70 860 210s220 40 340-20"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            className="gemstone-network-path text-gemstone-cyan/30"
-          />
-          <path
-            d="M-20 530c150-140 270-60 390-160s250-130 390-40 270 20 460-80"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            className="gemstone-network-path text-gemstone-blue/30"
-          />
-          <path
-            d="M220 0c40 170 150 230 310 250s260 20 450-140"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            className="gemstone-network-path text-gemstone-accent/20"
-          />
-        </svg>
-      </div>
-
-      <AnimatedSection className="gemstone-container relative z-10 px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
-        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
-          <div className="gemstone-surface-raised gemstone-illumination rounded-[var(--gemstone-radius-lg)] p-6 sm:p-8 lg:p-10">
+      <AnimatedSection className="gemstone-container relative z-10 py-20 sm:py-28 lg:py-32">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
+          <div className="gemstone-surface-raised gemstone-illumination rounded-[var(--gemstone-radius-lg)] p-6 sm:p-8 lg:col-span-2 lg:mx-auto lg:max-w-5xl lg:p-10 lg:text-center">
             <p className="gemstone-eyebrow mb-4">{content.eyebrow ?? "GEMSTONE"}</p>
-            <h1 id="hero-heading" className="gemstone-display text-gemstone-text">
+            <h1
+              id="hero-heading"
+              className="gemstone-display text-gemstone-text lg:mx-auto lg:max-w-[18ch]"
+            >
               {content.title}
             </h1>
-            <p className="gemstone-body mt-6">{content.description}</p>
+            <p className="gemstone-body mt-6 lg:mx-auto">{content.description}</p>
             {(requestInformationEnabled || briefingEnabled) && (
-              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
+              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4 lg:justify-center">
                 {requestInformationEnabled ? <ContentLinkView link={content.primaryCta} /> : null}
                 {briefingEnabled ? <ContentLinkView link={content.secondaryCta} /> : null}
               </div>
             )}
           </div>
 
-          <figure
-            className="relative min-h-[26rem] overflow-hidden rounded-[var(--gemstone-radius-lg)] border border-gemstone-border/30 bg-gemstone-surface/60 p-4 sm:min-h-[32rem] sm:p-6"
-            aria-labelledby="hero-network-title"
-            data-visualization-mode="static"
-            data-image-fallback="static"
+          <div
+            className="gemstone-hero-graphic relative col-span-full min-h-[18rem] overflow-hidden rounded-[var(--gemstone-radius-lg)] border border-gemstone-cyan/35 bg-gemstone-surface text-gemstone-cyan p-3 sm:min-h-[25rem] sm:p-6"
+            aria-hidden="true"
+            data-visualization-mode="decorative"
           >
-            <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-              <svg
-                className="h-full w-full text-gemstone-cyan/40"
-                viewBox="0 0 640 520"
-                preserveAspectRatio="none"
-                focusable="false"
-                aria-hidden="true"
-              >
+            <svg
+              className="absolute inset-0 h-full w-full"
+              viewBox="0 0 1200 560"
+              preserveAspectRatio="xMidYMid meet"
+              focusable="false"
+            >
+              <defs>
+                <linearGradient id="hero-core" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stopColor="currentColor" />
+                  <stop offset="1" stopColor="currentColor" />
+                </linearGradient>
+                <linearGradient id="hero-trace" x1="0" x2="1">
+                  <stop offset="0" stopColor="currentColor" stopOpacity="0" />
+                  <stop offset="0.5" stopColor="currentColor" stopOpacity="0.9" />
+                  <stop offset="1" stopColor="currentColor" stopOpacity="0" />
+                </linearGradient>
+                <filter id="hero-glow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="8" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <g fill="none" stroke="url(#hero-trace)" strokeWidth="2">
+                <path d="M600 280L250 130M600 280L950 130M600 280L170 410M600 280L1030 410" />
                 <path
-                  d="M320 72L150 190L320 260L492 190L320 72Z"
-                  fill="none"
-                  stroke="currentColor"
+                  d="M250 130L170 410M950 130L1030 410M250 130L950 130M170 410L1030 410"
+                  opacity="0.48"
                 />
-                <path
-                  d="M150 190L112 390M492 190L528 390M320 260L320 432"
-                  fill="none"
+                <path d="M600 42V518M65 280H1135" opacity="0.25" />
+              </g>
+              <g fill="none" stroke="currentColor" strokeOpacity="0.28">
+                <circle cx="600" cy="280" r="120" />
+                <circle cx="600" cy="280" r="150" />
+                <circle cx="600" cy="280" r="190" strokeDasharray="8 14" />
+              </g>
+              <g filter="url(#hero-glow)">
+                <circle
+                  cx="600"
+                  cy="280"
+                  r="56"
+                  fill="url(#hero-core)"
+                  fillOpacity="0.24"
                   stroke="currentColor"
+                  strokeWidth="3"
                 />
-                <path d="M112 390L320 432L528 390" fill="none" stroke="currentColor" />
-                <circle cx="320" cy="72" r="11" fill="currentColor" />
-                <circle cx="150" cy="190" r="8" fill="currentColor" />
-                <circle cx="492" cy="190" r="8" fill="currentColor" />
-                <circle cx="112" cy="390" r="7" fill="currentColor" />
-                <circle cx="320" cy="432" r="7" fill="currentColor" />
-                <circle cx="528" cy="390" r="7" fill="currentColor" />
-              </svg>
-            </div>
-
-            <div className="relative z-10 flex h-full flex-col justify-between gap-6">
-              <figcaption id="hero-network-title">
-                <p className="gemstone-eyebrow">Connected ecosystem</p>
-                <p className="mt-2 text-lg font-semibold text-gemstone-text">
-                  Static ecosystem map
-                </p>
-                <p className="gemstone-body mt-2 text-sm">
-                  A readable view of the organizations, environments, and services that GEMSTONE
-                  connects.
-                </p>
-              </figcaption>
-              <ul
-                aria-label="GEMSTONE ecosystem labels"
-                className="grid grid-cols-2 gap-3 sm:grid-cols-3"
+                <path d="M570 280h60M600 250v60" stroke="currentColor" strokeWidth="3" />
+                <circle cx="250" cy="130" r="14" fill="currentColor" />
+                <circle cx="950" cy="130" r="14" fill="currentColor" />
+                <circle cx="170" cy="410" r="14" fill="currentColor" />
+                <circle cx="1030" cy="410" r="14" fill="currentColor" />
+              </g>
+              <g
+                fill="currentColor"
+                fontFamily="monospace"
+                fontSize="18"
+                fontWeight="700"
+                letterSpacing="4"
               >
-                {ecosystemLabels.map((label) => (
-                  <li
-                    key={label}
-                    className="rounded-[var(--gemstone-radius-sm)] border border-gemstone-border/30 bg-gemstone-bg/80 px-3 py-3 text-sm font-semibold text-gemstone-text shadow-gemstone"
-                  >
-                    {label}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </figure>
+                <text x="540" y="350">
+                  GEMSTONE
+                </text>
+                <text x="174" y="92">
+                  NODE 01
+                </text>
+                <text x="874" y="92">
+                  NODE 02
+                </text>
+                <text x="80" y="466">
+                  CLIENT 01
+                </text>
+                <text x="944" y="466">
+                  CLIENT 02
+                </text>
+              </g>
+            </svg>
+          </div>
         </div>
       </AnimatedSection>
     </section>

@@ -65,12 +65,8 @@ test.describe("responsive, performance, and browser-support checks", () => {
         "animation-name",
         "none",
       );
-      await expect(reducedPage.locator("[data-architecture-fallback]")).toContainText(
-        "Readable relationship list",
-      );
-      await expect(reducedPage.locator("[data-image-fallback=static]")).toContainText(
-        "Static ecosystem map",
-      );
+      await expect(reducedPage.locator("[data-architecture-visual]")).toBeVisible();
+      await expect(reducedPage.locator("[data-visualization-mode=decorative]")).toBeVisible();
     } finally {
       await reducedContext.close();
     }

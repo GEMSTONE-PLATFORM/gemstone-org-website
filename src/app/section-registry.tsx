@@ -58,7 +58,6 @@ export const sectionRegistry: readonly SectionRegistryEntry[] = [
     render: ({ content }) => (
       <ArchitectureSection
         content={content.architecture}
-        matrix={content.matrix}
         ecosystem={content.ecosystem}
         analystBenefits={content.analystBenefits}
       />

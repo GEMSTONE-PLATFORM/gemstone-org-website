@@ -78,7 +78,7 @@ function EntityControl({
   return (
     <button
       type="button"
-      className={`group min-h-11 w-full rounded-gemstone border px-4 py-3 text-left shadow-gemstone transition-[border-color,box-shadow,background-color] motion-reduce:transition-none md:absolute md:w-[11rem] md:-translate-x-1/2 md:-translate-y-1/2 ${
+      className={`group absolute min-h-11 w-[min(9.5rem,42%)] -translate-x-1/2 -translate-y-1/2 rounded-gemstone border px-3 py-2 text-left shadow-gemstone transition-[border-color,box-shadow,background-color] motion-reduce:transition-none sm:w-[10.5rem] sm:px-4 sm:py-3 md:w-[11rem] ${
         selected
           ? "border-gemstone-cyan bg-gemstone-surface-elevated shadow-gemstone-glow"
           : "border-gemstone-border/35 bg-gemstone-surface-raised/95 hover:border-gemstone-cyan/70 hover:bg-gemstone-surface-elevated"
@@ -104,8 +104,8 @@ function EntityControl({
 }
 
 /**
- * Progressive architecture graph enhancement. The semantic entity and relationship lists are
- * rendered alongside the SVG so the explanation remains available without client interaction.
+ * Interactive architecture graph. The labeled entity controls and detail panel
+ * preserve the explanation when SVG connection styling is unavailable.
  */
 export function ArchitectureDiagram({ content, reducedMotion = false }: ArchitectureDiagramProps) {
   const motion = useMotionResolution();
@@ -208,7 +208,7 @@ export function ArchitectureDiagram({ content, reducedMotion = false }: Architec
                 : null}
             </svg>
 
-            <div className="relative z-10 grid gap-3 md:min-h-[28rem] md:block">
+            <div className="relative z-10 h-[34rem] sm:h-[38rem] md:min-h-[28rem] md:h-auto">
               {content.entities.map((entity) => (
                 <EntityControl
                   key={entity.id}
@@ -254,65 +254,6 @@ export function ArchitectureDiagram({ content, reducedMotion = false }: Architec
             </p>
           )}
         </aside>
-      </div>
-
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)]">
-        <div className="gemstone-surface rounded-gemstone-lg p-5 sm:p-6">
-          <h3 className="text-xl text-gemstone-text">Architecture legend</h3>
-          <ul className="mt-4 space-y-3" aria-label="Architecture legend">
-            {(Object.keys(kindLabels) as ArchitectureEntityKind[]).map((kind) => (
-              <li key={kind} className="flex items-start gap-3 text-sm text-gemstone-muted">
-                <span
-                  className="mt-1 size-3 shrink-0 rounded-full border-2 border-gemstone-cyan"
-                  aria-hidden="true"
-                />
-                <span>
-                  <strong className="text-gemstone-text">{kindLabels[kind]}</strong>:{" "}
-                  {kindDescriptions[kind]}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="gemstone-surface rounded-gemstone-lg p-5 sm:p-6" data-architecture-fallback>
-          <h3 className="text-xl text-gemstone-text">Readable relationship list</h3>
-          <p className="gemstone-body mt-2 text-sm">
-            This labeled list preserves the architecture explanation when the visual graph or its
-            interaction is unavailable.
-          </p>
-          <ol className="mt-4 space-y-3" aria-label="Hub, Node, and Client relationships">
-            {content.connections.length > 0 ? (
-              content.connections.map((connection, index) => {
-                const from = getEntity(content, connection.from);
-                const to = getEntity(content, connection.to);
-                if (!from || !to) return null;
-                const selected = isConnectionSelected(connection, selectedEntityId);
-
-                return (
-                  <li
-                    key={connectionKey(connection, index)}
-                    className={`rounded-gemstone-sm border px-4 py-3 text-sm text-gemstone-muted transition-colors motion-reduce:transition-none ${
-                      selected
-                        ? "border-gemstone-cyan bg-gemstone-surface-elevated text-gemstone-text"
-                        : "border-gemstone-border/20 bg-gemstone-bg/30"
-                    }`}
-                    data-connection-id={connectionKey(connection, index)}
-                    data-selected={selected ? "true" : "false"}
-                  >
-                    <span className="font-semibold text-gemstone-text">{from.label}</span>{" "}
-                    <span>{connection.label}</span>{" "}
-                    <span className="font-semibold text-gemstone-text">{to.label}</span>
-                  </li>
-                );
-              })
-            ) : (
-              <li className="text-sm text-gemstone-muted">
-                No relationship data is configured. The entity descriptions remain available above.
-              </li>
-            )}
-          </ol>
-        </div>
       </div>
 
       <p className="sr-only" role="status" aria-live="polite">

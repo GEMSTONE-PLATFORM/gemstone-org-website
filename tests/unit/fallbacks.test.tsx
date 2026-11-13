@@ -99,12 +99,12 @@ function assertFallbackComprehension(model: FallbackModel) {
     case "unavailable-animation": {
       const markup = renderToStaticMarkup(<HeroSection content={heroContent} />);
 
-      expect(markup).toContain('data-visualization-mode="static"');
+      expect(markup).toContain('data-visualization-mode="decorative"');
       expect(markup).toContain(approvedHeroHeading.replace("&", "&amp;"));
       expect(markup).toContain(heroContent.description);
       expect(markup).toContain('href="#requestInformation"');
       expect(markup).toContain('href="#briefing"');
-      expect(markup).toContain("Static ecosystem map");
+      expect(markup).not.toContain("Static ecosystem map");
       return;
     }
 
@@ -195,7 +195,8 @@ function assertFallbackComprehension(model: FallbackModel) {
       expect(markup).toContain(approvedHeroHeading.replace("&", "&amp;"));
       expect(markup).toContain("What is GEMSTONE?");
       expect(markup).toContain('href="#architecture"');
-      expect(markup).toContain("Readable relationship list");
+      expect(markup).toContain("data-architecture-visual");
+      expect(markup).toContain("Benefits");
       expect(markup).toContain("Briefing not configured");
       expect(markup).toContain("Request Information form has not yet been connected.");
       expect(markup).not.toContain("<iframe");

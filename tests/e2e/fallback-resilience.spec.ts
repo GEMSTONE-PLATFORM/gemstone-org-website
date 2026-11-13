@@ -23,8 +23,8 @@ async function expectNoEmptyOrMissingTargets(page: Page) {
   expect(invalidInteractions).toEqual([]);
 }
 
-test.describe("fallback matrix", () => {
-  test("preserves content and branding recovery when the official logo asset fails", async ({
+test.describe("fallback resilience", () => {
+  test("preserves content and branding recovery when the laptop logo asset fails", async ({
     page,
   }) => {
     await page.route("**/branding/gemstone-logo-horizontal.svg", (route) => route.abort());
@@ -34,16 +34,12 @@ test.describe("fallback matrix", () => {
     await expect(logoFallback).toHaveAttribute("data-logo-state", "fallback");
     await expect(logoFallback).toHaveText("GEMSTONE");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.locator("[data-image-fallback=static]")).toContainText(
-      "Static ecosystem map",
-    );
-    await expect(page.locator("[data-architecture-fallback]")).toContainText(
-      "Readable relationship list",
-    );
+    await expect(page.locator("[data-visualization-mode=decorative]")).toBeVisible();
+    await expect(page.locator("[data-architecture-visual]")).toBeVisible();
     await expectNoEmptyOrMissingTargets(page);
   });
 
-  test("keeps understandable missing-integration and architecture fallbacks without JavaScript", async ({
+  test("keeps understandable integration and architecture content without JavaScript", async ({
     browser,
     baseURL,
   }) => {
@@ -58,16 +54,13 @@ test.describe("fallback matrix", () => {
 
       await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
       await expect(page.getByText("Briefing not configured")).toBeVisible();
-      await expect(page.getByText("Request Information form not connected")).toBeVisible();
-      await expect(page.locator("[data-architecture-fallback]")).toContainText(
-        "Readable relationship list",
-      );
-      await expect(page.locator("[data-matrix-fallback]")).toContainText("Mission-specific Node");
-      await expect(page.locator("iframe")).toHaveCount(0);
+      await expect(page.locator("[data-architecture-visual]")).toBeVisible();
+      await expect(page.getByText("Modeling and Simulation Matrix")).toHaveCount(0);
+      await expect(page.getByText("Architecture legend")).toHaveCount(0);
       await expectNoEmptyOrMissingTargets(page);
 
-      const visibleFallbackText = await page.locator("body").innerText();
-      expect(visibleFallbackText).not.toMatch(
+      const visibleText = await page.locator("body").innerText();
+      expect(visibleText).not.toMatch(
         /GEMSTONE_BRIEFING_URL_GOES_HERE|MICROSOFT_FORM_URL|api[_-]?key|authorization|accreditation|\bATO\b/i,
       );
     } finally {
@@ -75,7 +68,7 @@ test.describe("fallback matrix", () => {
     }
   });
 
-  test("preserves interaction outcomes and static explanations with reduced motion", async ({
+  test("preserves interaction outcomes and decorative visuals with reduced motion", async ({
     browser,
     baseURL,
   }) => {
@@ -90,12 +83,8 @@ test.describe("fallback matrix", () => {
 
       const accordion = page.getByTestId("faq-accordion");
       await expect(accordion).toHaveAttribute("data-reduced-motion", "true");
-      await expect(page.locator("[data-image-fallback=static]")).toContainText(
-        "Static ecosystem map",
-      );
-      await expect(page.locator("[data-architecture-fallback]")).toContainText(
-        "Readable relationship list",
-      );
+      await expect(page.locator("[data-visualization-mode=decorative]")).toBeVisible();
+      await expect(page.locator("[data-architecture-visual]")).toBeVisible();
 
       const question = page.getByRole("button", { name: "What is GEMSTONE?" });
       await question.press("Enter");

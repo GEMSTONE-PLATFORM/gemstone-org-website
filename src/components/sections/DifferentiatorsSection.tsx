@@ -7,10 +7,7 @@ export interface DifferentiatorsSectionProps {
   readonly items: readonly DifferentiatorItem[];
 }
 
-/**
- * Renders reviewable differentiator claims from typed content without adding
- * presentation-owned claim text. The review marker is metadata, not a claim.
- */
+/** Renders approved differentiator claims from typed content. */
 export function DifferentiatorsSection({ items }: DifferentiatorsSectionProps) {
   const headingId = "differentiators-heading";
 
@@ -28,11 +25,6 @@ export function DifferentiatorsSection({ items }: DifferentiatorsSectionProps) {
                     <h3 className="text-xl">{item.title}</h3>
                     {item.description ? (
                       <p className="gemstone-body mt-3 text-base">{item.description}</p>
-                    ) : null}
-                    {item.claimReviewRequired ? (
-                      <p className="mt-4 text-sm font-semibold uppercase tracking-[0.12em] text-gemstone-accent">
-                        Claim review required
-                      </p>
                     ) : null}
                   </div>
                 </div>

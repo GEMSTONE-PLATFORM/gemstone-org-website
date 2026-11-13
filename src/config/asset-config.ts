@@ -4,7 +4,7 @@ import type { AssetConfig } from "@/types";
 // supplied at build time alongside Next.js's basePath configuration.
 const configuredBasePath = process.env.NEXT_PUBLIC_BASE_PATH?.trim() ?? "";
 const basePath = configuredBasePath === "/" ? "" : configuredBasePath.replace(/\/+$/, "");
-const publicAsset = (path: `/${string}`) => `${basePath}${path}`;
+export const publicAsset = (path: `/${string}`) => `${basePath}${path}`;
 
 /**
  * Official branding paths are configuration values. The files are supplied or

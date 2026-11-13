@@ -12,7 +12,6 @@ import type {
 import { capabilities } from "@/content/capabilities";
 import { differentiators } from "@/content/differentiators";
 import { faqItems } from "@/content/faq";
-import { modelingSimulationMatrix } from "@/content/matrix";
 
 const internalLink = (label: string, href: `#${string}`): ContentLink => ({
   kind: "internal",
@@ -218,7 +217,6 @@ export const siteContent = {
   problems,
   whyGemstone: whyGemstoneItems,
   architecture: architectureContent,
-  matrix: modelingSimulationMatrix,
   ecosystem: ecosystemContent,
   analystBenefits,
   capabilities,

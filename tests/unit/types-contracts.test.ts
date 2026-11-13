@@ -8,7 +8,6 @@ import type {
   FeatureItem,
   FallbackState,
   InternalLink,
-  MatrixRelationship,
   MotionConfig,
   SiteConfig,
 } from "@/types";
@@ -61,14 +60,6 @@ const validArchitecture = {
   connections: [],
   distributedPrinciple: "Organizations retain their environments.",
 } as const satisfies ArchitectureContent;
-
-const validMatrixRelationship = {
-  id: "client-node-subscription",
-  kind: "subscribes-to",
-  from: "client-a",
-  to: "node-a",
-  label: "Client subscribes to Node",
-} as const satisfies MatrixRelationship;
 
 const validMotion = {
   intensity: "standard",
@@ -141,7 +132,6 @@ void invalidArchitecture;
 void invalidFallback;
 void validCapability;
 void validFaq;
-void validMatrixRelationship;
 
 describe("shared TypeScript contracts", () => {
   it("accepts representative content and configuration fixtures", () => {
