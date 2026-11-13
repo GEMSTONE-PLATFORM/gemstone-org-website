@@ -92,15 +92,19 @@ export interface ArchitectureEntity {
   readonly id: string;
   readonly kind: ArchitectureEntityKind;
   readonly label: string;
+  readonly mobileLabel?: string;
   readonly description: string;
   readonly x: number;
   readonly y: number;
 }
 
+export type ArchitectureConnectionKind = "inter-hub" | "hub-node" | "node-client";
+
 export interface ArchitectureConnection {
   readonly from: string;
   readonly to: string;
   readonly label: string;
+  readonly kind?: ArchitectureConnectionKind;
 }
 
 export interface ArchitectureContent {
