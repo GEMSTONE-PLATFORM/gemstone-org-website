@@ -125,7 +125,6 @@ test.describe("accessibility and responsive reflow matrix", () => {
           .evaluateAll((elements) =>
             elements.map((element) => getComputedStyle(element).animationName),
           );
-        expect(motionAnimationNames).not.toHaveLength(0);
         expect(motionAnimationNames.every((animationName) => animationName === "none")).toBe(true);
       } finally {
         await context.close();

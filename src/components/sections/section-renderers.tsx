@@ -194,46 +194,13 @@ export function HeroSection({ content, enabledSections }: HeroSectionProps) {
 export function AboutSection({ content }: { readonly content: AboutContent }) {
   return (
     <SectionFrame id="about" title={content.title}>
-      <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(22rem,1.1fr)] lg:gap-16">
+      <div className="space-y-10">
         <div>
           <p className="gemstone-body">{content.description}</p>
           <p className="gemstone-body mt-6 text-base">{content.distributedNote}</p>
         </div>
 
-        <div
-          className="gemstone-about-visual gemstone-motion relative min-h-[19rem] overflow-hidden rounded-[var(--gemstone-radius-lg)] p-4 sm:min-h-[22rem] sm:p-8"
-          aria-hidden="true"
-        >
-          <svg
-            className="absolute inset-0 h-full w-full text-gemstone-cyan/50"
-            viewBox="0 0 640 360"
-            preserveAspectRatio="none"
-            focusable="false"
-          >
-            <path className="gemstone-about-path" d="M320 180 L110 82 M320 180 L530 82" />
-            <path className="gemstone-about-path" d="M320 180 L110 278 M320 180 L530 278" />
-            <circle cx="320" cy="180" r="56" />
-            <circle cx="110" cy="82" r="5" />
-            <circle cx="530" cy="82" r="5" />
-            <circle cx="110" cy="278" r="5" />
-            <circle cx="530" cy="278" r="5" />
-          </svg>
-          <div className="relative grid h-full grid-cols-2 gap-3 sm:gap-6">
-            {content.relationshipLabels.slice(0, 4).map((label) => (
-              <span
-                key={label}
-                className="gemstone-surface-raised flex min-h-16 items-center justify-center rounded-[var(--gemstone-radius-md)] px-3 py-3 text-center text-sm font-semibold text-gemstone-text shadow-[var(--gemstone-shadow-glow)] sm:min-h-20 sm:text-base"
-              >
-                {label}
-              </span>
-            ))}
-            <span className="gemstone-illumination gemstone-surface-raised col-span-2 row-start-2 flex min-h-20 items-center justify-center self-center justify-self-center rounded-full px-7 py-5 text-center text-sm font-bold uppercase tracking-[0.18em] text-gemstone-text sm:min-h-28 sm:px-10 sm:text-base">
-              {content.relationshipLabels[4] ?? "GEMSTONE"}
-            </span>
-          </div>
-        </div>
-
-        <div className="lg:col-span-2" aria-labelledby="about-relationships-heading">
+        <div aria-labelledby="about-relationships-heading">
           <h3 id="about-relationships-heading" className="text-2xl text-gemstone-text">
             {content.relationshipDescription}
           </h3>

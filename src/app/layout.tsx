@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { michroma } from "@/app/fonts";
 import { assetConfig, siteConfig } from "@/config";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -14,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={michroma.variable}>{children}</body>
     </html>
   );
 }

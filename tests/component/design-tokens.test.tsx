@@ -15,7 +15,7 @@ describe("GEMSTONE visual foundation", () => {
     render(<HomePage />);
 
     expect(screen.getByRole("main")).toHaveClass("gemstone-page", "gemstone-grid");
-    expect(screen.getByRole("main")).toHaveClass("bg-gemstone-bg", "text-gemstone-text");
+    expect(screen.getByRole("main")).toHaveClass("gemstone-atmosphere", "text-gemstone-text");
     expect(screen.getByRole("heading", { level: 1 })).toHaveClass("gemstone-display");
     expect(
       within(screen.getByRole("main")).getByText("GEMSTONE", {
