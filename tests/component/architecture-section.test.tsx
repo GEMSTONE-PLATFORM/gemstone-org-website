@@ -6,11 +6,7 @@ import { describe, expect, it } from "vitest";
 import { ArchitectureSection } from "@/components/sections/ArchitectureSection";
 import { ArchitectureDiagram } from "@/components/ui/ArchitectureDiagram";
 import { architectureContent } from "@/content/site-content";
-import {
-  assertStaticFallback,
-  setViewport,
-  viewportPresets,
-} from "../helpers/component-test-helpers";
+import { setViewport, viewportPresets } from "../helpers/component-test-helpers";
 import type { ArchitectureContent } from "@/types";
 
 const emptyArchitecture: ArchitectureContent = {
@@ -21,19 +17,16 @@ const emptyArchitecture: ArchitectureContent = {
 };
 
 describe("ArchitectureSection", () => {
-  it("renders labeled Hub, Node, and Client entities with a legend and readable relationships", () => {
-    render(<ArchitectureSection content={architectureContent} />);
+  it("renders the Hub, Node, and Client controls without legacy legend or relationship panels", () => {
+    const { container } = render(<ArchitectureSection content={architectureContent} />);
 
     expect(screen.getByRole("region", { name: "Architecture" })).toBeInTheDocument();
-    expect(screen.getByRole("list", { name: "Architecture legend" })).toHaveTextContent("Hub");
-    expect(screen.getByRole("list", { name: "Architecture legend" })).toHaveTextContent("Node");
-    expect(screen.getByRole("list", { name: "Architecture legend" })).toHaveTextContent("Client");
-    expect(
-      screen.getByRole("list", { name: "Hub, Node, and Client relationships" }),
-    ).toHaveTextContent("connect directly");
     expect(screen.getAllByRole("button", { name: /Hub: GEMSTONE \| HUB/ })).toHaveLength(1);
     expect(screen.getAllByRole("button", { name: /Node: GEMSTONE \| Node/ })).toHaveLength(2);
     expect(screen.getAllByRole("button", { name: /Client: GEMSTONE \| Client/ })).toHaveLength(2);
+    expect(container.querySelector("[data-architecture-visual]")).toBeInTheDocument();
+    expect(screen.queryByText("Architecture legend")).not.toBeInTheDocument();
+    expect(screen.queryByText("Readable relationship list")).not.toBeInTheDocument();
   });
 
   it("updates the detail panel and emphasizes related connections on pointer activation", () => {
@@ -44,7 +37,7 @@ describe("ArchitectureSection", () => {
 
     expect(screen.getByRole("heading", { name: "Hub: GEMSTONE | HUB" })).toBeInTheDocument();
     expect(screen.getByRole("complementary")).toHaveTextContent("service and connection point");
-    expect(document.querySelectorAll('[data-connection-id][data-selected="true"]')).toHaveLength(4);
+    expect(document.querySelectorAll('[data-connection-id][data-selected="true"]')).toHaveLength(2);
     expect(screen.getByRole("status")).toHaveTextContent("Selected Hub GEMSTONE | HUB.");
   });
 
@@ -68,45 +61,27 @@ describe("ArchitectureSection", () => {
     expect(screen.getByRole("status")).toHaveTextContent("Architecture selection cleared.");
   });
 
-  it("preserves equivalent entity labels, relationships, and static fallback content on mobile and desktop", () => {
+  it("keeps the connected visual and entity controls at mobile and desktop widths", () => {
     const snapshots: string[] = [];
 
     for (const viewport of [viewportPresets.mobile, viewportPresets.desktop]) {
       const restoreViewport = setViewport(viewport);
       const { container, unmount } = render(<ArchitectureSection content={architectureContent} />);
-
-      const entityLabels = screen
+      const visual = container.querySelector("[data-architecture-visual]");
+      const controls = screen
         .getAllByRole("button")
         .map((control) => control.getAttribute("aria-label"));
-      const legend = screen.getByRole("list", { name: "Architecture legend" }).textContent;
-      const relationships = screen.getByRole("list", {
-        name: "Hub, Node, and Client relationships",
-      }).textContent;
 
-      expect(screen.getByTestId("architecture-diagram-root")).toHaveAttribute(
-        "data-motion",
-        "standard",
-      );
-      expect(entityLabels).toEqual([
+      expect(visual).toBeInTheDocument();
+      expect(controls).toEqual([
         "Hub: GEMSTONE | HUB",
         "Node: GEMSTONE | Node",
         "Node: GEMSTONE | Node",
         "Client: GEMSTONE | Client",
         "Client: GEMSTONE | Client",
       ]);
-      expect(legend).toContain("Hub");
-      expect(legend).toContain("Node");
-      expect(legend).toContain("Client");
-      expect(relationships).toContain("connect directly");
-      assertStaticFallback(container, {
-        requiredSelectors: ["[data-architecture-fallback]"],
-        requiredText: [
-          "Readable relationship list",
-          "Organizations and Nodes retain their own environments and capabilities",
-        ],
-      });
-
-      snapshots.push(JSON.stringify({ entityLabels, legend, relationships }));
+      expect(container.querySelector("[data-architecture-fallback]")).not.toBeInTheDocument();
+      snapshots.push(JSON.stringify(controls));
       unmount();
       restoreViewport();
     }
@@ -114,7 +89,7 @@ describe("ArchitectureSection", () => {
     expect(snapshots[0]).toBe(snapshots[1]);
   });
 
-  it("keeps reduced-motion and non-rendering fallback states readable", () => {
+  it("keeps reduced-motion and empty states readable", () => {
     const { rerender } = render(
       <ArchitectureDiagram content={architectureContent} reducedMotion />,
     );
@@ -122,18 +97,14 @@ describe("ArchitectureSection", () => {
       "data-reduced-motion",
       "true",
     );
-    expect(screen.getByRole("list", { name: "Architecture legend" })).toHaveTextContent("Hub");
-    expect(
-      screen.getByRole("list", { name: "Hub, Node, and Client relationships" }),
-    ).toHaveTextContent("connect directly");
+    expect(screen.getAllByRole("button")).toHaveLength(5);
 
     rerender(<ArchitectureDiagram content={emptyArchitecture} reducedMotion />);
     expect(screen.getByTestId("architecture-diagram-root")).toHaveAttribute(
       "data-reduced-motion",
       "true",
     );
-    expect(screen.getByText(/No relationship data is configured/)).toBeInTheDocument();
-    expect(screen.getByText(/entity descriptions remain available/)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Hub, Node, and Client" })).toBeInTheDocument();
   });
 
   it("preserves the architecture explanation and distributed semantics before hydration", () => {
@@ -145,6 +116,7 @@ describe("ArchitectureSection", () => {
     expect(markup).toContain(
       "Organizations and Nodes retain their own environments and capabilities",
     );
+    expect(markup).not.toContain("Modeling and Simulation Matrix");
     expect(markup).not.toMatch(/central data store|master repository|all data flows through here/i);
   });
 

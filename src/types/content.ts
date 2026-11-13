@@ -109,71 +109,12 @@ export interface ArchitectureContent {
   readonly distributedPrinciple: string;
 }
 
-export interface MatrixOrganization {
-  readonly id: string;
-  readonly label: string;
-  readonly description: string;
-  readonly environmentIds: readonly string[];
-}
-
-export interface MatrixEnvironment {
-  readonly id: string;
-  readonly organizationId: string;
-  readonly label: string;
-  readonly description: string;
-}
-
-export interface MatrixNode {
-  readonly id: string;
-  readonly label: string;
-  readonly description: string;
-  readonly mission?: string;
-}
-
-export interface MatrixClient {
-  readonly id: string;
-  readonly label: string;
-  readonly description: string;
-  readonly organizationId?: string;
-  readonly environmentId?: string;
-}
-
-export type MatrixRelationshipKind =
-  | "subscribes-to"
-  | "connects-to"
-  | "supports";
-
-export interface MatrixRelationship {
-  readonly id: string;
-  readonly kind: MatrixRelationshipKind;
-  readonly from: string;
-  readonly to: string;
-  readonly label: string;
-}
-
-export interface MatrixSubscription {
-  readonly clientId: string;
-  readonly nodeId: string;
-}
-
-/** Typed model for the multi-environment Modeling and Simulation Matrix. */
-export interface ModelingSimulationMatrix {
-  readonly organizations: readonly MatrixOrganization[];
-  readonly environments: readonly MatrixEnvironment[];
-  readonly nodes: readonly MatrixNode[];
-  readonly clients: readonly MatrixClient[];
-  readonly subscriptions: readonly MatrixSubscription[];
-  readonly relationships: readonly MatrixRelationship[];
-  readonly description: string;
-}
-
 export type SiteContent = {
   readonly hero: HeroContent;
   readonly about: AboutContent;
   readonly problems: readonly string[];
   readonly whyGemstone: readonly FeatureItem[];
   readonly architecture: ArchitectureContent;
-  readonly matrix: ModelingSimulationMatrix;
   readonly ecosystem: EcosystemContent;
   readonly analystBenefits: readonly AnalystBenefitItem[];
   readonly capabilities: readonly CapabilityItem[];

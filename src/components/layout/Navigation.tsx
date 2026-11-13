@@ -180,7 +180,7 @@ export function Navigation({
         id="mobile-navigation"
         aria-label="Mobile navigation"
         hidden={!mobileOpen}
-        className="absolute right-0 top-full z-50 mt-3 w-[min(20rem,calc(100vw-2rem))] rounded-gemstone border border-gemstone-border/40 bg-gemstone-surface/95 p-3 shadow-gemstone backdrop-blur-md lg:hidden"
+        className="absolute right-0 top-full z-50 mt-3 w-[min(20rem,calc(100vw-2rem))] rounded-gemstone border border-gemstone-border/40 bg-gemstone-bg p-3 shadow-gemstone lg:hidden"
       >
         <ul className="grid gap-1">{renderLinks("mobile")}</ul>
       </nav>

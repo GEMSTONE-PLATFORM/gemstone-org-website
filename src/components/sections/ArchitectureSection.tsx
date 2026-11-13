@@ -1,20 +1,13 @@
-import type {
-  ArchitectureContent,
-  AnalystBenefitItem,
-  EcosystemContent,
-  ModelingSimulationMatrix,
-} from "@/types";
-import { MatrixSection } from "@/components/sections/MatrixSection";
+import type { ArchitectureContent, AnalystBenefitItem, EcosystemContent } from "@/types";
+import { EcosystemBenefitsSection } from "@/components/sections/EcosystemBenefitsSection";
 import {
   analystBenefits as defaultAnalystBenefits,
   ecosystemContent as defaultEcosystemContent,
 } from "@/content/site-content";
-import { modelingSimulationMatrix as defaultMatrix } from "@/content/matrix";
 import { AnimatedSection, ArchitectureDiagram } from "@/components/ui";
 
 export interface ArchitectureSectionProps {
   readonly content: ArchitectureContent;
-  readonly matrix?: ModelingSimulationMatrix;
   readonly ecosystem?: EcosystemContent;
   readonly analystBenefits?: readonly AnalystBenefitItem[];
 }
@@ -22,7 +15,6 @@ export interface ArchitectureSectionProps {
 /** Server-rendered architecture explanation with a progressively enhanced graph. */
 export function ArchitectureSection({
   content,
-  matrix = defaultMatrix,
   ecosystem = defaultEcosystemContent,
   analystBenefits = defaultAnalystBenefits,
 }: ArchitectureSectionProps) {
@@ -42,11 +34,7 @@ export function ArchitectureSection({
             </p>
             <p className="gemstone-body">{content.distributedPrinciple}</p>
             <ArchitectureDiagram content={content} />
-            <MatrixSection
-              matrix={matrix}
-              ecosystem={ecosystem}
-              analystBenefits={analystBenefits}
-            />
+            <EcosystemBenefitsSection ecosystem={ecosystem} benefits={analystBenefits} />
           </div>
         </AnimatedSection>
       </div>

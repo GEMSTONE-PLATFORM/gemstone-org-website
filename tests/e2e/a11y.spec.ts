@@ -57,7 +57,7 @@ test.describe("accessibility smoke checks", () => {
         "href",
         "#briefing",
       );
-      await expect(hero.getByRole("list", { name: "GEMSTONE ecosystem labels" })).toBeVisible();
+      await expect(hero.locator("[data-visualization-mode=decorative]")).toBeVisible();
       await expect(
         about.getByRole("list", { name: "GEMSTONE relationship elements" }),
       ).toBeVisible();
@@ -72,7 +72,7 @@ test.describe("accessibility smoke checks", () => {
   );
 
   test(
-    "checks architecture and matrix keyboard controls, static fallbacks, and accessibility",
+    "checks architecture keyboard controls, mobile network layout, and accessibility",
     { tag: "@a11y" },
     async ({ page }) => {
       await page.emulateMedia({ reducedMotion: "reduce" });
@@ -85,15 +85,9 @@ test.describe("accessibility smoke checks", () => {
 
       await expect(architecture).toBeVisible();
       await expect(entityControls).toHaveCount(5);
-      await expect(architecture.getByRole("list", { name: "Architecture legend" })).toContainText(
-        "Hub",
-      );
-      await expect(
-        architecture.getByRole("list", { name: "Hub, Node, and Client relationships" }),
-      ).toContainText("connect directly");
-      await expect(architecture.locator("[data-architecture-fallback]")).toContainText(
-        "Readable relationship list",
-      );
+      await expect(architecture.locator("[data-architecture-visual]")).toBeVisible();
+      await expect(architecture.getByText("Architecture legend")).toHaveCount(0);
+      await expect(architecture.getByText("Readable relationship list")).toHaveCount(0);
 
       const hub = architecture.getByRole("button", { name: "Hub: GEMSTONE | HUB" });
       await expect(hub).toHaveAttribute("aria-controls", "architecture-detail");
@@ -106,24 +100,11 @@ test.describe("accessibility smoke checks", () => {
       await hub.press("Escape");
       await expect(detailPanel.getByRole("heading")).toHaveText("Hub, Node, and Client");
 
-      const matrix = architecture.locator("[data-matrix-section]");
-      await expect(matrix).toHaveAttribute("data-visualization-mode", "static");
-      await expect(
-        matrix.getByRole("list", { name: "Organizations in the Modeling and Simulation Matrix" }),
-      ).toContainText("Participating organizations");
-      await expect(
-        matrix.getByRole("list", { name: "Client subscriptions to Nodes" }),
-      ).toContainText("subscribes to one or more Nodes");
-      await expect(
-        matrix.getByRole("list", { name: "Modeling and Simulation Matrix shared connections" }),
-      ).toContainText("retains its own environments and capabilities");
-      await expect(matrix.locator("[data-matrix-fallback]")).toContainText("Mission-specific Node");
+      await expect(architecture.getByRole("heading", { name: "THE M&S ECOSYSTEM" })).toBeVisible();
+      await expect(architecture.getByRole("heading", { name: "Benefits" })).toBeVisible();
 
       await page.setViewportSize({ width: 1440, height: 900 });
       await expect(entityControls).toHaveCount(5);
-      await expect(
-        matrix.getByRole("list", { name: "Client subscriptions to Nodes" }),
-      ).toContainText("subscribes to one or more Nodes");
 
       // Firefox completes this same page-level axe scan in accessibility-responsive.spec.ts.
       // Running a second, scoped scan after this interaction crashes its browser process.

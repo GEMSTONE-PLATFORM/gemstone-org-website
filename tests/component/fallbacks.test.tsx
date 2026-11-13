@@ -212,7 +212,8 @@ describe("shared fallback composition", () => {
 
     expect(markup).toContain("Briefing not configured");
     expect(markup).toContain("Request Information form has not yet been connected.");
-    expect(markup).toContain("Readable relationship list");
+    expect(markup).toContain('data-visualization-mode="decorative"');
+    expect(markup).toContain("Benefits");
     expect(markup).toContain('href="#architecture"');
     expect(markup).not.toContain('src=""');
     expect(markup).not.toContain("<script");
@@ -264,7 +265,7 @@ describe("shared fallback composition", () => {
     expect(container.querySelector("#requestInformation")).not.toBeInTheDocument();
     expect(container.querySelector('[href="#briefing"]')).not.toBeInTheDocument();
     expect(container.querySelector('[href="#requestInformation"]')).not.toBeInTheDocument();
-    expect(screen.getByText("Readable relationship list")).toBeVisible();
+    expect(container.querySelector("[data-architecture-visual]")).toBeInTheDocument();
 
     for (const link of container.querySelectorAll<HTMLAnchorElement>("a[href]")) {
       const href = link.getAttribute("href")?.trim();

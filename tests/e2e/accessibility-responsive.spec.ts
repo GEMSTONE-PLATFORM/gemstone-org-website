@@ -119,7 +119,7 @@ test.describe("accessibility and responsive reflow matrix", () => {
         await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
         await expect(page.getByRole("link", { name: "Request Information" })).toBeVisible();
         await expect(page.getByRole("button", { name: "What is GEMSTONE?" })).toBeVisible();
-        await expect(page.locator("[data-architecture-fallback]")).toBeVisible();
+        await expect(page.locator("[data-architecture-visual]")).toBeVisible();
         const motionAnimationNames = await page
           .locator(".gemstone-motion")
           .evaluateAll((elements) =>
@@ -148,9 +148,7 @@ test.describe("accessibility and responsive reflow matrix", () => {
 
         await expect(page.getByRole("main", { name: "GEMSTONE public website" })).toBeVisible();
         await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
-        await expect(page.locator("[data-architecture-fallback]")).toContainText(
-          "Readable relationship list",
-        );
+        await expect(page.locator("[data-architecture-visual]")).toBeVisible();
         await expect(page.getByText("Briefing not configured")).toBeVisible();
         await expect(page.getByText("Request Information form not connected")).toBeVisible();
         await expect(page.locator("iframe")).toHaveCount(0);

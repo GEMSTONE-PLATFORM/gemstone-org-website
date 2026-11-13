@@ -19,7 +19,11 @@ export function isConfiguredIntegrationUrl(
 ): url is string {
   return resolveConfiguredIntegrationUrl(url, placeholder) !== undefined;
 }
-/** Keep this URL in this single configuration value until an approved URL is supplied. */
+/**
+ * Replace this placeholder when an approved briefing is available. For a deck
+ * in public/documents, import publicAsset from asset-config and use
+ * publicAsset("/documents/gemstone-briefing-YYYY-MM.pptx").
+ */
 const briefingUrl = BRIEFING_URL_PLACEHOLDER;
 export const briefingConfig = {
   url: briefingUrl,
