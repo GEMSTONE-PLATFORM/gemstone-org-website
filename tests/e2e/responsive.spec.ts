@@ -61,7 +61,7 @@ test.describe("responsive, performance, and browser-support checks", () => {
         "data-reduced-motion",
         "true",
       );
-      await expect(reducedPage.locator(".gemstone-about-path").first()).toHaveCSS(
+      await expect(reducedPage.locator(".gemstone-network-path").first()).toHaveCSS(
         "animation-name",
         "none",
       );

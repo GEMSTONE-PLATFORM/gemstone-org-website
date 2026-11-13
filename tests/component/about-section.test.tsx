@@ -41,9 +41,7 @@ describe("AboutSection", () => {
         expect(labelElement.closest('[aria-hidden="true"]')).not.toBeInTheDocument();
       }
 
-      const visual = container.querySelector(".gemstone-about-visual");
-      expect(visual).toHaveAttribute("aria-hidden", "true");
-      expect(visual).toHaveClass("gemstone-motion");
+      expect(container.querySelector(".gemstone-about-visual")).not.toBeInTheDocument();
 
       const results = await axe.run(container, {
         runOnly: { type: "tag", values: ["wcag2a", "wcag2aa"] },
