@@ -17,38 +17,37 @@ const emptyArchitecture: ArchitectureContent = {
 };
 
 describe("ArchitectureSection", () => {
-  it("renders three connected Hubs, assigned Nodes, and assigned Clients without legacy panels", () => {
+  it("renders the Hub, Node, and Client controls without legacy legend or relationship panels", () => {
     const { container } = render(<ArchitectureSection content={architectureContent} />);
 
     expect(screen.getByRole("region", { name: "Architecture" })).toBeInTheDocument();
-    expect(screen.getAllByRole("button", { name: /^Hub:/ })).toHaveLength(3);
-    expect(screen.getAllByRole("button", { name: /^Node:/ })).toHaveLength(6);
-    expect(screen.getAllByRole("button", { name: /^Client:/ })).toHaveLength(12);
+    expect(screen.getAllByRole("button", { name: /Hub: GEMSTONE \| HUB/ })).toHaveLength(1);
+    expect(screen.getAllByRole("button", { name: /Node: GEMSTONE \| Node/ })).toHaveLength(2);
+    expect(screen.getAllByRole("button", { name: /Client: GEMSTONE \| Client/ })).toHaveLength(2);
     expect(container.querySelector("[data-architecture-visual]")).toBeInTheDocument();
-    expect(container.querySelectorAll('[data-connection-kind="inter-hub"]')).toHaveLength(3);
     expect(screen.queryByText("Architecture legend")).not.toBeInTheDocument();
     expect(screen.queryByText("Readable relationship list")).not.toBeInTheDocument();
   });
 
   it("updates the detail panel and emphasizes related connections on pointer activation", () => {
     render(<ArchitectureSection content={architectureContent} />);
-    const hub = screen.getByRole("button", { name: "Hub: GEMSTONE Hub Alpha" });
+    const hub = screen.getByRole("button", { name: "Hub: GEMSTONE | HUB" });
 
     fireEvent.click(hub);
 
-    expect(screen.getByRole("heading", { name: "Hub: GEMSTONE Hub Alpha" })).toBeInTheDocument();
-    expect(screen.getByRole("complementary")).toHaveTextContent("enterprise service point");
-    expect(document.querySelectorAll('[data-connection-id][data-selected="true"]')).toHaveLength(4);
-    expect(screen.getByRole("status")).toHaveTextContent("Selected Hub GEMSTONE Hub Alpha.");
+    expect(screen.getByRole("heading", { name: "Hub: GEMSTONE | HUB" })).toBeInTheDocument();
+    expect(screen.getByRole("complementary")).toHaveTextContent("service and connection point");
+    expect(document.querySelectorAll('[data-connection-id][data-selected="true"]')).toHaveLength(2);
+    expect(screen.getByRole("status")).toHaveTextContent("Selected Hub GEMSTONE | HUB.");
   });
 
   it("supports focus, Enter, Space, and Escape for entity selection", () => {
     render(<ArchitectureSection content={architectureContent} />);
-    const node = screen.getAllByRole("button", { name: /^Node:/ })[0];
-    const client = screen.getAllByRole("button", { name: /^Client:/ })[0];
+    const node = screen.getAllByRole("button", { name: /Node: GEMSTONE \| Node/ })[0];
+    const client = screen.getAllByRole("button", { name: /Client: GEMSTONE \| Client/ })[0];
 
     fireEvent.focus(node);
-    expect(screen.getByRole("heading", { name: "Node: Node Alpha 1" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Node: GEMSTONE \| Node/ })).toBeInTheDocument();
 
     fireEvent.keyDown(node, { key: "Enter" });
     expect(node).toHaveAttribute("aria-pressed", "true");
@@ -74,11 +73,13 @@ describe("ArchitectureSection", () => {
         .map((control) => control.getAttribute("aria-label"));
 
       expect(visual).toBeInTheDocument();
-      expect(controls).toHaveLength(21);
-      expect(controls.filter((label) => label?.startsWith("Hub:"))).toHaveLength(3);
-      expect(controls.filter((label) => label?.startsWith("Node:"))).toHaveLength(6);
-      expect(controls.filter((label) => label?.startsWith("Client:"))).toHaveLength(12);
-      expect(container.querySelectorAll('[data-connection-kind="inter-hub"]')).toHaveLength(3);
+      expect(controls).toEqual([
+        "Hub: GEMSTONE | HUB",
+        "Node: GEMSTONE | Node",
+        "Node: GEMSTONE | Node",
+        "Client: GEMSTONE | Client",
+        "Client: GEMSTONE | Client",
+      ]);
       expect(container.querySelector("[data-architecture-fallback]")).not.toBeInTheDocument();
       snapshots.push(JSON.stringify(controls));
       unmount();
@@ -96,7 +97,7 @@ describe("ArchitectureSection", () => {
       "data-reduced-motion",
       "true",
     );
-    expect(screen.getAllByRole("button")).toHaveLength(21);
+    expect(screen.getAllByRole("button")).toHaveLength(5);
 
     rerender(<ArchitectureDiagram content={emptyArchitecture} reducedMotion />);
     expect(screen.getByTestId("architecture-diagram-root")).toHaveAttribute(

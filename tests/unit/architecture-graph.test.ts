@@ -105,7 +105,7 @@ describe("architecture graph utilities", () => {
   });
 
   it("returns the matching entity and null for an unknown selection", () => {
-    const selected = selectArchitectureEntity(architectureContent, "hub-alpha");
+    const selected = selectArchitectureEntity(architectureContent, "hub");
 
     expect(selected).toBe(architectureContent.entities[0]);
     expect(selectArchitectureEntity(architectureContent, "unknown-entity")).toBeNull();
@@ -117,7 +117,7 @@ describe("architecture graph utilities", () => {
     freezeDeep(graph);
 
     expect(validateArchitectureGraph(graph)).toEqual({ valid: true, errors: [] });
-    expect(selectArchitectureEntity(graph, "node-alpha-1")).toBe(graph.entities[3]);
+    expect(selectArchitectureEntity(graph, "node-mission")).toBe(graph.entities[1]);
     expect(graph).toEqual(snapshot);
   });
 

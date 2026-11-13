@@ -12,7 +12,7 @@ export default function HomePage() {
         id="main-content"
         tabIndex={-1}
         aria-label="GEMSTONE public website"
-        className="gemstone-page gemstone-grid gemstone-atmosphere min-h-screen px-4 py-24 text-gemstone-text sm:px-6 lg:px-8"
+        className="gemstone-page gemstone-atmosphere min-h-screen px-4 py-24 text-gemstone-text sm:px-6 lg:px-8"
       >
         {renderEnabledSections(defaultPageComposition)}
       </main>

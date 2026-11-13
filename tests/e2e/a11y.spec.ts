@@ -84,19 +84,19 @@ test.describe("accessibility smoke checks", () => {
       const detailPanel = architecture.locator("[data-architecture-detail]");
 
       await expect(architecture).toBeVisible();
-      await expect(entityControls).toHaveCount(21);
+      await expect(entityControls).toHaveCount(5);
       await expect(architecture.locator("[data-architecture-visual]")).toBeVisible();
       await expect(architecture.getByText("Architecture legend")).toHaveCount(0);
       await expect(architecture.getByText("Readable relationship list")).toHaveCount(0);
 
-      const hub = architecture.getByRole("button", { name: "Hub: GEMSTONE Hub Alpha" });
+      const hub = architecture.getByRole("button", { name: "Hub: GEMSTONE | HUB" });
       await expect(hub).toHaveAttribute("aria-controls", "architecture-detail");
       await expect(hub).toHaveAttribute("aria-pressed", "false");
       await hub.focus();
       await hub.press("Enter");
       await expect(hub).toHaveAttribute("aria-pressed", "true");
-      await expect(detailPanel).toContainText("Hub: GEMSTONE Hub Alpha");
-      await expect(detailPanel).toContainText("enterprise service point");
+      await expect(detailPanel).toContainText("Hub: GEMSTONE | HUB");
+      await expect(detailPanel).toContainText("service and connection point");
       await hub.press("Escape");
       await expect(detailPanel.getByRole("heading")).toHaveText("Hub, Node, and Client");
 
@@ -104,7 +104,7 @@ test.describe("accessibility smoke checks", () => {
       await expect(architecture.getByRole("heading", { name: "Benefits" })).toBeVisible();
 
       await page.setViewportSize({ width: 1440, height: 900 });
-      await expect(entityControls).toHaveCount(21);
+      await expect(entityControls).toHaveCount(5);
 
       // Firefox completes this same page-level axe scan in accessibility-responsive.spec.ts.
       // Running a second, scoped scan after this interaction crashes its browser process.
