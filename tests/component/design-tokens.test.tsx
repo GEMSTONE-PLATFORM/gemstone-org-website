@@ -14,7 +14,7 @@ describe("GEMSTONE visual foundation", () => {
   it("renders the foundation page with semantic token classes", () => {
     render(<HomePage />);
 
-    expect(screen.getByRole("main")).toHaveClass("gemstone-page", "gemstone-grid");
+    expect(screen.getByRole("main")).toHaveClass("gemstone-page", "gemstone-atmosphere");
     expect(screen.getByRole("main")).toHaveClass("gemstone-atmosphere", "text-gemstone-text");
     expect(screen.getByRole("heading", { level: 1 })).toHaveClass("gemstone-display");
     expect(

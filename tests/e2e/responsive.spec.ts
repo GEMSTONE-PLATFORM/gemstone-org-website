@@ -116,6 +116,6 @@ test.describe("responsive, performance, and browser-support checks", () => {
       animationNames.every((name) => name === "gemstone-breathe" || name === "gemstone-path-flow"),
     ).toBe(true);
     expect(animationNames.length).toBeGreaterThan(0);
-    expect(animationNames.length).toBeLessThanOrEqual(24);
+    expect(animationNames.length).toBeLessThanOrEqual(12);
   });
 });

@@ -27,11 +27,10 @@ export function ArchitectureSection({
           </h2>
           <div className="mt-8 space-y-6">
             <p className="gemstone-body">
-              GEMSTONE connects organizations and communities through peer-connected Hubs,
-              mission-specific Nodes, and user-facing Clients. Each Node connects to one Hub, and
-              each Client connects to one Node. The Hubs provide enterprise-level services and
-              connections while Nodes and Clients provide the mission-specific services, tools,
-              data, compute, models, and simulations that communities need.
+              GEMSTONE connects organizations and communities through a Hub, mission-specific Nodes,
+              and user-facing Clients. The Hub provides enterprise-level services and connections;
+              Nodes provide tailorable services and infrastructure; Clients connect users, tools,
+              data, compute, models, and simulations to one or more Nodes.
             </p>
             <p className="gemstone-body">{content.distributedPrinciple}</p>
             <ArchitectureDiagram content={content} />
