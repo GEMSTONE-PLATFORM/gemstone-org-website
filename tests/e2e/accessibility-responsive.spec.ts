@@ -91,13 +91,13 @@ test.describe("accessibility and responsive reflow matrix", () => {
       await faqControl.press("Space");
       await expect(faqControl).toHaveAttribute("aria-expanded", "true");
 
-      const architectureControl = page.getByRole("button", { name: "Hub: GEMSTONE | HUB" });
+      const architectureControl = page.getByRole("button", { name: "Hub: GEMSTONE Hub Alpha" });
       const architectureDetail = page.locator("[data-architecture-detail]");
       await architectureControl.focus();
       await expect(architectureControl).toBeFocused();
       await architectureControl.press("Enter");
       await expect(architectureControl).toHaveAttribute("aria-pressed", "true");
-      await expect(architectureDetail).toContainText("Hub: GEMSTONE | HUB");
+      await expect(architectureDetail).toContainText("Hub: GEMSTONE Hub Alpha");
       await architectureControl.press("Escape");
       await expect(architectureDetail.getByRole("heading")).toHaveText("Hub, Node, and Client");
     },

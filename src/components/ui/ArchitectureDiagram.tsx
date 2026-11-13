@@ -3,7 +3,7 @@
 import { useMemo, useState, type CSSProperties, type KeyboardEvent } from "react";
 
 import { useMotionResolution } from "@/components/ui/MotionProvider";
-import { selectArchitectureEntity, isValidArchitectureGraph } from "@/lib/architecture-graph";
+import { isValidArchitectureGraph, selectArchitectureEntity } from "@/lib/architecture-graph";
 import type {
   ArchitectureConnection,
   ArchitectureContent,
@@ -23,10 +23,17 @@ const kindLabels: Record<ArchitectureEntityKind, string> = {
 };
 
 const kindDescriptions: Record<ArchitectureEntityKind, string> = {
-  hub: "A service and connection point providing enterprise-level services and connections for organizations and communities.",
-  node: "A tailorable mission-specific, team-specific, or community-specific backbone containing services and infrastructure.",
+  hub: "An enterprise service point that connects with peer Hubs and provides services to assigned Nodes.",
+  node: "A mission-specific backbone assigned to one Hub, with tailored services and infrastructure for its community.",
   client:
-    "A user-facing service or resource containing users, tools, data, compute, models, or simulations that connects to one or more Nodes.",
+    "A user-facing service or resource assigned to one Node for its required services, tools, data, or compute.",
+};
+
+const controlClasses: Record<ArchitectureEntityKind, string> = {
+  hub: "border-gemstone-cyan/90 bg-gemstone-blue/75 text-gemstone-cyan shadow-gemstone-glow hover:border-gemstone-text hover:bg-gemstone-blue",
+  node: "border-gemstone-blue bg-gemstone-blue/40 text-gemstone-accent hover:border-gemstone-accent hover:bg-gemstone-blue/65",
+  client:
+    "border-gemstone-muted/65 bg-gemstone-surface-raised/95 text-gemstone-text hover:border-gemstone-accent hover:bg-gemstone-surface-elevated",
 };
 
 function getKindLabel(kind: ArchitectureEntityKind) {
@@ -75,13 +82,15 @@ function EntityControl({
     top: `${entity.y}%`,
   } satisfies CSSProperties;
 
+  const sizeClass = entity.kind === "hub" ? "w-40" : entity.kind === "node" ? "w-24" : "w-20";
+
   return (
     <button
       type="button"
-      className={`group absolute min-h-11 w-[min(9.5rem,42%)] -translate-x-1/2 -translate-y-1/2 rounded-gemstone border px-3 py-2 text-left shadow-gemstone transition-[border-color,box-shadow,background-color] motion-reduce:transition-none sm:w-[10.5rem] sm:px-4 sm:py-3 md:w-[11rem] ${
+      className={`group absolute min-h-11 -translate-x-1/2 -translate-y-1/2 rounded-gemstone border px-2 py-2 text-center shadow-gemstone transition-[border-color,box-shadow,background-color] motion-reduce:transition-none ${sizeClass} ${
         selected
-          ? "border-gemstone-cyan bg-gemstone-surface-elevated shadow-gemstone-glow"
-          : "border-gemstone-border/35 bg-gemstone-surface-raised/95 hover:border-gemstone-cyan/70 hover:bg-gemstone-surface-elevated"
+          ? "border-gemstone-text bg-gemstone-surface-elevated shadow-gemstone-glow"
+          : controlClasses[entity.kind]
       }`}
       style={positionStyle}
       aria-label={`${kind}: ${entity.label}`}
@@ -95,17 +104,18 @@ function EntityControl({
       onMouseEnter={() => onHover(entity)}
       onKeyDown={handleKeyDown}
     >
-      <span className="block font-mono text-xs font-bold uppercase tracking-[0.16em] text-gemstone-accent">
-        {kind}
+      <span className="block text-[0.625rem] font-bold uppercase tracking-[0.12em]">{kind}</span>
+      <span className="mt-1 hidden text-xs font-semibold md:block">{entity.label}</span>
+      <span className="mt-1 block text-[0.625rem] font-semibold md:hidden">
+        {entity.mobileLabel ?? entity.label}
       </span>
-      <span className="mt-1 block text-sm font-semibold text-gemstone-text">{entity.label}</span>
     </button>
   );
 }
 
 /**
- * Interactive architecture graph. The labeled entity controls and detail panel
- * preserve the explanation when SVG connection styling is unavailable.
+ * Interactive hierarchy map. Three peer Hubs form a prominent mesh, while each
+ * Node attaches to one Hub and every Client attaches to one Node.
  */
 export function ArchitectureDiagram({ content, reducedMotion = false }: ArchitectureDiagramProps) {
   const motion = useMotionResolution();
@@ -161,69 +171,111 @@ export function ArchitectureDiagram({ content, reducedMotion = false }: Architec
       data-reduced-motion={motionReduced ? "true" : "false"}
       onKeyDown={handleDiagramKeyDown}
     >
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(18rem,0.6fr)] lg:items-start">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.45fr)_minmax(19rem,0.55fr)] xl:items-start">
         <div>
           <div
-            className="gemstone-surface relative overflow-hidden rounded-gemstone-lg p-4 sm:p-6"
+            className="gemstone-surface overflow-x-auto rounded-gemstone-lg p-4 sm:p-6"
             data-architecture-visual
-            aria-label="Responsive Hub, Node, and Client architecture visualization"
+            aria-label="Three connected GEMSTONE Hubs with assigned Nodes and Clients"
           >
-            <svg
-              className="pointer-events-none absolute inset-0 h-full w-full text-gemstone-cyan/45"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-              focusable="false"
-              aria-hidden="true"
-            >
-              <defs>
-                <linearGradient id="architecture-connection" x1="0" x2="1" y1="0" y2="1">
-                  <stop offset="0" stopColor="currentColor" stopOpacity="0.55" />
-                  <stop offset="1" stopColor="currentColor" stopOpacity="0.18" />
-                </linearGradient>
-              </defs>
-              {graphIsValid
-                ? content.connections.map((connection, index) => {
-                    const from = getEntity(content, connection.from);
-                    const to = getEntity(content, connection.to);
-                    if (!from || !to) return null;
-                    const selected = isConnectionSelected(connection, selectedEntityId);
+            <div className="relative h-[44rem] min-w-[42rem] md:min-w-0">
+              <svg
+                className="pointer-events-none absolute inset-0 h-full w-full"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                focusable="false"
+                aria-hidden="true"
+              >
+                <defs>
+                  <filter id="hub-connection-glow" x="-25%" y="-25%" width="150%" height="150%">
+                    <feGaussianBlur stdDeviation="1.2" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+                {graphIsValid
+                  ? content.connections.map((connection, index) => {
+                      const from = getEntity(content, connection.from);
+                      const to = getEntity(content, connection.to);
+                      if (!from || !to) return null;
 
-                    return (
-                      <line
-                        key={connectionKey(connection, index)}
-                        x1={from.x}
-                        y1={from.y}
-                        x2={to.x}
-                        y2={to.y}
-                        stroke={selected ? "currentColor" : "url(#architecture-connection)"}
-                        strokeWidth={selected ? "1.2" : "0.65"}
-                        strokeDasharray={selected ? undefined : "1.6 1.4"}
-                        opacity={selectedEntityId && !selected ? 0.28 : 0.9}
-                        className="gemstone-network-path"
-                        data-connection-id={connectionKey(connection, index)}
-                        data-selected={selected ? "true" : "false"}
-                      />
-                    );
-                  })
-                : null}
-            </svg>
+                      const selected = isConnectionSelected(connection, selectedEntityId);
+                      const faded = Boolean(selectedEntityId && !selected);
+                      const key = connectionKey(connection, index);
+                      const isInterHub = connection.kind === "inter-hub";
 
-            <div className="relative z-10 h-[34rem] sm:h-[38rem] md:min-h-[28rem] md:h-auto">
-              {content.entities.map((entity) => (
-                <EntityControl
-                  key={entity.id}
-                  entity={entity}
-                  selected={selectedEntityId === entity.id}
-                  onActivate={activateEntity}
-                  onFocus={focusEntity}
-                  onHover={hoverEntity}
-                />
-              ))}
+                      if (isInterHub) {
+                        return (
+                          <g
+                            key={key}
+                            data-connection-id={key}
+                            data-connection-kind="inter-hub"
+                            data-selected={selected ? "true" : "false"}
+                          >
+                            <line
+                              x1={from.x}
+                              y1={from.y}
+                              x2={to.x}
+                              y2={to.y}
+                              stroke="currentColor"
+                              strokeWidth="3.2"
+                              opacity={faded ? 0.16 : 0.32}
+                              className="text-gemstone-cyan"
+                              filter="url(#hub-connection-glow)"
+                            />
+                            <line
+                              x1={from.x}
+                              y1={from.y}
+                              x2={to.x}
+                              y2={to.y}
+                              stroke="currentColor"
+                              strokeWidth={selected ? "1.8" : "1.15"}
+                              opacity={faded ? 0.36 : 1}
+                              className="text-gemstone-cyan"
+                            />
+                          </g>
+                        );
+                      }
+
+                      return (
+                        <line
+                          key={key}
+                          x1={from.x}
+                          y1={from.y}
+                          x2={to.x}
+                          y2={to.y}
+                          stroke="currentColor"
+                          strokeWidth={selected ? "1.15" : "0.55"}
+                          opacity={faded ? 0.2 : 0.82}
+                          className="gemstone-network-path text-gemstone-blue/90"
+                          data-connection-id={key}
+                          data-connection-kind={connection.kind ?? "hierarchy"}
+                          data-selected={selected ? "true" : "false"}
+                        />
+                      );
+                    })
+                  : null}
+              </svg>
+
+              <div className="relative z-10 h-full">
+                {content.entities.map((entity) => (
+                  <EntityControl
+                    key={entity.id}
+                    entity={entity}
+                    selected={selectedEntityId === entity.id}
+                    onActivate={activateEntity}
+                    onFocus={focusEntity}
+                    onHover={hoverEntity}
+                  />
+                ))}
+              </div>
             </div>
           </div>
           <p className="gemstone-body mt-3 text-sm">
-            Select an entity with a pointer, Enter, or Space. Connection emphasis follows the
-            selected entity.
+            Select an entity with a pointer, Enter, or Space. Hub-to-Hub links are brighter to show
+            peer connectivity. On smaller screens, swipe horizontally to explore the complete map.
           </p>
         </div>
 
@@ -248,9 +300,10 @@ export function ArchitectureDiagram({ content, reducedMotion = false }: Architec
             </>
           ) : (
             <p className="gemstone-body mt-4 text-base">
-              Choose a labeled entity to inspect its role and related connections. Organizations and
-              Nodes retain their own environments and capabilities while participating in the
-              broader ecosystem.
+              Three connected Hubs provide peer connectivity. Each Node connects to one Hub, and
+              each Client connects to one Node. Organizations and Nodes retain their own
+              environments and capabilities while participating in the broader ecosystem or
+              instantiate new environments on compute that meets the mission needs.
             </p>
           )}
         </aside>
