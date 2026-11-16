@@ -61,10 +61,11 @@ describe("BriefingSection and MediaViewer", () => {
       vi.useRealTimers();
     }
   });
-  it("provides an unsupported fallback when embedding is disabled", () => {
+  it("uses direct actions when embedding is disabled", () => {
     render(<MediaViewer config={{ ...validConfig, embed: false }} />);
-    expect(screen.getByRole("status")).toHaveTextContent("Embedded briefing format unavailable");
+    expect(screen.getByTestId("briefing-viewer")).toHaveAttribute("data-embed-state", "direct");
     expect(screen.queryByTitle(validConfig.title)).not.toBeInTheDocument();
+    expect(screen.getByText("View or download the current briefing.")).toBeInTheDocument();
     expect(
       screen.getAllByRole("link", { name: /Open in New Tab.*opens in a new tab/i }),
     ).not.toHaveLength(0);

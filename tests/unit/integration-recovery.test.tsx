@@ -172,7 +172,7 @@ describe("integration recovery", () => {
             const viewer = screen.getByTestId("briefing-viewer");
             expect(viewer).toHaveAttribute(
               "data-embed-state",
-              scenario.failure === "unsupported" ? "unsupported" : "blocked",
+              scenario.failure === "unsupported" ? "direct" : "blocked",
             );
             if (scenario.failure === "timeout") {
               expect(viewer).toHaveAttribute("data-embed-failure", "timeout");

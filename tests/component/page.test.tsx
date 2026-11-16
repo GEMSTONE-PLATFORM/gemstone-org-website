@@ -64,7 +64,7 @@ describe("HomePage", () => {
     expect(markup).toContain("Skip to main content");
     expect(markup.match(/<h1/g)).toHaveLength(1);
     expect(markup).toContain(
-      "Government-Owned Open Source for Digital Engineering and Modeling &amp; Simulation",
+      "Government-Owned Open Source Software Defined Platform for Digital Workloads",
     );
     expect(markup).toContain('href="#requestInformation"');
 

@@ -95,20 +95,16 @@ export function HeroSection({
     >
       <AnimatedSection className="gemstone-container relative z-10 py-20 sm:py-28 lg:py-32">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
-          <div className="gemstone-surface-raised gemstone-illumination rounded-[var(--gemstone-radius-lg)] p-6 sm:p-8 lg:col-span-2 lg:mx-auto lg:max-w-5xl lg:p-10 lg:text-center">
+          <div className="gemstone-surface-raised gemstone-hero-panel gemstone-illumination rounded-[var(--gemstone-radius-lg)] p-6 sm:p-8 lg:col-span-2 lg:mx-auto lg:max-w-5xl lg:p-10 lg:text-center">
             <BrandLogo
               src={logoSrc}
               alt="GEMSTONE logo"
-              width={320}
-              height={325}
+              width={480}
+              height={488}
               priority
-              className="mx-auto mb-7 h-32 w-auto object-contain sm:h-40"
+              className="mx-auto mb-8 h-48 w-auto object-contain sm:h-56 lg:h-64"
             />
-            <p className="gemstone-eyebrow mb-4">{content.eyebrow ?? "GEMSTONE"}</p>
-            <h1
-              id="hero-heading"
-              className="gemstone-display gemstone-hero-title text-gemstone-text lg:mx-auto"
-            >
+            <h1 id="hero-heading" className="sr-only">
               {content.title}
             </h1>
             <p className="gemstone-body mt-6 lg:mx-auto">{content.description}</p>

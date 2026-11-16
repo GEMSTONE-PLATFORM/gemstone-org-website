@@ -8,7 +8,7 @@ const { differentiators, faq: faqItems, hero: heroContent } = siteManifest.conte
 describe("approved content fixtures", () => {
   it("keeps the exact approved hero copy", () => {
     expect(heroContent.title).toBe(
-      "Government-Owned Open Source for Digital Engineering and Modeling & Simulation",
+      "Government-Owned Open Source Software Defined Platform for Digital Workloads",
     );
     expect(heroContent.description).toBe(
       "GEMSTONE empowers organizations to build, publish, discover, and integrate tools, data, and compute across secure environments.",

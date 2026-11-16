@@ -34,7 +34,7 @@ interface FallbackModel {
 const formTitle = "GEMSTONE Request More Information form";
 const privacyNotice = "Privacy notice placeholder";
 const approvedHeroHeading =
-  "Government-Owned Open Source for Digital Engineering and Modeling & Simulation";
+  "Government-Owned Open Source Software Defined Platform for Digital Workloads";
 const validExternalUrlArbitrary = fc
   .string({ minLength: 1, maxLength: 18 })
   .filter((value) => /^[a-z0-9]+$/i.test(value))
@@ -184,8 +184,8 @@ function assertFallbackComprehension(model: FallbackModel) {
       const markup = renderToStaticMarkup(
         <MediaViewer config={briefingConfig(recoveryUrl, false)} />,
       );
-      expect(markup).toContain('data-embed-state="unsupported"');
-      expect(markup).toContain("Embedded briefing format unavailable");
+      expect(markup).toContain('data-embed-state="direct"');
+      expect(markup).toContain("View or download the current briefing.");
       expect(markup).toContain("View Briefing");
       expect(markup).toContain(`href="${recoveryUrl}"`);
       return;
@@ -201,7 +201,7 @@ function assertFallbackComprehension(model: FallbackModel) {
       expect(markup).toContain("Benefits");
       expect(markup).toContain("Download Briefing");
       expect(markup).toContain("/documents/gemstone-briefing.pdf");
-      expect(markup).toContain("Request Information form has not yet been connected.");
+      expect(markup).toContain("Open Request Information Form");
       expect(markup).toContain("<iframe");
       expect(markup).not.toContain("<script");
     }

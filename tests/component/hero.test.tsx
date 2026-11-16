@@ -44,7 +44,7 @@ describe("HeroSection", () => {
     const logo = screen.getByRole("img", { name: "GEMSTONE logo" });
     const title = screen.getByRole("heading", { level: 1, name: heroContent.title });
     expect(logo).toHaveAttribute("src", "/branding/gemstone-logo.svg");
-    expect(title).toHaveClass("gemstone-hero-title");
+    expect(title).toHaveClass("sr-only");
     expect(container.querySelector("[data-topology-explorer]")).not.toBeInTheDocument();
   });
 
@@ -52,13 +52,13 @@ describe("HeroSection", () => {
     const markup = renderToStaticMarkup(<HeroSection content={heroContent} />);
 
     expect(markup).toContain(
-      "Government-Owned Open Source for Digital Engineering and Modeling &amp; Simulation",
+      "Government-Owned Open Source Software Defined Platform for Digital Workloads",
     );
     expect(markup).toContain(heroContent.description);
     expect(markup).toContain('href="#requestInformation"');
     expect(markup).toContain('href="#briefing"');
     expect(markup).toContain('src="/branding/gemstone-logo.svg"');
-    expect(markup).toContain("gemstone-hero-title");
+    expect(markup).toContain('class="sr-only"');
     expect(markup).not.toContain("data-topology-explorer");
     expect(markup).not.toContain("Static ecosystem map");
     expect(markup).not.toContain("Hub services");

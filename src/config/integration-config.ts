@@ -2,8 +2,9 @@ import { publicAsset } from "@/config/asset-config";
 import { siteManifest } from "@/content/site-manifest";
 import type { BriefingConfig, IntegrationConfig } from "@/types";
 import { resolveConfiguredUrl, resolveIntegrationUrl } from "@/lib/integration-state";
-export const BRIEFING_URL_PLACEHOLDER = "/public/documents/gemstone-briefing.pdf";
-export const MICROSOFT_FORM_URL_PLACEHOLDER = "https://forms.osi.apps.mil/r/BmQvtqX65K";
+export const BRIEFING_URL_PLACEHOLDER = "GEMSTONE_BRIEFING_URL_GOES_HERE";
+export const MICROSOFT_FORM_URL_PLACEHOLDER = "MICROSOFT_FORM_URL_GOES_HERE";
+const defaultMicrosoftFormUrl = "https://forms.osi.apps.mil/r/BmQvtqX65K";
 /**
  * External URLs are considered configured only when they contain a usable,
  * non-placeholder value. Trimming here prevents whitespace-only build input
@@ -31,12 +32,12 @@ export const briefingConfig = {
   format: "pdf",
   allowDownload: true,
   allowOpenInNewTab: true,
-  embed: true,
+  embed: false,
 } as const satisfies BriefingConfig;
 export const integrationConfig = {
   briefing: briefingConfig,
   microsoftFormUrl: resolveConfiguredIntegrationUrl(
-    process.env.NEXT_PUBLIC_MICROSOFT_FORM_URL,
+    process.env.NEXT_PUBLIC_MICROSOFT_FORM_URL ?? defaultMicrosoftFormUrl,
     MICROSOFT_FORM_URL_PLACEHOLDER,
   ),
 } as const satisfies IntegrationConfig;

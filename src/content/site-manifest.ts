@@ -29,7 +29,7 @@ export const siteManifest = {
     mark: "/branding/gemstone-mark.svg",
     images: {
       /** Leave blank to keep the CSS background. Set a public /images/... path to use a supplied image. */
-      pageBackground: "public\images\backgrounds\gemstone-background-1.png",
+      pageBackground: "/images/backgrounds/gemstone-background-1.png",
       /** Leave blank to show only the configured GEMSTONE logo and Hero text. */
       heroImage: "",
       /** A future architecture image can be placed here without changing a component. */
