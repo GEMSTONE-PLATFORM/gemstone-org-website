@@ -1,20 +1,34 @@
-# GEMSTONE production images
+# Put website images here
 
-Put approved, production-ready images in the directory that matches their purpose:
+This folder holds images that can appear on the public GEMSTONE website.
 
-| Use                    | Directory                     | Naming convention                                 |
-| ---------------------- | ----------------------------- | ------------------------------------------------- |
-| Hero artwork           | `public/images/hero/`         | `gemstone-hero-<subject>-<YYYY-MM>.<ext>`         |
-| Architecture artwork   | `public/images/architecture/` | `gemstone-architecture-<subject>-<YYYY-MM>.<ext>` |
-| Decorative backgrounds | `public/images/backgrounds/`  | `gemstone-background-<subject>-<YYYY-MM>.<ext>`   |
+## Choose the right folder
 
-Use lowercase kebab-case filenames. Use `webp` or `avif` for photographic/raster artwork where possible. Use `svg` for vector artwork. Do not replace the official logos here; those belong in [`../branding/`](../branding/README.md).
+| What is the image for?               | Put it in this folder | Example name                                  |
+| ------------------------------------ | --------------------- | --------------------------------------------- |
+| The top of the homepage              | `hero/`               | `gemstone-hero-network-2026-11.webp`          |
+| An architecture or technical section | `architecture/`       | `gemstone-architecture-hub-node-2026-11.svg`  |
+| A decorative page background         | `backgrounds/`        | `gemstone-background-cyan-lines-2026-11.webp` |
+| An idea that is not approved yet     | `inspiration/`        | Any clear filename                            |
 
-## Add an image to the website
+Use lowercase filenames with dashes. Good file types are `webp`, `png`, `jpg`, and `svg`.
 
-1. Add an approved image under the matching directory, following the naming convention.
-2. Add its public URL in `src/config/asset-config.ts`. Use `publicAsset("/images/<directory>/<filename>")` so the image also works when the site is published under a base path.
-3. Use the configured asset in the relevant section. Informative images need concise alternative text. Decorative artwork must be hidden from assistive technology.
-4. Run `npm run lint`, `npm run typecheck`, and `npm run build` before release.
+## Make an image appear on the website
 
-Files in `initial-images/` and `public/images/inspiration/` are source or inspiration material. They are not automatically approved for public production use.
+Putting a file here saves it in the website project, but it does **not** automatically place it on a page.
+
+After adding a file, tell Kiro:
+
+> Use `[full file path]` in the `[section name]` section. It is `[decorative/informative]`. It should `[any crop, placement, or readability instruction]`.
+
+Example:
+
+> Use `public/images/backgrounds/gemstone-background-cyan-lines-2026-11.webp` as a subtle page background. It is decorative. Keep all writing easy to read.
+
+Kiro will place the image, make it work on phones and laptops, add an image description when needed, test the page, and create a pull request.
+
+## Do not use `inspiration/` for public images
+
+`inspiration/` is for drafts, screenshots, and examples only. Images there are never shown on the public website until they are approved and moved to `hero/`, `architecture/`, or `backgrounds/`.
+
+For logo replacement instructions, see [`../branding/README.md`](../branding/README.md). For the full guide, see [`../../HOW-TO-UPDATE-THE-WEBSITE.md`](../../HOW-TO-UPDATE-THE-WEBSITE.md).

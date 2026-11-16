@@ -1,24 +1,28 @@
-# GEMSTONE downloadable documents
+# Put downloadable briefings here
 
-Publish an approved GEMSTONE briefing here using this filename:
+Use this folder for final, approved PowerPoint briefings that visitors can download.
 
-```text
-gemstone-briefing-YYYY-MM.pptx
-```
+## Add a new briefing
 
-For example, a deck approved in November 2026 is named:
+1. Put the finished PowerPoint file in this folder.
+2. Name it:
 
-```text
-gemstone-briefing-2026-11.pptx
-```
+   ```text
+   gemstone-briefing-YYYY-MM.pptx
+   ```
 
-Use lowercase kebab-case names. Keep the `.pptx` extension so visitors download the original PowerPoint deck. Do not overwrite a prior public deck. Give each updated deck its approval month and update the briefing configuration to match.
+   Example:
 
-## Publish a new briefing
+   ```text
+   gemstone-briefing-2026-11.pptx
+   ```
 
-1. Add the approved PowerPoint deck to this directory.
-2. In `src/config/integration-config.ts`, replace `BRIEFING_URL_PLACEHOLDER` with `publicAsset("/documents/gemstone-briefing-2026-11.pptx")`. Import `publicAsset` from `src/config/asset-config.ts` so the download URL also works when the site uses a base path.
-3. Set `format` to `"powerpoint"` and `embed` to `false`. Browsers do not reliably render PowerPoint files in an iframe, while the section still provides clear view and download actions.
-4. Run `npm run lint`, `npm run typecheck`, and `npm run build`.
+3. Tell Kiro:
 
-The source deck under `initial-images/` remains source material. Copy only an approved, release-ready deck into this public directory.
+   > Add `public/documents/gemstone-briefing-2026-11.pptx` to the GEMSTONE Briefing section as the downloadable briefing.
+
+Kiro will connect the download button and test it before creating a pull request.
+
+Do not overwrite an older briefing. Give each new version the month it was approved.
+
+For the full plain-language guide, read [`../../HOW-TO-UPDATE-THE-WEBSITE.md`](../../HOW-TO-UPDATE-THE-WEBSITE.md).
