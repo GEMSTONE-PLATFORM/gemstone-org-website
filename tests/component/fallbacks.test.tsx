@@ -203,7 +203,7 @@ describe("shared fallback composition", () => {
 
     expect(markup).toContain("Download Briefing");
     expect(markup).toContain("/documents/gemstone-briefing.pdf");
-    expect(markup).toContain("Request Information form has not yet been connected.");
+    expect(markup).toContain("Open Request Information Form");
     expect(markup).toContain('data-topology-explorer="true"');
     expect(markup).toContain("Benefits");
     expect(markup).toContain('href="#architecture"');

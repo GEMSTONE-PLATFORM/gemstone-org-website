@@ -94,6 +94,33 @@ export function MediaViewer({ config }: MediaViewerProps) {
     );
   }
   const links = recoveryLinks(config, url);
+  if (!config.embed) {
+    return (
+      <div className="space-y-5" data-testid="briefing-viewer" data-embed-state="direct">
+        <div className="flex flex-wrap items-center gap-3 text-sm text-gemstone-muted">
+          <span
+            className="rounded-full border border-gemstone-border/40 px-3 py-1"
+            aria-label={`Briefing format: ${formatLabel(config.format)}`}
+          >
+            {formatLabel(config.format)}
+          </span>
+          <span>View or download the current briefing.</span>
+        </div>
+        <div className="flex flex-wrap gap-x-6 gap-y-2" aria-label="Briefing actions">
+          {links.map((link) => (
+            <ExternalLink
+              key={link.label}
+              href={link.href}
+              newTab={link.newTab}
+              download={link.download}
+            >
+              {link.label}
+            </ExternalLink>
+          ))}
+        </div>
+      </div>
+    );
+  }
   const isFallback = state === "blocked" || state === "unsupported";
   const handleEmbedError = () => {
     setFailureReason("browser");

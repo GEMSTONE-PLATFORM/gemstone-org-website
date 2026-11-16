@@ -124,11 +124,9 @@ test.describe("briefing and request-information integration flows", () => {
     await expect(briefing).not.toContainText(/CSP|X-Frame-Options|cross-origin framing policy/i);
 
     const unsupported = page.getByTestId("unsupported-briefing").getByTestId("briefing-viewer");
-    await expect(unsupported).toHaveAttribute("data-embed-state", "unsupported");
+    await expect(unsupported).toHaveAttribute("data-embed-state", "direct");
     await expect(unsupported.locator("iframe")).toHaveCount(0);
-    await expect(unsupported.getByRole("status")).toContainText(
-      "Embedded briefing format unavailable",
-    );
+    await expect(unsupported).toContainText("View or download the current briefing.");
     await expect(
       unsupported.getByRole("link", { name: "Open in New Tab (opens in a new tab)" }).first(),
     ).toBeVisible();

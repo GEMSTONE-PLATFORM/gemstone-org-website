@@ -224,20 +224,35 @@ body {
 
   .gemstone-network {
     background-image:
-      radial-gradient(circle at 12% 18%, rgb(var(--gemstone-cyan-rgb) / 0.25), transparent 24%),
-      radial-gradient(circle at 86% 28%, rgb(var(--gemstone-blue-rgb) / 0.38), transparent 29%),
-      linear-gradient(
-        130deg,
-        transparent 0 48%,
-        rgb(var(--gemstone-cyan-rgb) / 0.11) 48.1% 48.25%,
-        transparent 48.4% 100%
-      ),
+      radial-gradient(circle at 12% 18%, rgb(var(--gemstone-cyan-rgb) / 0.36), transparent 30%),
+      radial-gradient(circle at 86% 28%, rgb(var(--gemstone-blue-rgb) / 0.5), transparent 36%),
       linear-gradient(
         135deg,
-        rgb(var(--gemstone-bg-rgb)) 0%,
-        rgb(var(--gemstone-surface-rgb)) 52%,
-        rgb(var(--gemstone-bg-rgb)) 100%
+        rgb(var(--gemstone-surface-elevated-rgb)) 0%,
+        rgb(var(--gemstone-blue-rgb) / 0.78) 52%,
+        rgb(var(--gemstone-surface-rgb)) 100%
       );
+  }
+
+  .gemstone-network::after {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 45%,
+      rgb(var(--gemstone-bg-rgb) / 0.34) 100%
+    );
+    content: "";
+    pointer-events: none;
+  }
+
+  .gemstone-hero-panel {
+    background: linear-gradient(
+      135deg,
+      rgb(var(--gemstone-surface-elevated-rgb) / 0.94),
+      rgb(var(--gemstone-blue-rgb) / 0.72)
+    );
   }
 
   .gemstone-hero-graphic {

@@ -117,7 +117,9 @@ test.describe("accessibility and responsive reflow matrix", () => {
         await page.goto(baseURL ?? "http://localhost:3000/");
 
         await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-        await expect(page.getByRole("link", { name: "Request Information" })).toBeVisible();
+        await expect(
+          page.getByRole("link", { name: "Request Information", exact: true }),
+        ).toBeVisible();
         await expect(page.getByRole("button", { name: "What is GEMSTONE?" })).toBeVisible();
         await expect(page.locator("[data-architecture-visual]")).toBeVisible();
         const motionAnimationNames = await page
@@ -152,8 +154,13 @@ test.describe("accessibility and responsive reflow matrix", () => {
           "href",
           "/documents/gemstone-briefing.pdf",
         );
-        await expect(page.locator('iframe[title="GEMSTONE Briefing"]')).toHaveCount(1);
-        await expect(page.getByText("Request Information form not connected")).toBeVisible();
+        await expect(page.locator('iframe[title="GEMSTONE Briefing"]')).toHaveCount(0);
+        await expect(
+          page.getByRole("link", { name: /Open Request Information Form/ }),
+        ).toHaveAttribute("href", "https://forms.osi.apps.mil/r/BmQvtqX65K");
+        await expect(
+          page.locator('iframe[title="GEMSTONE Request More Information form"]'),
+        ).toHaveCount(1);
         await expect(page.locator("iframe")).toHaveCount(1);
       } finally {
         await context.close();

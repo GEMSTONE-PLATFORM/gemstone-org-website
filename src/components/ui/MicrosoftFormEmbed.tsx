@@ -17,12 +17,14 @@ export interface MicrosoftFormEmbedProps {
 const DEFAULT_PRIVACY_NOTICE = "Privacy notice placeholder";
 const FORM_URL_PLACEHOLDERS = [
   MICROSOFT_FORM_URL_PLACEHOLDER,
+  "MICROSOFT_FORM_URL",
   "MICROSOFT_FORM_URL_GOES_HERE",
 ] as const;
 const MICROSOFT_FORMS_HOSTS = new Set([
   "forms.office.com",
   "forms.microsoft.com",
   "forms.cloud.microsoft",
+  "forms.osi.apps.mil",
 ]);
 
 /** Convert a public Microsoft Forms link into its embeddable form without changing its identity. */

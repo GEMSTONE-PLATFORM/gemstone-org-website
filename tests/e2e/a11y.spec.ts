@@ -31,7 +31,7 @@ test.describe("accessibility smoke checks", () => {
       await page.goto("/");
 
       const hero = page.getByRole("region", {
-        name: "Government-Owned Open Source for Digital Engineering and Modeling & Simulation",
+        name: "Government-Owned Open Source Software Defined Platform for Digital Workloads",
       });
       const about = page.getByRole("region", { name: "What is GEMSTONE?" });
       const architecture = page.getByRole("region", { name: "Architecture" });
