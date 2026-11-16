@@ -4,7 +4,9 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
 import { FAQSection } from "@/components/sections/FAQSection";
-import { faqItems } from "@/content/faq";
+import { siteManifest } from "@/content/site-manifest";
+
+const faqItems = siteManifest.content.faq;
 import { assertStaticFallback } from "../helpers/component-test-helpers";
 
 const firstItem = faqItems[0];

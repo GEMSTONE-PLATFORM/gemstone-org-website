@@ -1,7 +1,9 @@
 import fc from "fast-check";
 import { describe, expect, it } from "vitest";
 
-import { architectureContent } from "@/content/site-content";
+import { siteManifest } from "@/content/site-manifest";
+
+const architectureContent = siteManifest.content.architecture;
 import {
   isValidArchitectureGraph,
   selectArchitectureEntity,

@@ -1,28 +1,10 @@
-# Put downloadable briefings here
+# Downloadable briefings
 
-Use this folder for final, approved PowerPoint briefings that visitors can download.
+1. Put the final PowerPoint file here.
+2. Name it `gemstone-briefing-YYYY-MM.pptx`, such as `gemstone-briefing-2026-11.pptx`.
+3. Update the briefing file path in `src/config/integration-config.ts`.
+4. Run `npm run build`.
 
-## Add a new briefing
+Do not overwrite an older briefing. Give each approved version a new month in its filename.
 
-1. Put the finished PowerPoint file in this folder.
-2. Name it:
-
-   ```text
-   gemstone-briefing-YYYY-MM.pptx
-   ```
-
-   Example:
-
-   ```text
-   gemstone-briefing-2026-11.pptx
-   ```
-
-3. Tell Kiro:
-
-   > Add `public/documents/gemstone-briefing-2026-11.pptx` to the GEMSTONE Briefing section as the downloadable briefing.
-
-Kiro will connect the download button and test it before creating a pull request.
-
-Do not overwrite an older briefing. Give each new version the month it was approved.
-
-For the full plain-language guide, read [`../../HOW-TO-UPDATE-THE-WEBSITE.md`](../../HOW-TO-UPDATE-THE-WEBSITE.md).
+Read [`../../HOW-TO-UPDATE-THE-WEBSITE.md`](../../HOW-TO-UPDATE-THE-WEBSITE.md) for the full update guide.

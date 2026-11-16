@@ -80,7 +80,7 @@ function inspectStaticExport() {
     "Government-Owned Open Source for Digital Engineering and Modeling &amp; Simulation",
     "What is GEMSTONE?",
     "data-architecture-visual",
-    'data-visualization-mode="decorative"',
+    'data-topology-explorer="true"',
     "Briefing not configured",
     "Request Information form not connected",
     "Approved for Public Release. Distribution Unlimited.",

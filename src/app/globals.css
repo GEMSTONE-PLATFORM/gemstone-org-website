@@ -179,7 +179,8 @@ body {
         transparent 0 7rem,
         rgb(var(--gemstone-cyan-rgb) / 0.035) 7.1rem 7.16rem,
         transparent 7.25rem 14rem
-      );
+      ),
+      var(--gemstone-page-background, none);
     background-attachment: fixed;
   }
 

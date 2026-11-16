@@ -1,3 +1,4 @@
+import { siteManifest } from "@/content/site-manifest";
 import type { BriefingConfig, IntegrationConfig } from "@/types";
 import { resolveConfiguredUrl, resolveIntegrationUrl } from "@/lib/integration-state";
 export const BRIEFING_URL_PLACEHOLDER = "GEMSTONE_BRIEFING_URL_GOES_HERE";
@@ -27,7 +28,7 @@ export function isConfiguredIntegrationUrl(
 const briefingUrl = BRIEFING_URL_PLACEHOLDER;
 export const briefingConfig = {
   url: briefingUrl,
-  title: "GEMSTONE Briefing",
+  title: siteManifest.content.sectionTitles.briefing,
   description: "Review the current GEMSTONE briefing.",
   format: "unknown",
   allowDownload: true,

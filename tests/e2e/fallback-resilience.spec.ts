@@ -34,7 +34,7 @@ test.describe("fallback resilience", () => {
     await expect(logoFallback).toHaveAttribute("data-logo-state", "fallback");
     await expect(logoFallback).toHaveText("GEMSTONE");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.locator("[data-visualization-mode=decorative]")).toBeVisible();
+    await expect(page.locator("[data-topology-explorer]")).toBeVisible();
     await expect(page.locator("[data-architecture-visual]")).toBeVisible();
     await expectNoEmptyOrMissingTargets(page);
   });
@@ -83,7 +83,7 @@ test.describe("fallback resilience", () => {
 
       const accordion = page.getByTestId("faq-accordion");
       await expect(accordion).toHaveAttribute("data-reduced-motion", "true");
-      await expect(page.locator("[data-visualization-mode=decorative]")).toBeVisible();
+      await expect(page.locator("[data-topology-explorer]")).toBeVisible();
       await expect(page.locator("[data-architecture-visual]")).toBeVisible();
 
       const question = page.getByRole("button", { name: "What is GEMSTONE?" });

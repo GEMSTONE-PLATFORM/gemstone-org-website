@@ -4,7 +4,9 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, describe, expect, it } from "vitest";
 
 import { AboutSection } from "@/components/sections/section-renderers";
-import { aboutContent } from "@/content/site-content";
+import { siteManifest } from "@/content/site-manifest";
+
+const aboutContent = siteManifest.content.about;
 
 import { mockReducedMotion } from "../helpers/component-test-helpers";
 

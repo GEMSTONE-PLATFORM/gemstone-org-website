@@ -2,18 +2,7 @@ import fc from "fast-check";
 import { describe, expect, it } from "vitest";
 
 import { briefingConfig, siteConfig } from "@/config";
-import { capabilities } from "@/content/capabilities";
-import { differentiators } from "@/content/differentiators";
-import { faqItems } from "@/content/faq";
-import {
-  analystBenefits,
-  architectureContent,
-  ecosystemContent,
-  heroContent,
-  problems,
-  siteContent,
-  whyGemstoneItems,
-} from "@/content/site-content";
+import { siteManifest } from "@/content/site-manifest";
 import type {
   CapabilityItem,
   ContentLink,
@@ -22,6 +11,18 @@ import type {
   FeatureItem,
   IconName,
 } from "@/types";
+
+const siteContent = siteManifest.content;
+const {
+  analystBenefits,
+  architecture: architectureContent,
+  capabilities,
+  differentiators,
+  ecosystem: ecosystemContent,
+  faq: faqItems,
+  hero: heroContent,
+  whyGemstone: whyGemstoneItems,
+} = siteContent;
 
 const iconNames: readonly IconName[] = [
   "boxes",
@@ -141,7 +142,6 @@ function renderPublicClaimsFromTypedSources(): readonly string[] {
     heroContent.title,
     heroContent.description,
     ...collectStrings(siteContent.about),
-    ...problems,
     ...whyGemstoneItems.flatMap(({ title, description }) => [title, description]),
     ...architectureContent.entities.flatMap(({ label, description }) => [label, description]),
     ...architectureContent.connections.map(({ label }) => label),

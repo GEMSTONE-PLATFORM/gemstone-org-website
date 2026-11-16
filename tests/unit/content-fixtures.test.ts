@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 
 import type { DifferentiatorItem } from "@/types";
-import { differentiators } from "@/content/differentiators";
-import { faqItems } from "@/content/faq";
-import { heroContent } from "@/content/site-content";
+import { siteManifest } from "@/content/site-manifest";
+
+const { differentiators, faq: faqItems, hero: heroContent } = siteManifest.content;
 
 describe("approved content fixtures", () => {
   it("keeps the exact approved hero copy", () => {

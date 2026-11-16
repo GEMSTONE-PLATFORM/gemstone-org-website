@@ -1,25 +1,15 @@
-# Put official GEMSTONE logos here
+# GEMSTONE logos
 
-Use this folder only for approved GEMSTONE logo files.
+Replace the approved logo file here, keep its exact filename, then run `npm run build`.
 
-## Replace a logo
+| Logo                     | Exact filename                 |
+| ------------------------ | ------------------------------ |
+| Main GEMSTONE logo       | `gemstone-logo.svg`            |
+| Wide laptop/desktop logo | `gemstone-logo-horizontal.svg` |
+| Small phone logo         | `gemstone-mark.svg`            |
 
-Replace the file but keep its exact name:
+You do not need to change website code when replacing a logo with the same filename.
 
-| Logo       | Exact filename                 | Used for                      |
-| ---------- | ------------------------------ | ----------------------------- |
-| Main logo  | `gemstone-logo.svg`            | General brand use             |
-| Wide logo  | `gemstone-logo-horizontal.svg` | Laptop and desktop header     |
-| Small mark | `gemstone-mark.svg`            | Phone header and browser icon |
+The site does not recreate, redraw, recolor, crop, stretch, trace, or add effects to logo files.
 
-The website automatically uses these filenames. Do not rename them.
-
-## Important
-
-- Use only an approved logo from the branding team.
-- Do not crop, recolor, redraw, trace, stretch, or add effects to a logo.
-- Do not use a logo copied from a slide deck or screenshot.
-
-After replacing a file, tell Kiro which filename you changed. Kiro can check the website on phones and laptops and create a pull request.
-
-For the full plain-language guide, read [`../../HOW-TO-UPDATE-THE-WEBSITE.md`](../../HOW-TO-UPDATE-THE-WEBSITE.md).
+Read [`../../HOW-TO-UPDATE-THE-WEBSITE.md`](../../HOW-TO-UPDATE-THE-WEBSITE.md) for the full update guide.

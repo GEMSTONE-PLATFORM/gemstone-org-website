@@ -1,109 +1,151 @@
-# How to update the GEMSTONE website
+# Update the GEMSTONE website without writing frontend code
 
-This guide is for people who do **not** write website code.
+You can update the published text, images, backgrounds, logos, and starter network yourself.
 
-## The simple rule
+## The three things you use
 
-1. Put the file in the correct folder.
-2. Tell Kiro what you want it to do on the website.
-3. Kiro adds it to the page, checks that it works on phones and laptops, and creates a pull request for review.
+| What you want to change                                           | File or folder to use          |
+| ----------------------------------------------------------------- | ------------------------------ |
+| Website words, section titles, image choices, and starter network | `src/content/site-manifest.ts` |
+| Logos                                                             | `public/branding/`             |
+| Images and backgrounds                                            | `public/images/`               |
 
-Adding a new image file does **not** make it appear on the website by itself. You must also say where you want to use it.
+After making your changes, run:
+
+```sh
+npm run build
+```
+
+The build reads `src/content/site-manifest.ts` and the files in `public/`. It creates a new version of the website in the `out/` folder.
+
+## Change words on the website
+
+Open:
+
+```text
+src/content/site-manifest.ts
+```
+
+Everything you normally need is in the `content` section. The labels tell you what each part changes:
+
+- `sectionTitles` changes section headings and the introductory Architecture paragraph.
+- `hero` changes the first title, description, and buttons.
+- `about` changes the “What is GEMSTONE?” section.
+- `whyGemstone`, `capabilities`, `differentiators`, and `faq` change their cards and answers.
+- `architecture` changes the default Hub–Node–Client diagram.
+- `hero.topology` changes the starter network graph in the Hero section.
+
+Change only the words inside quotation marks. Keep the commas, brackets, and names such as `title`, `description`, `question`, and `answer` unchanged.
+
+Example. To change a title, find:
+
+```ts
+title: "Current title",
+```
+
+and change only the words between the quotation marks:
+
+```ts
+title: "New approved title",
+```
 
 ## Replace a logo
 
-Put the approved replacement file in `public/branding/` and keep the exact filename below.
+Replace the logo file in `public/branding/`. Keep the exact filename.
 
-| If you are replacing…   | Use this exact filename        | Where it appears              |
-| ----------------------- | ------------------------------ | ----------------------------- |
-| The main GEMSTONE logo  | `gemstone-logo.svg`            | General brand use             |
-| The wide GEMSTONE logo  | `gemstone-logo-horizontal.svg` | Laptop and desktop header     |
-| The small GEMSTONE mark | `gemstone-mark.svg`            | Phone header and browser icon |
+| Replace this             | Exact filename                 |
+| ------------------------ | ------------------------------ |
+| Main GEMSTONE logo       | `gemstone-logo.svg`            |
+| Wide laptop/desktop logo | `gemstone-logo-horizontal.svg` |
+| Small phone logo         | `gemstone-mark.svg`            |
 
-Do not rename these files. Do not crop, recolor, trace, or rebuild the logo. Replace the file only with an approved version from the branding team.
+You do not need to change the master configuration when replacing a logo with the same filename. Run `npm run build` when you are finished.
 
-After adding a logo, tell Kiro:
-
-> I replaced `public/branding/gemstone-mark.svg`. Please check that it looks correct on a phone and update the pull request.
+Use only approved logo files. Do not crop, recolor, stretch, trace, or recreate them.
 
 ## Add or replace an image
 
-Choose the folder based on where the image belongs.
+First put the file in the correct folder.
 
-| Image purpose                     | Put it here                   | Example filename                              |
-| --------------------------------- | ----------------------------- | --------------------------------------------- |
-| Hero or top-of-page image         | `public/images/hero/`         | `gemstone-hero-network-2026-11.webp`          |
-| Architecture or technical diagram | `public/images/architecture/` | `gemstone-architecture-hub-node-2026-11.svg`  |
-| Decorative page background        | `public/images/backgrounds/`  | `gemstone-background-cyan-lines-2026-11.webp` |
+| Image purpose                | Folder                        | Example filename                      |
+| ---------------------------- | ----------------------------- | ------------------------------------- |
+| Hero/top-of-page image       | `public/images/hero/`         | `gemstone-hero-network.webp`          |
+| Architecture/technical image | `public/images/architecture/` | `gemstone-architecture-hub-node.svg`  |
+| Page background              | `public/images/backgrounds/`  | `gemstone-background-cyan-lines.webp` |
 
-Use short, lowercase names with dashes. Use `webp`, `png`, `jpg`, or `svg`.
+Then open `src/content/site-manifest.ts` and update the matching image line near the top:
 
-After adding an image, send Kiro a request like this:
+```ts
+heroImage: "",
+pageBackground: "",
+architectureImage: "",
+```
 
-> Use `public/images/hero/gemstone-hero-network-2026-11.webp` in the Hero section. It is decorative, should not cover the title, and should look good on both phones and laptops.
+For example, if you added `public/images/hero/gemstone-hero-network.webp`, change this:
 
-For an image that conveys information, include a short description for visitors using screen readers:
+```ts
+heroImage: "",
+```
 
-> Use `public/images/architecture/gemstone-architecture-hub-node-2026-11.svg` in the Architecture section. It shows a Hub connected to two Nodes and two Clients. This image is informative.
+to this:
 
-Kiro will add the image to the website code, preserve the correct image shape, add the needed description when appropriate, and check the layout.
+```ts
+heroImage: "/images/hero/gemstone-hero-network.webp",
+```
 
-## Add a background image
+Run `npm run build`. The new Hero image now replaces the generated Hero network visual automatically.
 
-Put final, approved background art in:
+## Use a background image
+
+Put the final background file in:
 
 ```text
 public/images/backgrounds/
 ```
 
-Then tell Kiro:
+Then set `pageBackground` in `src/content/site-manifest.ts` to the file path. Use a subtle image that leaves all words readable. Do not place an official logo over a busy area.
 
-> Use `public/images/backgrounds/gemstone-background-cyan-lines-2026-11.webp` as a subtle website background. Keep all words easy to read and do not place the official logo over a busy part of the image.
+## Keep a file out of the public site
 
-Backgrounds are decorative. They should support the page, not compete with text, forms, or logos.
-
-## Keep an image for review only
-
-If an image is an idea, a screenshot, or still needs approval, put it in:
+Put drafts, screenshots, and ideas in:
 
 ```text
 public/images/inspiration/
 ```
 
-Files in this folder are **not** displayed on the public website. Tell Kiro when an image has been approved and should be moved into a production folder.
+Files in `inspiration/` do not appear on the public website. Move an approved final image to `hero/`, `architecture/`, or `backgrounds/` before adding its path to `site-manifest.ts`.
 
-## Update words on the site
+## Change the starter network graph
 
-You do not need to edit code. Send Kiro the exact old and new wording, plus where it appears.
+The Hero network starts with three connected Hubs. Each Hub has Nodes, and each Node has Clients. The starting items are under:
 
-Example:
+```text
+src/content/site-manifest.ts → content → hero → topology
+```
 
-> In the Architecture section, replace “[old text]” with “[new text].”
+- Add an item to `entities` to add a Hub, Node, or Client to the published starting graph.
+- Add a matching line to `connections` to join two items.
+- Use a Node’s `parentId` to identify its Hub.
+- Use a Client’s `parentId` to identify its Node.
 
-## Add a PowerPoint briefing for download
+Visitors can also use the on-page **Add Hub**, **Add Node to selected Hub**, and **Add Client to selected Node** controls to explore a larger network. Those visitor-made additions are examples only and reset when the page reloads.
 
-1. Put the final approved PowerPoint file in `public/documents/`.
-2. Name it like this:
+## Add a PowerPoint briefing
 
-   ```text
-   gemstone-briefing-YYYY-MM.pptx
-   ```
+1. Put the final PowerPoint in `public/documents/`.
+2. Name it `gemstone-briefing-YYYY-MM.pptx`, such as `gemstone-briefing-2026-11.pptx`.
+3. Update the briefing address in `src/config/integration-config.ts` using the same path.
+4. Run `npm run build`.
 
-   Example: `gemstone-briefing-2026-11.pptx`
+## Before publishing
 
-3. Tell Kiro:
+Run:
 
-   > Add `public/documents/gemstone-briefing-2026-11.pptx` to the GEMSTONE Briefing section as the downloadable briefing.
+```sh
+npm run build
+npm run validate:release
+```
 
-Kiro will connect the download button and verify it works.
+Then publish the contents of `out/`, or merge the approved branch so GitHub Actions builds and publishes the site.
 
-## Before asking Kiro to publish an update
-
-Make sure you have:
-
-- the final approved file, not a draft or screenshot;
-- permission to use it publicly;
-- a clear instruction for where it belongs;
-- any required short description of what an informative image shows.
-
-Do not put passwords, private data, or unapproved material in the public website folders.
+Do not put passwords, private information, or unapproved files in public folders.

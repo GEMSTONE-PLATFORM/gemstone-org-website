@@ -1,10 +1,12 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
 import HomePage from "@/app/page";
 import { HeroSection } from "@/components/sections/section-renderers";
-import { heroContent } from "@/content/site-content";
+import { siteManifest } from "@/content/site-manifest";
+
+const heroContent = siteManifest.content.hero;
 
 describe("HeroSection", () => {
   it("renders the approved headline, subheadline, and enabled CTA destinations", () => {
@@ -34,16 +36,25 @@ describe("HeroSection", () => {
     expect(screen.getByRole("heading", { level: 1, name: heroContent.title })).toBeVisible();
   });
 
-  it("uses an original decorative network graphic without an ecosystem label list", () => {
+  it("renders an expandable network topology with the requested Hub, Node, and Client workflow", () => {
     const { container } = render(<HeroSection content={heroContent} />);
-    const graphic = container.querySelector("[data-visualization-mode=decorative]");
 
-    expect(graphic).toBeInTheDocument();
-    expect(graphic).toHaveAttribute("aria-hidden", "true");
-    expect(
-      screen.queryByRole("list", { name: "GEMSTONE ecosystem labels" }),
-    ).not.toBeInTheDocument();
-    expect(screen.queryByText("Static ecosystem map")).not.toBeInTheDocument();
+    expect(screen.getByRole("group", { name: "Grow the network" })).toBeInTheDocument();
+    const addHub = screen.getByRole("button", { name: "Add Hub" });
+    const addNode = screen.getByRole("button", { name: "Add Node to selected Hub" });
+    const addClient = screen.getByRole("button", { name: "Add Client to selected Node" });
+    expect(addNode).toBeDisabled();
+    expect(addClient).toBeDisabled();
+
+    fireEvent.click(addHub);
+    expect(container.querySelectorAll('[id^="topology-hub-"]')).toHaveLength(4);
+    expect(container.querySelectorAll("svg line")).toHaveLength(24);
+    expect(addNode).toBeEnabled();
+
+    fireEvent.click(addNode);
+    expect(addClient).toBeEnabled();
+    fireEvent.click(addClient);
+    expect(screen.getByText("Client 13")).toBeInTheDocument();
   });
 
   it("keeps approved copy and CTA targets in static HTML", () => {
@@ -55,7 +66,7 @@ describe("HeroSection", () => {
     expect(markup).toContain(heroContent.description);
     expect(markup).toContain('href="#requestInformation"');
     expect(markup).toContain('href="#briefing"');
-    expect(markup).toContain('data-visualization-mode="decorative"');
+    expect(markup).toContain('data-topology-explorer="true"');
     expect(markup).not.toContain("Static ecosystem map");
     expect(markup).not.toContain("Hub services");
     expect(markup).not.toContain("<script");

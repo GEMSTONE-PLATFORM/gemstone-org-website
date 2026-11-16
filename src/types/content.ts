@@ -29,12 +29,30 @@ export interface ExternalLink {
 
 export type ContentLink = InternalLink | ExternalLink;
 
+export interface NetworkTopologyEntity {
+  readonly id: string;
+  readonly kind: ArchitectureEntityKind;
+  readonly label: string;
+  readonly parentId?: string;
+}
+
+export interface NetworkTopologyConnection {
+  readonly from: string;
+  readonly to: string;
+}
+
+export interface NetworkTopologyContent {
+  readonly entities: readonly NetworkTopologyEntity[];
+  readonly connections: readonly NetworkTopologyConnection[];
+}
+
 export interface HeroContent {
   readonly eyebrow?: string;
   readonly title: string;
   readonly description: string;
   readonly primaryCta: ContentLink;
   readonly secondaryCta: ContentLink;
+  readonly topology: NetworkTopologyContent;
 }
 
 export interface AboutContent {
@@ -54,9 +72,7 @@ export interface EcosystemContent {
 export interface FooterContent {
   readonly siteName: string;
   readonly fullName: string;
-  readonly navigation: readonly ContentLink[];
   readonly privacyNotice: string;
-  readonly publicReleaseStatement: string;
 }
 
 export interface FeatureItem {
@@ -109,10 +125,22 @@ export interface ArchitectureContent {
   readonly distributedPrinciple: string;
 }
 
+export interface SectionTitles {
+  readonly whyGemstone: string;
+  readonly architecture: string;
+  readonly architectureIntroduction: string;
+  readonly capabilities: string;
+  readonly differentiators: string;
+  readonly faq: string;
+  readonly briefing: string;
+  readonly requestInformation: string;
+  readonly requestInformationDescription: string;
+}
+
 export type SiteContent = {
+  readonly sectionTitles: SectionTitles;
   readonly hero: HeroContent;
   readonly about: AboutContent;
-  readonly problems: readonly string[];
   readonly whyGemstone: readonly FeatureItem[];
   readonly architecture: ArchitectureContent;
   readonly ecosystem: EcosystemContent;

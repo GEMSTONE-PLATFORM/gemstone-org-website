@@ -1,19 +1,24 @@
 import type { DifferentiatorItem } from "@/types";
 
+import { siteManifest } from "@/content/site-manifest";
 import { SectionContainer } from "@/components/layout/SectionContainer";
 import { AnimatedSection, Card, Icon, SectionHeading } from "@/components/ui";
 
 export interface DifferentiatorsSectionProps {
   readonly items: readonly DifferentiatorItem[];
+  readonly title?: string;
 }
 
 /** Renders approved differentiator claims from typed content. */
-export function DifferentiatorsSection({ items }: DifferentiatorsSectionProps) {
+export function DifferentiatorsSection({
+  items,
+  title = siteManifest.content.sectionTitles.differentiators,
+}: DifferentiatorsSectionProps) {
   const headingId = "differentiators-heading";
 
   return (
     <SectionContainer id="differentiators" headingId={headingId}>
-      <SectionHeading id={headingId} title="Differentiators" />
+      <SectionHeading id={headingId} title={title} />
       <AnimatedSection className="mt-8">
         <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3" aria-label="Differentiator claims">
           {items.map((item) => (

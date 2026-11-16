@@ -1,5 +1,7 @@
 # Technical Design: GEMSTONE Public Website
 
+> **Superseded implementation note:** The content-file layout described below predates the current master configuration. The website now uses `src/content/site-manifest.ts` for editable page text, optional image paths, and the published starter network topology. Use [`../../../HOW-TO-UPDATE-THE-WEBSITE.md`](../../../HOW-TO-UPDATE-THE-WEBSITE.md) for routine updates.
+
 ## Overview
 
 GEMSTONE is a public, static-export-compatible Next.js website for the Government Enterprise Modeling and Simulation Trusted Operations Networked Ecosystem. It presents GEMSTONE as a government-owned open-source platform that connects organizations, environments, tools, data, compute, models, simulations, users, and hub services across a distributed ecosystem.

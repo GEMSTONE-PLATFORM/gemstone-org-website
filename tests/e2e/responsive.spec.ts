@@ -66,7 +66,7 @@ test.describe("responsive, performance, and browser-support checks", () => {
         "none",
       );
       await expect(reducedPage.locator("[data-architecture-visual]")).toBeVisible();
-      await expect(reducedPage.locator("[data-visualization-mode=decorative]")).toBeVisible();
+      await expect(reducedPage.locator("[data-topology-explorer]")).toBeVisible();
     } finally {
       await reducedContext.close();
     }

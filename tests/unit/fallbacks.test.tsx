@@ -11,7 +11,9 @@ import {
   BRIEFING_URL_PLACEHOLDER,
   MICROSOFT_FORM_URL_PLACEHOLDER,
 } from "@/config/integration-config";
-import { heroContent } from "@/content/site-content";
+import { siteManifest } from "@/content/site-manifest";
+
+const heroContent = siteManifest.content.hero;
 import type { BriefingConfig } from "@/types";
 
 type FallbackCondition =
@@ -99,7 +101,7 @@ function assertFallbackComprehension(model: FallbackModel) {
     case "unavailable-animation": {
       const markup = renderToStaticMarkup(<HeroSection content={heroContent} />);
 
-      expect(markup).toContain('data-visualization-mode="decorative"');
+      expect(markup).toContain('data-topology-explorer="true"');
       expect(markup).toContain(approvedHeroHeading.replace("&", "&amp;"));
       expect(markup).toContain(heroContent.description);
       expect(markup).toContain('href="#requestInformation"');

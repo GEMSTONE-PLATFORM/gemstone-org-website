@@ -1,19 +1,25 @@
 import type { FAQItem } from "@/types";
 
+import { siteManifest } from "@/content/site-manifest";
 import { Accordion } from "@/components/ui/Accordion";
 
 export interface FAQSectionProps {
   readonly items: readonly FAQItem[];
+  readonly title?: string;
   readonly reducedMotion?: boolean;
 }
 
 /** Server-rendered FAQ structure with a progressively enhanced accordion. */
-export function FAQSection({ items, reducedMotion = false }: FAQSectionProps) {
+export function FAQSection({
+  items,
+  title = siteManifest.content.sectionTitles.faq,
+  reducedMotion = false,
+}: FAQSectionProps) {
   return (
     <section id="faq" aria-labelledby="faq-heading" className="gemstone-section">
       <div className="gemstone-container">
         <h2 id="faq-heading" className="gemstone-display text-gemstone-text">
-          Frequently Asked Questions
+          {title}
         </h2>
         <div className="mt-8">
           <Accordion

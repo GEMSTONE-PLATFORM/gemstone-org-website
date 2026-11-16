@@ -8,6 +8,7 @@ import type {
   SiteSections,
 } from "@/types";
 
+import { siteManifest } from "@/content/site-manifest";
 import { briefingConfig } from "@/config/integration-config";
 import {
   AnimatedSection,
@@ -16,6 +17,8 @@ import {
   Icon,
   MediaViewer,
   MicrosoftFormEmbed,
+  ResponsiveMedia,
+  TopologyExplorer,
 } from "@/components/ui";
 
 type SectionId =
@@ -70,10 +73,11 @@ function ContentLinkView({ link }: { readonly link: ContentLink }) {
 
 interface HeroSectionProps {
   readonly content: HeroContent;
+  readonly visualImage?: string;
   readonly enabledSections?: Pick<SiteSections, "briefing" | "requestInformation">;
 }
 
-export function HeroSection({ content, enabledSections }: HeroSectionProps) {
+export function HeroSection({ content, visualImage, enabledSections }: HeroSectionProps) {
   const requestInformationEnabled = enabledSections?.requestInformation ?? true;
   const briefingEnabled = enabledSections?.briefing ?? true;
 
@@ -101,153 +105,18 @@ export function HeroSection({ content, enabledSections }: HeroSectionProps) {
               </div>
             )}
           </div>
-
-          <div
-            className="gemstone-hero-graphic relative col-span-full min-h-[18rem] overflow-hidden rounded-[var(--gemstone-radius-lg)] border border-gemstone-cyan/35 bg-gemstone-surface text-gemstone-cyan p-3 sm:min-h-[25rem] sm:p-6"
-            aria-hidden="true"
-            data-visualization-mode="decorative"
-          >
-            <svg
-              className="absolute inset-0 h-full w-full"
-              viewBox="0 0 1200 560"
-              preserveAspectRatio="xMidYMid meet"
-              focusable="false"
-            >
-              <defs>
-                <filter id="hero-hub-glow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="7" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
-              <g fill="none" stroke="currentColor" className="text-gemstone-cyan">
-                <path
-                  d="M300 132L600 62L900 132Z"
-                  strokeWidth="9"
-                  opacity="0.2"
-                  filter="url(#hero-hub-glow)"
-                />
-                <path d="M300 132L600 62L900 132Z" strokeWidth="3" opacity="0.95" />
-              </g>
-              <g
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="text-gemstone-blue"
-                opacity="0.92"
-              >
-                <path d="M300 150L260 270M300 150L340 270M600 80L560 270M600 80L640 270M900 150L860 270M900 150L940 270" />
-              </g>
-              <g
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                className="text-gemstone-muted"
-                opacity="0.72"
-              >
-                <path d="M260 290L260 400M260 290L260 490M340 290L340 400M340 290L340 490M560 290L560 400M560 290L560 490M640 290L640 400M640 290L640 490M860 290L860 400M860 290L860 490M940 290L940 400M940 290L940 490" />
-              </g>
-              <g className="text-gemstone-cyan" filter="url(#hero-hub-glow)">
-                <circle
-                  cx="300"
-                  cy="150"
-                  r="30"
-                  fill="currentColor"
-                  fillOpacity="0.24"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                />
-                <circle
-                  cx="600"
-                  cy="80"
-                  r="30"
-                  fill="currentColor"
-                  fillOpacity="0.24"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                />
-                <circle
-                  cx="900"
-                  cy="150"
-                  r="30"
-                  fill="currentColor"
-                  fillOpacity="0.24"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                />
-              </g>
-              <g className="text-gemstone-accent" fill="currentColor">
-                <rect x="247" y="257" width="26" height="26" rx="5" />
-                <rect x="327" y="257" width="26" height="26" rx="5" />
-                <rect x="547" y="257" width="26" height="26" rx="5" />
-                <rect x="627" y="257" width="26" height="26" rx="5" />
-                <rect x="847" y="257" width="26" height="26" rx="5" />
-                <rect x="927" y="257" width="26" height="26" rx="5" />
-              </g>
-              <g className="text-gemstone-text-muted" fill="currentColor">
-                <circle cx="260" cy="400" r="9" />
-                <circle cx="260" cy="490" r="9" />
-                <circle cx="340" cy="400" r="9" />
-                <circle cx="340" cy="490" r="9" />
-                <circle cx="560" cy="400" r="9" />
-                <circle cx="560" cy="490" r="9" />
-                <circle cx="640" cy="400" r="9" />
-                <circle cx="640" cy="490" r="9" />
-                <circle cx="860" cy="400" r="9" />
-                <circle cx="860" cy="490" r="9" />
-                <circle cx="940" cy="400" r="9" />
-                <circle cx="940" cy="490" r="9" />
-              </g>
-              <g
-                fill="currentColor"
-                className="text-gemstone-text"
-                fontFamily="var(--gemstone-font-mono)"
-                fontSize="15"
-                fontWeight="700"
-                letterSpacing="2"
-              >
-                <text x="265" y="155">
-                  HUB A
-                </text>
-                <text x="565" y="85">
-                  HUB B
-                </text>
-                <text x="865" y="155">
-                  HUB C
-                </text>
-              </g>
-              <g
-                fill="currentColor"
-                className="text-gemstone-accent"
-                fontFamily="var(--gemstone-font-mono)"
-                fontSize="12"
-                fontWeight="700"
-                letterSpacing="1.5"
-              >
-                <text x="237" y="315">
-                  NODE A1
-                </text>
-                <text x="317" y="315">
-                  NODE A2
-                </text>
-                <text x="537" y="315">
-                  NODE B1
-                </text>
-                <text x="617" y="315">
-                  NODE B2
-                </text>
-                <text x="837" y="315">
-                  NODE C1
-                </text>
-                <text x="917" y="315">
-                  NODE C2
-                </text>
-              </g>
-            </svg>
-          </div>
         </div>
+        {visualImage ? (
+          <ResponsiveMedia
+            src={visualImage}
+            alt="GEMSTONE ecosystem network"
+            width={1600}
+            height={900}
+            wrapperClassName="gemstone-hero-graphic"
+          />
+        ) : (
+          <TopologyExplorer content={content.topology} />
+        )}
       </AnimatedSection>
     </section>
   );
@@ -320,9 +189,15 @@ function WhyGemstoneFeatureList({ items }: { readonly items: readonly FeatureIte
   );
 }
 
-export function WhyGemstoneSection({ items }: { readonly items: readonly FeatureItem[] }) {
+export function WhyGemstoneSection({
+  items,
+  title = siteManifest.content.sectionTitles.whyGemstone,
+}: {
+  readonly items: readonly FeatureItem[];
+  readonly title?: string;
+}) {
   return (
-    <SectionFrame id="whyGemstone" title="Why GEMSTONE?">
+    <SectionFrame id="whyGemstone" title={title}>
       <WhyGemstoneFeatureList items={items} />
     </SectionFrame>
   );
@@ -364,9 +239,15 @@ function CapabilityList({ items }: { readonly items: readonly CapabilityItem[] }
   );
 }
 
-export function CapabilitiesSection({ items }: { readonly items: readonly CapabilityItem[] }) {
+export function CapabilitiesSection({
+  items,
+  title = siteManifest.content.sectionTitles.capabilities,
+}: {
+  readonly items: readonly CapabilityItem[];
+  readonly title?: string;
+}) {
   return (
-    <SectionFrame id="capabilities" title="Capabilities">
+    <SectionFrame id="capabilities" title={title}>
       <CapabilityList items={items} />
     </SectionFrame>
   );
@@ -385,14 +266,18 @@ export function BriefingSection({ config = briefingConfig }: { readonly config?:
 
 export function RequestInformationSection({
   url,
+  title = siteManifest.content.sectionTitles.requestInformation,
+  description = siteManifest.content.sectionTitles.requestInformationDescription,
   privacyNotice = "Privacy notice placeholder",
 }: {
   readonly url?: string;
+  readonly title?: string;
+  readonly description?: string;
   readonly privacyNotice?: string;
 }) {
   return (
-    <SectionFrame id="requestInformation" title="Request More Information">
-      <p className="gemstone-body">Connect with the GEMSTONE team to learn more.</p>
+    <SectionFrame id="requestInformation" title={title}>
+      <p className="gemstone-body">{description}</p>
       <div className="mt-6">
         <MicrosoftFormEmbed
           url={url}

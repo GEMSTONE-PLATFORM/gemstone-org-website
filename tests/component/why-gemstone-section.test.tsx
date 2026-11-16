@@ -3,7 +3,9 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { WhyGemstoneSection } from "@/components/sections/section-renderers";
-import { whyGemstoneItems } from "@/content/site-content";
+import { siteManifest } from "@/content/site-manifest";
+
+const whyGemstoneItems = siteManifest.content.whyGemstone;
 
 describe("WhyGemstoneSection", () => {
   it("renders every approved benefit from the typed content array", () => {
