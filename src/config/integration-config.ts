@@ -2,8 +2,8 @@ import { publicAsset } from "@/config/asset-config";
 import { siteManifest } from "@/content/site-manifest";
 import type { BriefingConfig, IntegrationConfig } from "@/types";
 import { resolveConfiguredUrl, resolveIntegrationUrl } from "@/lib/integration-state";
-export const BRIEFING_URL_PLACEHOLDER = "GEMSTONE_BRIEFING_URL_GOES_HERE";
-export const MICROSOFT_FORM_URL_PLACEHOLDER = "MICROSOFT_FORM_URL";
+export const BRIEFING_URL_PLACEHOLDER = "/public/documents/gemstone-briefing.pdf";
+export const MICROSOFT_FORM_URL_PLACEHOLDER = "https://forms.osi.apps.mil/r/BmQvtqX65K";
 /**
  * External URLs are considered configured only when they contain a usable,
  * non-placeholder value. Trimming here prevents whitespace-only build input
