@@ -11,7 +11,7 @@ describe("approved content fixtures", () => {
       "Government-Owned Open Source Software Defined Platform for Digital Workloads",
     );
     expect(heroContent.description).toBe(
-      "GEMSTONE empowers organizations to build, publish, discover, and integrate tools, data, and compute across secure environments.",
+      "Empowering organizations to build, publish, discover, and integrate tools, data, and compute across secure environments.",
     );
   });
 
