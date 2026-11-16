@@ -147,29 +147,24 @@ suite. New capability, differentiator, and FAQ entries should render through
 the existing generic paths; do not add item-specific branches unless the
 approved design changes.
 
-### Brand and imagery rules
+### Logos, images, backgrounds, and briefings
 
-- Put supplied official GEMSTONE logo assets in `public/branding` using the
-  configured filenames: `gemstone-logo.svg`, `gemstone-logo-horizontal.svg`,
-  and `gemstone-mark.svg`. Alternatively, update only
-  `src/config/asset-config.ts` after approval.
-- Preserve official logo aspect ratio, transparency, resolution, and approved
-  colors. Do not redraw, crop, recolor, or recreate an official logo.
-- Put approved production imagery beneath `public/images/hero`,
-  `public/images/architecture`, or `public/images/backgrounds` and add its
-  path through the asset configuration boundary. Follow
-  [`public/images/README.md`](public/images/README.md) for names and placement.
-- Put an approved downloadable briefing in `public/documents` as
-  `gemstone-briefing-YYYY-MM.pptx`. Follow
-  [`public/documents/README.md`](public/documents/README.md) to connect it to the site.
-- `initial-images/GEMSTONEInfo.pptx` is approved reference/source material for
-  copy and design direction only. It is not a production image, logo, or UI
-  asset and must not be imported by application code.
-- `public/images/inspiration` is also an inspiration-only boundary. Files there
-  require separate approval before becoming production assets.
+If you do not write website code, use the plain-language guide:
 
-See `public/branding/README.md` and `public/images/inspiration/README.md` for
-the asset-boundary rules.
+[**How to update the GEMSTONE website**](HOW-TO-UPDATE-THE-WEBSITE.md)
+
+It explains exactly where to put a logo, image, background, or briefing file, what to name it, and what to tell Kiro so it is added to the website.
+
+Quick locations:
+
+- Official logos: `public/branding/`
+- Website images: `public/images/`
+- Downloadable PowerPoint briefings: `public/documents/`
+- Drafts and examples that must not appear publicly: `public/images/inspiration/`
+
+Use only approved files. Do not place passwords, personal information, or unapproved material in public folders.
+
+For developers, the technical asset paths remain in `src/config/asset-config.ts`.
 
 ## Briefing and form integration checks
 
