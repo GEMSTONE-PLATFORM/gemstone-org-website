@@ -42,7 +42,7 @@ test.describe("accessibility smoke checks", () => {
       await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
       await expect(
         hero.getByText(
-          "GEMSTONE empowers organizations to build, publish, discover, and integrate tools, data, and compute across secure environments.",
+          "Empowering organizations to build, publish, discover, and integrate tools, data, and compute across secure environments.",
         ),
       ).toBeVisible();
       await expect(
