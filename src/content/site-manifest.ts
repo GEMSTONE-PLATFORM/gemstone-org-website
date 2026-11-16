@@ -55,7 +55,7 @@ export const siteManifest = {
       requestInformationDescription: "Connect with the GEMSTONE team to learn more.",
     },
     hero: {
-      title: "Government-Owned Open Source for Digital Engineering and Modeling & Simulation",
+      title: "Government-Owned Open Source Software Defined Platform for Digital Workloads",
       description:
         "GEMSTONE empowers organizations to build, publish, discover, and integrate tools, data, and compute across secure environments.",
       primaryCta: internalLink("Request Information", "#requestInformation"),
