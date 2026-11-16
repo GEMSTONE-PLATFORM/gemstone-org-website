@@ -2,7 +2,10 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { Footer } from "@/components/layout";
-import { siteContent } from "@/content";
+import { footerNavigationItems } from "@/config";
+import { siteManifest } from "@/content/site-manifest";
+
+const siteContent = siteManifest.content;
 import type { SiteSections } from "@/types";
 
 const enabledSections: SiteSections = {
@@ -44,7 +47,7 @@ describe("Footer", () => {
   it("omits footer links whose section targets are disabled", () => {
     render(
       <Footer
-        navigation={siteContent.footer.navigation}
+        navigation={footerNavigationItems}
         enabledSections={{ ...enabledSections, about: false, requestInformation: false }}
         config={{ showBackToTop: false }}
       />,

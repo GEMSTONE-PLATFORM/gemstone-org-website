@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 import { describe, expect, it } from "vitest";
 
-import { assetConfig, brandingFallbackConfig } from "@/config/asset-config";
+import { assetConfig } from "@/config/asset-config";
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const sourceRoot = join(repositoryRoot, "src");
@@ -23,13 +23,6 @@ describe("branding and reference-asset boundaries", () => {
     expect(assetConfig.logo).toBe("/branding/gemstone-logo.svg");
     expect(assetConfig.horizontalLogo).toBe("/branding/gemstone-logo-horizontal.svg");
     expect(assetConfig.mark).toBe("/branding/gemstone-mark.svg");
-    expect(brandingFallbackConfig.wordmark).toBe("/branding/gemstone-wordmark-fallback.txt");
-    expect(brandingFallbackConfig.mark).toBe("/branding/gemstone-mark-fallback.txt");
-
-    expect(readFileSync(join(brandingRoot, "gemstone-wordmark-fallback.txt"), "utf8")).toBe(
-      "GEMSTONE\n",
-    );
-    expect(readFileSync(join(brandingRoot, "gemstone-mark-fallback.txt"), "utf8")).toBe("G\n");
   });
 
   it("documents the reserved logo locations without creating logo artwork", () => {
@@ -50,6 +43,7 @@ describe("branding and reference-asset boundaries", () => {
     const sourceFilesWithHardCodedBrandingPath = sourceFiles.filter(
       (filePath, index) =>
         filePath !== join(sourceRoot, "config", "asset-config.ts") &&
+        filePath !== join(sourceRoot, "content", "site-manifest.ts") &&
         /["'`]\/branding\//.test(sourceText[index] ?? ""),
     );
 

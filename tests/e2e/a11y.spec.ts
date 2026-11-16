@@ -57,7 +57,7 @@ test.describe("accessibility smoke checks", () => {
         "href",
         "#briefing",
       );
-      await expect(hero.locator("[data-visualization-mode=decorative]")).toBeVisible();
+      await expect(hero.locator("[data-topology-explorer]")).toBeVisible();
       await expect(
         about.getByRole("list", { name: "GEMSTONE relationship elements" }),
       ).toBeVisible();

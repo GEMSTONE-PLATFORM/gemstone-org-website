@@ -212,7 +212,7 @@ describe("shared fallback composition", () => {
 
     expect(markup).toContain("Briefing not configured");
     expect(markup).toContain("Request Information form has not yet been connected.");
-    expect(markup).toContain('data-visualization-mode="decorative"');
+    expect(markup).toContain('data-topology-explorer="true"');
     expect(markup).toContain("Benefits");
     expect(markup).toContain('href="#architecture"');
     expect(markup).not.toContain('src=""');

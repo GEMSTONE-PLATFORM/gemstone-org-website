@@ -12,9 +12,9 @@ const sectionIds = [
   "architecture",
   "capabilities",
   "differentiators",
-  "faq",
   "briefing",
   "requestInformation",
+  "faq",
 ] as const;
 
 describe("HomePage", () => {

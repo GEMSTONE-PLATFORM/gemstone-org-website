@@ -2,7 +2,7 @@ import type { ContentLink, ExternalLink, FooterContent, InternalLink } from "@/t
 import type { FooterConfig, SiteSections } from "@/types";
 
 import { footerNavigationItems, publicReleaseConfig, siteConfig } from "@/config";
-import { siteContent } from "@/content";
+import { siteManifest } from "@/content/site-manifest";
 import { BrandLogo, ExternalLink as ExternalLinkPrimitive } from "@/components/ui";
 import { cn } from "@/lib/utilities";
 
@@ -103,7 +103,7 @@ function OptionalExternalLink({
 
 /** Server-rendered footer with configuration-driven optional destinations and release wording. */
 export function Footer({
-  content = siteContent.footer,
+  content = siteManifest.content.footer,
   config = siteConfig.footer,
   navigation = footerNavigationItems,
   enabledSections = siteConfig.sections,

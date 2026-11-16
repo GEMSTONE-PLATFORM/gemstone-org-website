@@ -1,31 +1,37 @@
-# Browser Support and Progressive Fallbacks
+# Browser support and fallback behavior
 
-## Supported browsers
+## What works without optional browser features
 
-The public site targets current Microsoft Edge, Chrome, Firefox, and Safari releases. The Playwright responsive suite runs the same viewport, keyboard, reduced-motion, and fallback checks against Chromium, Firefox, and WebKit engine projects.
+The website keeps its headings, written content, navigation links, FAQ answers, Architecture explanation, briefing links, and form fallback text in normal page HTML. They remain available if animation, JavaScript enhancements, or embedded external content is unavailable.
 
-## Core content and layout
+## Network topology explorer
 
-The page renders headings, approved copy, landmark structure, internal anchors, interactive architecture controls with a visible detail panel, and external recovery actions in HTML. These remain usable when client-side enhancements are unavailable. CSS keeps the page contained from 320px through 1920px and preserves the architecture's connected layout across those widths.
+The Hero section contains a browser-only network explorer. Visitors can add Hubs, add Nodes to a selected Hub, and add Clients to a selected Node.
 
-## Motion
+These additions are examples for the current visit only. They reset when the page reloads because the public website is a static GitHub Pages site and does not store visitor-created data.
 
-Motion is optional. The browser `prefers-reduced-motion: reduce` preference disables continuous CSS animation and shortens transitions. The decorative network artwork, architecture controls, and CTA links remain present regardless of motion support. The motion policy excludes video and canvas rendering; CSS effects are limited to the named `gemstone-breathe` and `gemstone-path-flow` animations.
+The published starting topology is stored in `src/content/site-manifest.ts`. Updating that configuration and running `npm run build` changes the starting graph for every visitor.
 
-## Browser capability fallbacks
+## Motion and accessibility
 
-Navigation uses `IntersectionObserver` only to enhance active-section indication. If the observer is unavailable, navigation links remain normal same-document anchors. The architecture entities remain native buttons with a visible detail panel, so the SVG connection lines are decorative rather than the only source of meaning.
+The browser setting `prefers-reduced-motion: reduce` disables continuous animation and shortens transitions. The controls, topology, Architecture details, and page content remain available without animation.
 
-## Optional external embeds
+Navigation uses `IntersectionObserver` only to highlight the active section. If it is unavailable, all navigation links continue to work normally.
 
-Briefing and Microsoft Forms embeds are optional browser enhancements. A configured iframe uses `loading="lazy"`. Missing configuration renders no iframe. Blocked, unsupported, or timed-out embeds retain clearly labeled external recovery links. New-tab links use `noopener noreferrer`.
+## Briefing and form embeds
 
-## Automated coverage
+Briefing and Microsoft Forms embeds load only when configured and use lazy loading. Missing, blocked, unsupported, or timed-out embeds keep clear external links and fallback explanations.
 
-Run the responsive checks with:
+## Checks
+
+Run the responsive browser checks with:
 
 ```sh
 npm run test:e2e -- responsive
 ```
 
-The suite checks the required viewport widths, horizontal containment, keyboard focus visibility, reduced-motion behavior, an unavailable-observer fallback, no video or canvas workload, bounded named CSS animations, and lazy iframe attributes.
+Run all release checks with:
+
+```sh
+npm run validate:release
+```

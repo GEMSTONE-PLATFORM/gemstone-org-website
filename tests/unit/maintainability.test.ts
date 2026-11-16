@@ -10,7 +10,9 @@ import {
   navigationItems,
   siteConfig,
 } from "@/config";
-import { siteContent } from "@/content";
+import { siteManifest } from "@/content/site-manifest";
+
+const siteContent = siteManifest.content;
 
 const sectionDirectory = join(process.cwd(), "src", "components", "sections");
 

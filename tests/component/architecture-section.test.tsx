@@ -5,7 +5,9 @@ import { describe, expect, it } from "vitest";
 
 import { ArchitectureSection } from "@/components/sections/ArchitectureSection";
 import { ArchitectureDiagram } from "@/components/ui/ArchitectureDiagram";
-import { architectureContent } from "@/content/site-content";
+import { siteManifest } from "@/content/site-manifest";
+
+const architectureContent = siteManifest.content.architecture;
 import { setViewport, viewportPresets } from "../helpers/component-test-helpers";
 import type { ArchitectureContent } from "@/types";
 

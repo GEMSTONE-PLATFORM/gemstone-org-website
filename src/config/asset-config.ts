@@ -1,23 +1,21 @@
 import type { AssetConfig } from "@/types";
+import { siteManifest } from "@/content/site-manifest";
 
 // Public assets use literal URLs, so they need the project-site path that is
 // supplied at build time alongside Next.js's basePath configuration.
 const configuredBasePath = process.env.NEXT_PUBLIC_BASE_PATH?.trim() ?? "";
 const basePath = configuredBasePath === "/" ? "" : configuredBasePath.replace(/\/+$/, "");
-export const publicAsset = (path: `/${string}`) => `${basePath}${path}`;
+export const publicAsset = (path: string) => (path.trim() ? `${basePath}${path}` : "");
 
 /**
- * Official branding paths are configuration values. The files are supplied or
- * replaced in public/branding without changing section implementations.
+ * Brand and optional section-image paths come from site-manifest.ts. Replacing
+ * a file at the configured path and rebuilding updates the published site.
  */
 export const assetConfig = {
-  logo: publicAsset("/branding/gemstone-logo.svg"),
-  horizontalLogo: publicAsset("/branding/gemstone-logo-horizontal.svg"),
-  mark: publicAsset("/branding/gemstone-mark.svg"),
+  logo: publicAsset(siteManifest.assets.logo),
+  horizontalLogo: publicAsset(siteManifest.assets.horizontalLogo),
+  mark: publicAsset(siteManifest.assets.mark),
+  heroBackground: publicAsset(siteManifest.assets.images.heroImage) || undefined,
+  architectureImage: publicAsset(siteManifest.assets.images.architectureImage) || undefined,
+  pageBackground: publicAsset(siteManifest.assets.images.pageBackground) || undefined,
 } as const satisfies AssetConfig;
-
-/** Safe text-only references used when approved logo files are unavailable. */
-export const brandingFallbackConfig = {
-  wordmark: publicAsset("/branding/gemstone-wordmark-fallback.txt"),
-  mark: publicAsset("/branding/gemstone-mark-fallback.txt"),
-} as const;

@@ -64,6 +64,8 @@ export interface AssetConfig {
   readonly horizontalLogo: string;
   readonly mark: string;
   readonly heroBackground?: string;
+  readonly architectureImage?: string;
+  readonly pageBackground?: string;
   readonly openGraphImage?: string;
 }
 

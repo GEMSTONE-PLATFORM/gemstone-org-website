@@ -124,28 +124,27 @@ before release.
 
 ## Editable content and configuration
 
-Keep public wording, claims, URLs, and behavior in the typed content or
-configuration boundaries. Do not add marketing copy, public claims, integration
-URLs, or raw visual tokens directly to section components.
+For normal website updates, use only:
 
-| What to change                                                                                                                        | Source of truth                    | Guidance                                                                                                                                                                                     |
-| ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Hero, About, problem statements, Why GEMSTONE items, architecture, ecosystem, benefits, footer identity/copy, and privacy placeholder | `src/content/site-content.ts`      | Update approved wording only. Hero CTA targets remain typed internal links.                                                                                                                  |
-| Capabilities                                                                                                                          | `src/content/capabilities.ts`      | Add an item to the `capabilities` array with a unique `id`, approved `title` and `description`, and a supported icon. The generic section renders it without a component change.             |
-| Differentiators and public claims                                                                                                     | `src/content/differentiators.ts`   | Add or edit only approved claims. The site intentionally does not display internal claim-review markers.                                                                                     |
-| FAQs                                                                                                                                  | `src/content/faq.ts`               | Add an item to `faqItems` with a unique `id`, approved question, and approved answer. The accordion renders the array generically.                                                           |
-| Primary/footer navigation                                                                                                             | `src/config/navigation-config.ts`  | Update labels, anchors, and typed section targets together. The Contact footer link maps to Request Information because there is no standalone Contact section.                              |
-| Page metadata, enabled sections, public-release statement, and optional footer settings                                               | `src/config/site-config.ts`        | `publicReleaseConfig` controls whether the footer release statement appears. Only enable a section when its target and content are available.                                                |
-| Official logo and image paths                                                                                                         | `src/config/asset-config.ts`       | Components consume this configuration rather than hardcoded asset paths.                                                                                                                     |
-| Briefing integration                                                                                                                  | `src/config/integration-config.ts` | Replace the single `briefingUrl` value after external-host review. It is deliberately not an environment variable.                                                                           |
-| Motion defaults                                                                                                                       | `src/config/motion-config.ts`      | Set `intensity` to `reduced`, `standard`, or `enhanced`; tune the centralized continuous-motion and duration settings. Browser reduced-motion preferences override the configured intensity. |
-| Header transition threshold                                                                                                           | `src/config/header-config.ts`      | Adjust the centralized scroll threshold rather than changing `Header` directly.                                                                                                              |
-| Colors, typography, geometry, focus styles, and shared visual effects                                                                 | `src/app/globals.css`              | Change the semantic `--gemstone-*` design tokens. Typography uses the centralized sans, display, and mono font tokens.                                                                       |
+```text
+src/content/site-manifest.ts
+```
 
-After editing a typed array, run type checking and the applicable unit/component
-suite. New capability, differentiator, and FAQ entries should render through
-the existing generic paths; do not add item-specific branches unless the
-approved design changes.
+It is the single build-time master configuration for website text, section titles, image paths, the starter network topology, and default public content. Replace files in `public/` when needed, update their paths in the manifest, then run `npm run build`. You do not need to change a component file for normal content, logo, background, or image updates.
+
+Read [`HOW-TO-UPDATE-THE-WEBSITE.md`](HOW-TO-UPDATE-THE-WEBSITE.md) for step-by-step instructions.
+
+The files below are compatibility adapters used by the application and tests. Leave them unchanged for routine updates.
+
+| What you want to change                                                                  | Normal update location                                            |
+| ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Website wording, section titles, cards, FAQs, starter topology, and optional image paths | `src/content/site-manifest.ts`                                    |
+| Replace a logo file                                                                      | `public/branding/`                                                |
+| Add a Hero, Architecture, or background image                                            | `public/images/` and then its matching path in `site-manifest.ts` |
+| Add a downloadable PowerPoint briefing                                                   | `public/documents/` and `src/config/integration-config.ts`        |
+| Change website navigation, motion, form connection, or technical deployment settings     | `src/config/`                                                     |
+
+For everyday page content and asset updates, edit `site-manifest.ts` and the matching file under `public/`. The other files are technical settings and normally do not need to change.
 
 ### Logos, images, backgrounds, and briefings
 
@@ -153,7 +152,7 @@ If you do not write website code, use the plain-language guide:
 
 [**How to update the GEMSTONE website**](HOW-TO-UPDATE-THE-WEBSITE.md)
 
-It explains exactly where to put a logo, image, background, or briefing file, what to name it, and what to tell Kiro so it is added to the website.
+It explains exactly where to put a logo, image, background, or briefing file, what to name it, and which line in `src/content/site-manifest.ts` to update before running `npm run build`.
 
 Quick locations:
 
@@ -164,7 +163,7 @@ Quick locations:
 
 Use only approved files. Do not place passwords, personal information, or unapproved material in public folders.
 
-For developers, the technical asset paths remain in `src/config/asset-config.ts`.
+The website reads normal asset choices from `src/content/site-manifest.ts`. `src/config/asset-config.ts` only adds the correct deployment path during the build.
 
 ## Briefing and form integration checks
 

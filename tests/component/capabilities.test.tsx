@@ -3,7 +3,9 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { CapabilitiesSection } from "@/components/sections/section-renderers";
-import { capabilities } from "@/content/capabilities";
+import { siteManifest } from "@/content/site-manifest";
+
+const capabilities = siteManifest.content.capabilities;
 import type { CapabilityItem } from "@/types";
 
 const fixtureCapability = {

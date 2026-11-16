@@ -5,7 +5,6 @@ import { describe, expect, it } from "vitest";
 
 import {
   assetConfig,
-  brandingFallbackConfig,
   briefingConfig,
   BRIEFING_URL_PLACEHOLDER,
   footerNavigationItems,
@@ -66,10 +65,6 @@ describe("centralized site configuration", () => {
       logo: "/branding/gemstone-logo.svg",
       horizontalLogo: "/branding/gemstone-logo-horizontal.svg",
       mark: "/branding/gemstone-mark.svg",
-    });
-    expect(brandingFallbackConfig).toEqual({
-      wordmark: "/branding/gemstone-wordmark-fallback.txt",
-      mark: "/branding/gemstone-mark-fallback.txt",
     });
     expect(motionConfig).toMatchObject({
       intensity: "standard",

@@ -3,7 +3,9 @@ import { render, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { DifferentiatorsSection } from "@/components/sections/DifferentiatorsSection";
-import { differentiators } from "@/content/differentiators";
+import { siteManifest } from "@/content/site-manifest";
+
+const differentiators = siteManifest.content.differentiators;
 import type { DifferentiatorItem } from "@/types";
 
 const approvedDifferentiators: readonly DifferentiatorItem[] = differentiators;

@@ -1,4 +1,7 @@
 # GEMSTONE Public Website
+
+> **Current update path:** This historical development brief predates the master configuration. For normal website content, image, background, and starter-topology updates, use `src/content/site-manifest.ts` and [`HOW-TO-UPDATE-THE-WEBSITE.md`](HOW-TO-UPDATE-THE-WEBSITE.md). Do not recreate the older split `src/content` structure described later in this document.
+
 ## Kiro Development Brief
 
 Build a modern, visually stunning, production-quality public website for **GEMSTONE**, the **Government Enterprise Modeling and Simulation Trusted Operations Networked Ecosystem**.

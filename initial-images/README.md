@@ -1,11 +1,9 @@
 # Source and reference material
 
-`GEMSTONEInfo.pptx` is retained as source/reference material only. Its
-approved extracted content informs the website copy and its visual material
-informs broad design direction. The deck is not a production image, logo,
-font, or branded interface and must not be rendered or imported by website
-components.
+This folder holds original source material and design references. It is **not** part of the public website.
 
-Official GEMSTONE branding must be supplied separately and placed at the
-reserved paths documented in `public/branding/README.md`. The application
-references branding through `src/config/asset-config.ts`.
+- `GEMSTONEInfo.pptx` is a source briefing. Do not use it directly as a website image, logo, or download.
+- The PNG files are reference images. They do not appear on the public website.
+- To use an approved image from this folder, copy the final version into `public/images/hero/`, `public/images/architecture/`, or `public/images/backgrounds/`. Then add its path to `src/content/site-manifest.ts` and run `npm run build`.
+
+For ordinary updates, use [`../HOW-TO-UPDATE-THE-WEBSITE.md`](../HOW-TO-UPDATE-THE-WEBSITE.md).

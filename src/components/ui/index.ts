@@ -12,4 +12,5 @@ export { MotionProvider, useMotionResolution } from "@/components/ui/MotionProvi
 export { MicrosoftFormEmbed } from "@/components/ui/MicrosoftFormEmbed";
 export { ResponsiveMedia } from "@/components/ui/ResponsiveMedia";
 export { SectionHeading } from "@/components/ui/SectionHeading";
+export { TopologyExplorer } from "@/components/ui/TopologyExplorer";
 export { StatusFallback } from "@/components/ui/StatusFallback";

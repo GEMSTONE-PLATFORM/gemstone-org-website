@@ -11,7 +11,7 @@ import {
   RequestInformationSection,
   WhyGemstoneSection,
 } from "@/components/sections/section-renderers";
-import { siteContent } from "@/content";
+import { siteManifest } from "@/content/site-manifest";
 import { DifferentiatorsSection } from "@/components/sections/DifferentiatorsSection";
 import type {
   AssetConfig,
@@ -44,20 +44,29 @@ export interface SectionRegistryEntry {
 export const sectionRegistry: readonly SectionRegistryEntry[] = [
   {
     id: "hero",
-    render: ({ config, content }) => (
-      <HeroSection content={content.hero} enabledSections={config.sections} />
+    render: ({ config, content, assets }) => (
+      <HeroSection
+        content={content.hero}
+        visualImage={assets.heroBackground}
+        enabledSections={config.sections}
+      />
     ),
   },
   { id: "about", render: ({ content }) => <AboutSection content={content.about} /> },
   {
     id: "whyGemstone",
-    render: ({ content }) => <WhyGemstoneSection items={content.whyGemstone} />,
+    render: ({ content }) => (
+      <WhyGemstoneSection items={content.whyGemstone} title={content.sectionTitles.whyGemstone} />
+    ),
   },
   {
     id: "architecture",
-    render: ({ content }) => (
+    render: ({ content, assets }) => (
       <ArchitectureSection
         content={content.architecture}
+        title={content.sectionTitles.architecture}
+        introduction={content.sectionTitles.architectureIntroduction}
+        visualImage={assets.architectureImage}
         ecosystem={content.ecosystem}
         analystBenefits={content.analystBenefits}
       />
@@ -65,13 +74,22 @@ export const sectionRegistry: readonly SectionRegistryEntry[] = [
   },
   {
     id: "capabilities",
-    render: ({ content }) => <CapabilitiesSection items={content.capabilities} />,
+    render: ({ content }) => (
+      <CapabilitiesSection
+        items={content.capabilities}
+        title={content.sectionTitles.capabilities}
+      />
+    ),
   },
   {
     id: "differentiators",
-    render: ({ content }) => <DifferentiatorsSection items={content.differentiators} />,
+    render: ({ content }) => (
+      <DifferentiatorsSection
+        items={content.differentiators}
+        title={content.sectionTitles.differentiators}
+      />
+    ),
   },
-  { id: "faq", render: ({ content }) => <FAQSection items={content.faq} /> },
   {
     id: "briefing",
     render: ({ integrations }) => <BriefingSection config={integrations.briefing} />,
@@ -81,9 +99,15 @@ export const sectionRegistry: readonly SectionRegistryEntry[] = [
     render: ({ integrations, content }) => (
       <RequestInformationSection
         url={integrations.microsoftFormUrl}
+        title={content.sectionTitles.requestInformation}
+        description={content.sectionTitles.requestInformationDescription}
         privacyNotice={content.footer.privacyNotice}
       />
     ),
+  },
+  {
+    id: "faq",
+    render: ({ content }) => <FAQSection items={content.faq} title={content.sectionTitles.faq} />,
   },
 ] as const;
 
@@ -95,7 +119,7 @@ export function renderEnabledSections(data: PageCompositionData): ReactNode[] {
 
 export const defaultPageComposition: PageCompositionData = {
   config: siteConfig,
-  content: siteContent,
+  content: siteManifest.content,
   assets: assetConfig,
   integrations: integrationConfig,
   motion: motionConfig,
