@@ -29,7 +29,7 @@ export const siteManifest = {
     mark: "/branding/gemstone-mark.svg",
     images: {
       /** Leave blank to keep the CSS background. Set a public /images/... path to use a supplied image. */
-      pageBackground: "/images/backgrounds/gemstone-background-1.png",
+      pageBackground: "",
       /** Leave blank to show only the configured GEMSTONE logo and Hero text. */
       heroImage: "",
       /** A future architecture image can be placed here without changing a component. */
@@ -57,7 +57,7 @@ export const siteManifest = {
     hero: {
       title: "Government-Owned Open Source Software Defined Platform for Digital Workloads",
       description:
-        "GEMSTONE empowers organizations to build, publish, discover, and integrate tools, data, and compute across secure environments.",
+        "Empowering organizations to build, publish, discover, and integrate tools, data, and compute across secure environments.",
       primaryCta: internalLink("Request Information", "#requestInformation"),
       secondaryCta: internalLink("View Briefing", "#briefing"),
     } as const satisfies HeroContent,
