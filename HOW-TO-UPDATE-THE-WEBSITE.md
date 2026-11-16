@@ -33,7 +33,7 @@ Everything you normally need is in the `content` section. The labels tell you wh
 - `about` changes the “What is GEMSTONE?” section.
 - `whyGemstone`, `capabilities`, `differentiators`, and `faq` change their cards and answers.
 - `architecture` changes the default Hub–Node–Client diagram.
-- `hero.topology` changes the starter network graph in the Hero section.
+- `networkTopology` changes the starter Browse the Network graph at the end of the Architecture section.
 
 Change only the words inside quotation marks. Keep the commas, brackets, and names such as `title`, `description`, `question`, and `answer` unchanged.
 
@@ -93,7 +93,7 @@ to this:
 heroImage: "/images/hero/gemstone-hero-network.webp",
 ```
 
-Run `npm run build`. The new Hero image now replaces the generated Hero network visual automatically.
+Run `npm run build`. The new image now appears below the Hero text. Leave `heroImage` blank when no additional Hero image is wanted.
 
 ## Use a background image
 
@@ -117,10 +117,10 @@ Files in `inspiration/` do not appear on the public website. Move an approved fi
 
 ## Change the starter network graph
 
-The Hero network starts with three connected Hubs. Each Hub has Nodes, and each Node has Clients. The starting items are under:
+The Browse the Network graph at the end of the Architecture section starts with three connected Hubs. Each Hub has Nodes, and each Node has Clients. The starting items are under:
 
 ```text
-src/content/site-manifest.ts → content → hero → topology
+src/content/site-manifest.ts → content → networkTopology
 ```
 
 - Add an item to `entities` to add a Hub, Node, or Client to the published starting graph.
@@ -130,12 +130,14 @@ src/content/site-manifest.ts → content → hero → topology
 
 Visitors can also use the on-page **Add Hub**, **Add Node to selected Hub**, and **Add Client to selected Node** controls to explore a larger network. Those visitor-made additions are examples only and reset when the page reloads.
 
-## Add a PowerPoint briefing
+## Add the PDF briefing
 
-1. Put the final PowerPoint in `public/documents/`.
-2. Name it `gemstone-briefing-YYYY-MM.pptx`, such as `gemstone-briefing-2026-11.pptx`.
-3. Update the briefing address in `src/config/integration-config.ts` using the same path.
+1. Put the final PDF in `public/documents/`.
+2. Name it `gemstone-briefing.pdf`, or use another clear `.pdf` filename.
+3. In `src/content/site-manifest.ts`, set `briefingPdf` to its public path. Example: `briefingPdf: "/documents/gemstone-briefing.pdf"`.
 4. Run `npm run build`.
+
+The website will embed the PDF and provide a direct same-site download link. Leave `briefingPdf` blank until the approved PDF is present; this prevents a broken or locked download.
 
 ## Before publishing
 

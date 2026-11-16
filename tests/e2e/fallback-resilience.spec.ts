@@ -30,7 +30,7 @@ test.describe("fallback resilience", () => {
     await page.route("**/branding/gemstone-logo-horizontal.svg", (route) => route.abort());
     await page.goto("/");
 
-    const logoFallback = page.getByRole("img", { name: "GEMSTONE" });
+    const logoFallback = page.getByRole("img", { name: "GEMSTONE", exact: true });
     await expect(logoFallback).toHaveAttribute("data-logo-state", "fallback");
     await expect(logoFallback).toHaveText("GEMSTONE");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
@@ -53,7 +53,10 @@ test.describe("fallback resilience", () => {
       await page.goto(baseURL ?? "http://localhost:3100/");
 
       await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
-      await expect(page.getByText("Briefing not configured")).toBeVisible();
+      await expect(page.getByRole("link", { name: "Download Briefing" })).toHaveAttribute(
+        "href",
+        "/documents/gemstone-briefing.pdf",
+      );
       await expect(page.locator("[data-architecture-visual]")).toBeVisible();
       await expect(page.getByText("Modeling and Simulation Matrix")).toHaveCount(0);
       await expect(page.getByText("Architecture legend")).toHaveCount(0);

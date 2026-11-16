@@ -1,3 +1,4 @@
+import { publicAsset } from "@/config/asset-config";
 import { siteManifest } from "@/content/site-manifest";
 import type { BriefingConfig, IntegrationConfig } from "@/types";
 import { resolveConfiguredUrl, resolveIntegrationUrl } from "@/lib/integration-state";
@@ -20,17 +21,14 @@ export function isConfiguredIntegrationUrl(
 ): url is string {
   return resolveConfiguredIntegrationUrl(url, placeholder) !== undefined;
 }
-/**
- * Replace this placeholder when an approved briefing is available. For a deck
- * in public/documents, import publicAsset from asset-config and use
- * publicAsset("/documents/gemstone-briefing-YYYY-MM.pptx").
- */
-const briefingUrl = BRIEFING_URL_PLACEHOLDER;
+/** The downloadable briefing is a same-origin PDF selected in the master manifest. */
+const briefingUrl =
+  publicAsset(siteManifest.assets.documents.briefingPdf) || BRIEFING_URL_PLACEHOLDER;
 export const briefingConfig = {
   url: briefingUrl,
   title: siteManifest.content.sectionTitles.briefing,
-  description: "Review the current GEMSTONE briefing.",
-  format: "unknown",
+  description: "Review or download the current GEMSTONE briefing.",
+  format: "pdf",
   allowDownload: true,
   allowOpenInNewTab: true,
   embed: true,

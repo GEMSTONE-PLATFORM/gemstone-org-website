@@ -47,6 +47,7 @@ export const sectionRegistry: readonly SectionRegistryEntry[] = [
     render: ({ config, content, assets }) => (
       <HeroSection
         content={content.hero}
+        logoSrc={assets.logo}
         visualImage={assets.heroBackground}
         enabledSections={config.sections}
       />
@@ -67,6 +68,8 @@ export const sectionRegistry: readonly SectionRegistryEntry[] = [
         title={content.sectionTitles.architecture}
         introduction={content.sectionTitles.architectureIntroduction}
         visualImage={assets.architectureImage}
+        topology={content.networkTopology}
+        browseNetworkTitle={content.sectionTitles.browseNetwork}
         ecosystem={content.ecosystem}
         analystBenefits={content.analystBenefits}
       />
@@ -91,6 +94,10 @@ export const sectionRegistry: readonly SectionRegistryEntry[] = [
     ),
   },
   {
+    id: "faq",
+    render: ({ content }) => <FAQSection items={content.faq} title={content.sectionTitles.faq} />,
+  },
+  {
     id: "briefing",
     render: ({ integrations }) => <BriefingSection config={integrations.briefing} />,
   },
@@ -104,10 +111,6 @@ export const sectionRegistry: readonly SectionRegistryEntry[] = [
         privacyNotice={content.footer.privacyNotice}
       />
     ),
-  },
-  {
-    id: "faq",
-    render: ({ content }) => <FAQSection items={content.faq} title={content.sectionTitles.faq} />,
   },
 ] as const;
 

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
@@ -36,25 +36,16 @@ describe("HeroSection", () => {
     expect(screen.getByRole("heading", { level: 1, name: heroContent.title })).toBeVisible();
   });
 
-  it("renders an expandable network topology with the requested Hub, Node, and Client workflow", () => {
-    const { container } = render(<HeroSection content={heroContent} />);
+  it("renders the existing configured logo above the smaller Hero title", () => {
+    const { container } = render(
+      <HeroSection content={heroContent} logoSrc="/branding/gemstone-logo.svg" />,
+    );
 
-    expect(screen.getByRole("group", { name: "Grow the network" })).toBeInTheDocument();
-    const addHub = screen.getByRole("button", { name: "Add Hub" });
-    const addNode = screen.getByRole("button", { name: "Add Node to selected Hub" });
-    const addClient = screen.getByRole("button", { name: "Add Client to selected Node" });
-    expect(addNode).toBeDisabled();
-    expect(addClient).toBeDisabled();
-
-    fireEvent.click(addHub);
-    expect(container.querySelectorAll('[id^="topology-hub-"]')).toHaveLength(4);
-    expect(container.querySelectorAll("svg line")).toHaveLength(24);
-    expect(addNode).toBeEnabled();
-
-    fireEvent.click(addNode);
-    expect(addClient).toBeEnabled();
-    fireEvent.click(addClient);
-    expect(screen.getByText("Client 13")).toBeInTheDocument();
+    const logo = screen.getByRole("img", { name: "GEMSTONE logo" });
+    const title = screen.getByRole("heading", { level: 1, name: heroContent.title });
+    expect(logo).toHaveAttribute("src", "/branding/gemstone-logo.svg");
+    expect(title).toHaveClass("gemstone-hero-title");
+    expect(container.querySelector("[data-topology-explorer]")).not.toBeInTheDocument();
   });
 
   it("keeps approved copy and CTA targets in static HTML", () => {
@@ -66,7 +57,9 @@ describe("HeroSection", () => {
     expect(markup).toContain(heroContent.description);
     expect(markup).toContain('href="#requestInformation"');
     expect(markup).toContain('href="#briefing"');
-    expect(markup).toContain('data-topology-explorer="true"');
+    expect(markup).toContain('src="/branding/gemstone-logo.svg"');
+    expect(markup).toContain("gemstone-hero-title");
+    expect(markup).not.toContain("data-topology-explorer");
     expect(markup).not.toContain("Static ecosystem map");
     expect(markup).not.toContain("Hub services");
     expect(markup).not.toContain("<script");

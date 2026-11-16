@@ -1,10 +1,15 @@
-# Downloadable briefings
+# Downloadable PDF briefing
 
-1. Put the final PowerPoint file here.
-2. Name it `gemstone-briefing-YYYY-MM.pptx`, such as `gemstone-briefing-2026-11.pptx`.
-3. Update the briefing file path in `src/config/integration-config.ts`.
+1. Put the final approved PDF file in this folder.
+2. Name it `gemstone-briefing.pdf`, or use another clear name ending in `.pdf`.
+3. Open `src/content/site-manifest.ts` and set `briefingPdf` to the file path. Example:
+
+   ```ts
+   briefingPdf: "/documents/gemstone-briefing.pdf",
+   ```
+
 4. Run `npm run build`.
 
-Do not overwrite an older briefing. Give each approved version a new month in its filename.
+The website will use the same-site PDF for both viewing and downloading. The Download Briefing link downloads the file directly instead of sending the visitor to an external viewer.
 
-Read [`../../HOW-TO-UPDATE-THE-WEBSITE.md`](../../HOW-TO-UPDATE-THE-WEBSITE.md) for the full update guide.
+Leave `briefingPdf` blank until the approved PDF exists in this folder. This prevents a broken or locked download.

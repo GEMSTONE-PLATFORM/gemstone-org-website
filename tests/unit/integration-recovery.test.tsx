@@ -31,7 +31,7 @@ type BriefingConfiguredScenario = {
 };
 type FormConfiguredScenario = {
   readonly integration: "form";
-  readonly failure: Exclude<ConfiguredFailure, "unsupported">;
+  readonly failure: "blocked";
   readonly url: string;
 };
 type RecoveryScenario = MissingScenario | BriefingConfiguredScenario | FormConfiguredScenario;
@@ -87,9 +87,7 @@ const configuredScenarioArbitrary: fc.Arbitrary<RecoveryScenario> = fc.oneof(
   fc
     .record({
       url: validExternalUrlArbitrary,
-      failure: fc.constantFrom("blocked", "timeout") as fc.Arbitrary<
-        Exclude<ConfiguredFailure, "unsupported">
-      >,
+      failure: fc.constant("blocked" as const),
     })
     .map((scenario) => ({ ...scenario, integration: "form" as const })),
 );

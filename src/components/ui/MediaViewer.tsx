@@ -37,7 +37,7 @@ function recoveryLinks(config: BriefingConfig, url: string): RecoveryLink[] {
       label: "Download Briefing",
       href: url,
       external: true,
-      newTab: config.allowOpenInNewTab,
+      newTab: false,
       download: true,
     });
   }

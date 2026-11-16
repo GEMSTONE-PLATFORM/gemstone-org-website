@@ -12,13 +12,13 @@ import { siteManifest } from "@/content/site-manifest";
 import { briefingConfig } from "@/config/integration-config";
 import {
   AnimatedSection,
+  BrandLogo,
   Card,
   ExternalLink,
   Icon,
   MediaViewer,
   MicrosoftFormEmbed,
   ResponsiveMedia,
-  TopologyExplorer,
 } from "@/components/ui";
 
 type SectionId =
@@ -73,11 +73,17 @@ function ContentLinkView({ link }: { readonly link: ContentLink }) {
 
 interface HeroSectionProps {
   readonly content: HeroContent;
+  readonly logoSrc?: string;
   readonly visualImage?: string;
   readonly enabledSections?: Pick<SiteSections, "briefing" | "requestInformation">;
 }
 
-export function HeroSection({ content, visualImage, enabledSections }: HeroSectionProps) {
+export function HeroSection({
+  content,
+  logoSrc = siteManifest.assets.logo,
+  visualImage,
+  enabledSections,
+}: HeroSectionProps) {
   const requestInformationEnabled = enabledSections?.requestInformation ?? true;
   const briefingEnabled = enabledSections?.briefing ?? true;
 
@@ -90,10 +96,18 @@ export function HeroSection({ content, visualImage, enabledSections }: HeroSecti
       <AnimatedSection className="gemstone-container relative z-10 py-20 sm:py-28 lg:py-32">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
           <div className="gemstone-surface-raised gemstone-illumination rounded-[var(--gemstone-radius-lg)] p-6 sm:p-8 lg:col-span-2 lg:mx-auto lg:max-w-5xl lg:p-10 lg:text-center">
+            <BrandLogo
+              src={logoSrc}
+              alt="GEMSTONE logo"
+              width={320}
+              height={325}
+              priority
+              className="mx-auto mb-7 h-32 w-auto object-contain sm:h-40"
+            />
             <p className="gemstone-eyebrow mb-4">{content.eyebrow ?? "GEMSTONE"}</p>
             <h1
               id="hero-heading"
-              className="gemstone-display text-gemstone-text lg:mx-auto lg:max-w-[18ch]"
+              className="gemstone-display gemstone-hero-title text-gemstone-text lg:mx-auto"
             >
               {content.title}
             </h1>
@@ -112,11 +126,9 @@ export function HeroSection({ content, visualImage, enabledSections }: HeroSecti
             alt="GEMSTONE ecosystem network"
             width={1600}
             height={900}
-            wrapperClassName="gemstone-hero-graphic"
+            wrapperClassName="gemstone-hero-graphic mt-10"
           />
-        ) : (
-          <TopologyExplorer content={content.topology} />
-        )}
+        ) : null}
       </AnimatedSection>
     </section>
   );

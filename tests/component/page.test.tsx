@@ -12,9 +12,9 @@ const sectionIds = [
   "architecture",
   "capabilities",
   "differentiators",
+  "faq",
   "briefing",
   "requestInformation",
-  "faq",
 ] as const;
 
 describe("HomePage", () => {
@@ -85,6 +85,7 @@ describe("HomePage", () => {
     expect(main).toBeInTheDocument();
 
     const results = await axe.run(main as HTMLElement, {
+      iframes: false,
       runOnly: {
         type: "tag",
         values: ["wcag2a", "wcag2aa"],

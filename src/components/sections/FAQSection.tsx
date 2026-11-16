@@ -16,7 +16,11 @@ export function FAQSection({
   reducedMotion = false,
 }: FAQSectionProps) {
   return (
-    <section id="faq" aria-labelledby="faq-heading" className="gemstone-section">
+    <section
+      id="faq"
+      aria-labelledby="faq-heading"
+      className="gemstone-section min-h-[calc(100svh-5rem)]"
+    >
       <div className="gemstone-container">
         <h2 id="faq-heading" className="gemstone-display text-gemstone-text">
           {title}
@@ -26,6 +30,7 @@ export function FAQSection({
             items={items}
             reducedMotion={reducedMotion}
             ariaLabel="Frequently asked questions"
+            className="w-full max-w-none"
           />
         </div>
       </div>

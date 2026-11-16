@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { MICROSOFT_FORM_URL_PLACEHOLDER } from "@/config/integration-config";
 import { resolveIntegrationUrl, transitionEmbedState } from "@/lib/integration-state";
@@ -19,6 +19,26 @@ const FORM_URL_PLACEHOLDERS = [
   MICROSOFT_FORM_URL_PLACEHOLDER,
   "MICROSOFT_FORM_URL_GOES_HERE",
 ] as const;
+const MICROSOFT_FORMS_HOSTS = new Set([
+  "forms.office.com",
+  "forms.microsoft.com",
+  "forms.cloud.microsoft",
+]);
+
+/** Convert a public Microsoft Forms link into its embeddable form without changing its identity. */
+export function resolveMicrosoftFormsEmbedUrl(url: string): string {
+  try {
+    const parsed = new URL(url);
+    if (MICROSOFT_FORMS_HOSTS.has(parsed.hostname.toLowerCase())) {
+      parsed.searchParams.set("embed", "true");
+      return parsed.toString();
+    }
+  } catch {
+    return url;
+  }
+
+  return url;
+}
 
 /** Progressive Microsoft Forms boundary that never reads or stores form fields. */
 export function MicrosoftFormEmbed({
@@ -27,21 +47,12 @@ export function MicrosoftFormEmbed({
   privacyNotice,
 }: MicrosoftFormEmbedProps) {
   const resolution = resolveIntegrationUrl(configuredUrl, FORM_URL_PLACEHOLDERS);
-  const url = resolution.url;
+  const publicUrl = resolution.url;
+  const embedUrl = publicUrl ? resolveMicrosoftFormsEmbedUrl(publicUrl) : undefined;
   const resolvedPrivacyNotice = privacyNotice?.trim() || DEFAULT_PRIVACY_NOTICE;
-  const [state, setState] = useState<EmbedState>(() => (url ? "idle" : "missing"));
+  const [state, setState] = useState<EmbedState>(() => (embedUrl ? "loading" : "missing"));
 
-  useEffect(() => {
-    if (!url || (state !== "idle" && state !== "loading")) return;
-
-    const timeout = window.setTimeout(() => {
-      setState((current) => (current === "idle" || current === "loading" ? "blocked" : current));
-    }, 8000);
-
-    return () => window.clearTimeout(timeout);
-  }, [state, url]);
-
-  if (!url) {
+  if (!publicUrl || !embedUrl) {
     return (
       <div className="space-y-5">
         <FallbackComposition
@@ -57,7 +68,7 @@ export function MicrosoftFormEmbed({
   const recoveryLink: ExternalLinkModel = {
     kind: "external",
     label: "Open Request Information Form",
-    href: url,
+    href: publicUrl,
     external: true,
     newTab: true,
   };
@@ -83,7 +94,7 @@ export function MicrosoftFormEmbed({
           recoveryLinks={[recoveryLink]}
         />
       ) : (
-        <div className="relative aspect-[4/3] min-h-[36rem] w-full overflow-hidden rounded-gemstone border border-gemstone-border/30 bg-gemstone-surface">
+        <div className="relative h-[75svh] min-h-[44rem] max-h-[70rem] w-full overflow-hidden rounded-gemstone border border-gemstone-border/30 bg-white">
           <p className="sr-only" aria-live="polite">
             {state === "loaded"
               ? "Request Information form loaded."
@@ -91,9 +102,11 @@ export function MicrosoftFormEmbed({
           </p>
           <iframe
             title={title}
-            src={url}
+            src={embedUrl}
             loading="lazy"
-            className="absolute inset-0 h-full w-full border-0"
+            allowFullScreen
+            referrerPolicy="strict-origin-when-cross-origin"
+            className="absolute inset-0 h-full w-full border-0 bg-white"
             onLoad={() =>
               setState((current) =>
                 transitionEmbedState(transitionEmbedState(current, "load"), "loaded"),
