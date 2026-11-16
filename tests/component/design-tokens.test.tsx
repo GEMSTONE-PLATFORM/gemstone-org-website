@@ -18,7 +18,7 @@ describe("GEMSTONE visual foundation", () => {
     expect(screen.getByRole("main")).toHaveClass("gemstone-page", "gemstone-atmosphere");
     expect(screen.getByRole("main")).toHaveClass("gemstone-atmosphere", "text-gemstone-text");
     expect(screen.getByRole("heading", { level: 1 })).toHaveClass("sr-only");
-    expect(screen.getByRole("img", { name: "GEMSTONE logo" })).toHaveClass("h-48");
+    expect(screen.getByRole("img", { name: "GEMSTONE logo" })).toHaveClass("h-64");
   });
 
   it("defines semantic focus, reduced-motion, and responsive selectors", () => {
