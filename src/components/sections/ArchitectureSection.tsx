@@ -1,13 +1,25 @@
-import type { ArchitectureContent, AnalystBenefitItem, EcosystemContent } from "@/types";
+import type {
+  AnalystBenefitItem,
+  ArchitectureContent,
+  EcosystemContent,
+  NetworkTopologyContent,
+} from "@/types";
 import { EcosystemBenefitsSection } from "@/components/sections/EcosystemBenefitsSection";
 import { siteManifest } from "@/content/site-manifest";
-import { AnimatedSection, ArchitectureDiagram, ResponsiveMedia } from "@/components/ui";
+import {
+  AnimatedSection,
+  ArchitectureDiagram,
+  ResponsiveMedia,
+  TopologyExplorer,
+} from "@/components/ui";
 
 export interface ArchitectureSectionProps {
   readonly content: ArchitectureContent;
   readonly title?: string;
   readonly introduction?: string;
   readonly visualImage?: string;
+  readonly topology?: NetworkTopologyContent;
+  readonly browseNetworkTitle?: string;
   readonly ecosystem?: EcosystemContent;
   readonly analystBenefits?: readonly AnalystBenefitItem[];
 }
@@ -18,6 +30,8 @@ export function ArchitectureSection({
   title = siteManifest.content.sectionTitles.architecture,
   introduction = siteManifest.content.sectionTitles.architectureIntroduction,
   visualImage,
+  topology = siteManifest.content.networkTopology,
+  browseNetworkTitle = siteManifest.content.sectionTitles.browseNetwork,
   ecosystem = siteManifest.content.ecosystem,
   analystBenefits = siteManifest.content.analystBenefits,
 }: ArchitectureSectionProps) {
@@ -43,6 +57,24 @@ export function ArchitectureSection({
               <ArchitectureDiagram content={content} />
             )}
             <EcosystemBenefitsSection ecosystem={ecosystem} benefits={analystBenefits} />
+            <div
+              className="mt-12 border-t border-gemstone-border/30 pt-12"
+              aria-labelledby="browse-network-heading"
+            >
+              <p className="gemstone-eyebrow">Interactive topology</p>
+              <h3
+                id="browse-network-heading"
+                className="mt-3 text-3xl text-gemstone-text sm:text-4xl"
+              >
+                {browseNetworkTitle}
+              </h3>
+              <p className="gemstone-body mt-5">
+                Explore how peer Hubs, mission Nodes, and Clients form an interconnected ecosystem.
+              </p>
+              <div className="mt-8">
+                <TopologyExplorer content={topology} />
+              </div>
+            </div>
           </div>
         </AnimatedSection>
       </div>

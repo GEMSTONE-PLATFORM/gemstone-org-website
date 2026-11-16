@@ -52,7 +52,6 @@ export interface HeroContent {
   readonly description: string;
   readonly primaryCta: ContentLink;
   readonly secondaryCta: ContentLink;
-  readonly topology: NetworkTopologyContent;
 }
 
 export interface AboutContent {
@@ -129,6 +128,7 @@ export interface SectionTitles {
   readonly whyGemstone: string;
   readonly architecture: string;
   readonly architectureIntroduction: string;
+  readonly browseNetwork: string;
   readonly capabilities: string;
   readonly differentiators: string;
   readonly faq: string;
@@ -143,6 +143,7 @@ export type SiteContent = {
   readonly about: AboutContent;
   readonly whyGemstone: readonly FeatureItem[];
   readonly architecture: ArchitectureContent;
+  readonly networkTopology: NetworkTopologyContent;
   readonly ecosystem: EcosystemContent;
   readonly analystBenefits: readonly AnalystBenefitItem[];
   readonly capabilities: readonly CapabilityItem[];

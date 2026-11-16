@@ -91,7 +91,8 @@ describe("centralized site configuration", () => {
         BRIEFING_URL_PLACEHOLDER,
       ),
     ).toBe("https://example.com/briefing.pdf");
-    expect(briefingConfig.url).toBe(BRIEFING_URL_PLACEHOLDER);
+    expect(briefingConfig.url).toBe("/documents/gemstone-briefing.pdf");
+    expect(briefingConfig.format).toBe("pdf");
     expect(integrationConfig.briefing.url).toBe(briefingConfig.url);
   });
 

@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 import { render, screen, within } from "@testing-library/react";
@@ -9,6 +9,7 @@ import HomePage from "@/app/page";
 const globalsCss = readFileSync(path.join(process.cwd(), "src/app/globals.css"), "utf8");
 const tailwindConfig = readFileSync(path.join(process.cwd(), "tailwind.config.ts"), "utf8");
 const pageSource = readFileSync(path.join(process.cwd(), "src/app/page.tsx"), "utf8");
+const fontSource = readFileSync(path.join(process.cwd(), "src/app/fonts.ts"), "utf8");
 
 describe("GEMSTONE visual foundation", () => {
   it("renders the foundation page with semantic token classes", () => {
@@ -32,6 +33,9 @@ describe("GEMSTONE visual foundation", () => {
     expect(globalsCss).toContain("min-width: 320px");
     expect(globalsCss).toContain("@media (min-width: 1440px)");
     expect(globalsCss).toContain("overflow-x: clip");
+    expect(globalsCss).toContain("var(--font-michroma)");
+    expect(fontSource).toContain('src: "./fonts/michroma-regular.woff2"');
+    expect(existsSync(path.join(process.cwd(), "src/app/fonts/michroma-regular.woff2"))).toBe(true);
   });
 
   it("maps Tailwind utilities to centralized tokens and keeps raw colors out of the page", () => {

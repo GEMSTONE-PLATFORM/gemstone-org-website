@@ -148,9 +148,13 @@ test.describe("accessibility and responsive reflow matrix", () => {
         await expect(page.getByRole("main", { name: "GEMSTONE public website" })).toBeVisible();
         await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
         await expect(page.locator("[data-architecture-visual]")).toBeVisible();
-        await expect(page.getByText("Briefing not configured")).toBeVisible();
+        await expect(page.getByRole("link", { name: "Download Briefing" })).toHaveAttribute(
+          "href",
+          "/documents/gemstone-briefing.pdf",
+        );
+        await expect(page.locator('iframe[title="GEMSTONE Briefing"]')).toHaveCount(1);
         await expect(page.getByText("Request Information form not connected")).toBeVisible();
-        await expect(page.locator("iframe")).toHaveCount(0);
+        await expect(page.locator("iframe")).toHaveCount(1);
       } finally {
         await context.close();
       }

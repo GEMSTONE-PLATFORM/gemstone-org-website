@@ -81,7 +81,7 @@ function inspectStaticExport() {
     "What is GEMSTONE?",
     "data-architecture-visual",
     'data-topology-explorer="true"',
-    "Briefing not configured",
+    "Download Briefing",
     "Request Information form not connected",
     "Approved for Public Release. Distribution Unlimited.",
     "GEMSTONE | Government-Owned Digital Engineering and Modeling &amp; Simulation Ecosystem",

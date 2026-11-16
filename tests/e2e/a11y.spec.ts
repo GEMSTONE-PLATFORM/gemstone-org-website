@@ -34,6 +34,7 @@ test.describe("accessibility smoke checks", () => {
         name: "Government-Owned Open Source for Digital Engineering and Modeling & Simulation",
       });
       const about = page.getByRole("region", { name: "What is GEMSTONE?" });
+      const architecture = page.getByRole("region", { name: "Architecture" });
 
       await expect(hero).toBeVisible();
       await expect(about).toBeVisible();
@@ -57,7 +58,7 @@ test.describe("accessibility smoke checks", () => {
         "href",
         "#briefing",
       );
-      await expect(hero.locator("[data-topology-explorer]")).toBeVisible();
+      await expect(architecture.locator("[data-topology-explorer]")).toBeVisible();
       await expect(
         about.getByRole("list", { name: "GEMSTONE relationship elements" }),
       ).toBeVisible();

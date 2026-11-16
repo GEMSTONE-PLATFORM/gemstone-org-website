@@ -40,7 +40,9 @@ describe("ArchitectureSection", () => {
     expect(screen.getByRole("heading", { name: "Hub: GEMSTONE | HUB" })).toBeInTheDocument();
     expect(screen.getByRole("complementary")).toHaveTextContent("service and connection point");
     expect(document.querySelectorAll('[data-connection-id][data-selected="true"]')).toHaveLength(2);
-    expect(screen.getByRole("status")).toHaveTextContent("Selected Hub GEMSTONE | HUB.");
+    expect(
+      screen.getByTestId("architecture-diagram-root").querySelector('[role="status"]'),
+    ).toHaveTextContent("Selected Hub GEMSTONE | HUB.");
   });
 
   it("supports focus, Enter, Space, and Escape for entity selection", () => {
@@ -60,7 +62,9 @@ describe("ArchitectureSection", () => {
 
     fireEvent.keyDown(client, { key: "Escape" });
     expect(screen.getByRole("heading", { name: "Hub, Node, and Client" })).toBeInTheDocument();
-    expect(screen.getByRole("status")).toHaveTextContent("Architecture selection cleared.");
+    expect(
+      screen.getByTestId("architecture-diagram-root").querySelector('[role="status"]'),
+    ).toHaveTextContent("Architecture selection cleared.");
   });
 
   it("keeps the connected visual and entity controls at mobile and desktop widths", () => {
@@ -70,9 +74,9 @@ describe("ArchitectureSection", () => {
       const restoreViewport = setViewport(viewport);
       const { container, unmount } = render(<ArchitectureSection content={architectureContent} />);
       const visual = container.querySelector("[data-architecture-visual]");
-      const controls = screen
-        .getAllByRole("button")
-        .map((control) => control.getAttribute("aria-label"));
+      const controls = Array.from(
+        container.querySelectorAll<HTMLButtonElement>("[data-architecture-diagram] button"),
+      ).map((control) => control.getAttribute("aria-label"));
 
       expect(visual).toBeInTheDocument();
       expect(controls).toEqual([
@@ -89,6 +93,41 @@ describe("ArchitectureSection", () => {
     }
 
     expect(snapshots[0]).toBe(snapshots[1]);
+  });
+
+  it("places the expandable circular network after the M&S ecosystem and benefits", () => {
+    const { container } = render(<ArchitectureSection content={architectureContent} />);
+    const ecosystemHeading = screen.getByRole("heading", { name: "THE M&S ECOSYSTEM" });
+    const browseHeading = screen.getByRole("heading", { name: "Browse the Network" });
+    const topology = container.querySelector("[data-topology-explorer]");
+
+    expect(topology).toBeInTheDocument();
+    const hubCoordinates = Array.from(
+      topology?.querySelectorAll<HTMLButtonElement>('[id^="topology-hub-"]') ?? [],
+    ).map((hub) => `${hub.style.left}-${hub.style.top}`);
+    expect(new Set(hubCoordinates).size).toBe(3);
+    expect(
+      new Set(hubCoordinates.map((coordinate) => coordinate.split("-")[1])).size,
+    ).toBeGreaterThan(1);
+    expect(
+      ecosystemHeading.compareDocumentPosition(browseHeading) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+
+    const addHub = screen.getByRole("button", { name: "Add Hub" });
+    const addNode = screen.getByRole("button", { name: "Add Node to selected Hub" });
+    const addClient = screen.getByRole("button", { name: "Add Client to selected Node" });
+    expect(addNode).toBeDisabled();
+    expect(addClient).toBeDisabled();
+
+    fireEvent.click(addHub);
+    expect(container.querySelectorAll('[id^="topology-hub-"]')).toHaveLength(4);
+    expect(topology?.querySelectorAll("svg line")).toHaveLength(24);
+    expect(addNode).toBeEnabled();
+
+    fireEvent.click(addNode);
+    expect(addClient).toBeEnabled();
+    fireEvent.click(addClient);
+    expect(topology).toHaveTextContent("Client 13");
   });
 
   it("keeps reduced-motion and empty states readable", () => {

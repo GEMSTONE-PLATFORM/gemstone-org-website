@@ -1,5 +1,5 @@
-import { act, render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
 import { RequestInformationSection } from "@/components/sections/section-renderers";
 import { MicrosoftFormEmbed } from "@/components/ui";
 describe("RequestInformationSection", () => {
@@ -54,29 +54,25 @@ describe("RequestInformationSection", () => {
     );
     expect(screen.getByText("Privacy notice placeholder")).toBeInTheDocument();
   });
-  it("shows the external fallback after the embedded form times out", () => {
-    vi.useFakeTimers();
-    try {
-      render(
-        <MicrosoftFormEmbed
-          url="https://forms.example.test/request"
-          title="GEMSTONE Request More Information form"
-          privacyNotice="Privacy notice placeholder"
-        />,
-      );
-      act(() => {
-        vi.advanceTimersByTime(8000);
-      });
-      expect(screen.getByRole("status")).toHaveTextContent(
-        "Request Information form unavailable here",
-      );
-      expect(
-        screen.getAllByRole("link", {
-          name: /Open Request Information Form.*opens in a new tab/i,
-        }),
-      ).not.toHaveLength(0);
-    } finally {
-      vi.useRealTimers();
-    }
+  it("uses Microsoft's embed mode and keeps the public link available", () => {
+    const publicUrl = "https://forms.office.com/Pages/ResponsePage.aspx?id=example";
+    render(
+      <MicrosoftFormEmbed
+        url={publicUrl}
+        title="GEMSTONE Request More Information form"
+        privacyNotice="Privacy notice placeholder"
+      />,
+    );
+
+    const iframe = screen.getByTitle("GEMSTONE Request More Information form");
+    expect(iframe).toHaveAttribute(
+      "src",
+      "https://forms.office.com/Pages/ResponsePage.aspx?id=example&embed=true",
+    );
+    expect(iframe).toHaveAttribute("allowfullscreen");
+    expect(
+      screen.getByRole("link", { name: /Open Request Information Form.*opens in a new tab/i }),
+    ).toHaveAttribute("href", publicUrl);
+    expect(screen.getByText("Loading form")).toBeInTheDocument();
   });
 });

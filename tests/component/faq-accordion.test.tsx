@@ -16,6 +16,11 @@ describe("FAQSection and Accordion", () => {
   it("renders every approved typed FAQ item with a stable control and answer-panel relationship", () => {
     render(<FAQSection items={faqItems} />);
 
+    expect(screen.getByRole("region", { name: "Frequently Asked Questions" })).toHaveClass(
+      "min-h-[calc(100svh-5rem)]",
+    );
+    expect(screen.getByTestId("faq-accordion")).toHaveClass("w-full", "max-w-none");
+
     for (const item of faqItems) {
       const question = screen.getByRole("button", { name: item.question });
       const panelId = `faq-panel-${item.id}`;

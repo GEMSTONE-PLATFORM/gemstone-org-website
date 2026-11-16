@@ -61,7 +61,7 @@ test.describe("briefing and request-information integration flows", () => {
     const formFrame = form.getByTitle("Configured Request Information form");
 
     await expect(briefing).toHaveAttribute("data-embed-state", "loading");
-    await expect(form).toHaveAttribute("data-form-embed-state", "idle");
+    await expect(form).toHaveAttribute("data-form-embed-state", "loading");
     await expect(briefingFrame).toHaveAttribute("src", briefingUrl);
     await expect(formFrame).toHaveAttribute("src", formUrl);
     await expect(briefingFrame).toHaveAttribute("loading", "lazy");
@@ -73,7 +73,7 @@ test.describe("briefing and request-information integration flows", () => {
       name: "View Briefing (opens in a new tab)",
     });
     const briefingDownload = briefing.getByRole("link", {
-      name: "Download Briefing (opens in a new tab)",
+      name: "Download Briefing",
     });
     const formRecovery = form.getByRole("link", {
       name: "Open Request Information Form (opens in a new tab)",
@@ -82,7 +82,8 @@ test.describe("briefing and request-information integration flows", () => {
     await expect(briefingDownload).toHaveAttribute("href", briefingUrl);
     await expect(formRecovery).toHaveAttribute("href", formUrl);
     await expectSafeNewTabLink(briefingView);
-    await expectSafeNewTabLink(briefingDownload);
+    await expect(briefingDownload).toHaveAttribute("download");
+    await expect(briefingDownload).not.toHaveAttribute("target");
     await expectSafeNewTabLink(formRecovery);
 
     await expect(form.locator("form, input, textarea, select, button")).toHaveCount(0);
@@ -143,7 +144,8 @@ test.describe("briefing and request-information integration flows", () => {
     const form = page.getByTestId("configured-form").locator("[data-form-embed-state]");
     await expect(briefing).toHaveAttribute("data-embed-state", "blocked");
     await expect(briefing).toHaveAttribute("data-embed-failure", "timeout");
-    await expect(form).toHaveAttribute("data-form-embed-state", "blocked");
+    await expect(form).toHaveAttribute("data-form-embed-state", "loading");
+    await expect(form.getByTitle("Configured Request Information form")).toBeAttached();
     await expect(briefing).toContainText("did not finish loading");
     await expect(
       briefing.getByRole("link", { name: "View Briefing (opens in a new tab)" }).first(),

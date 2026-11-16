@@ -101,7 +101,7 @@ function assertFallbackComprehension(model: FallbackModel) {
     case "unavailable-animation": {
       const markup = renderToStaticMarkup(<HeroSection content={heroContent} />);
 
-      expect(markup).toContain('data-topology-explorer="true"');
+      expect(markup).not.toContain("data-topology-explorer");
       expect(markup).toContain(approvedHeroHeading.replace("&", "&amp;"));
       expect(markup).toContain(heroContent.description);
       expect(markup).toContain('href="#requestInformation"');
@@ -199,9 +199,10 @@ function assertFallbackComprehension(model: FallbackModel) {
       expect(markup).toContain('href="#architecture"');
       expect(markup).toContain("data-architecture-visual");
       expect(markup).toContain("Benefits");
-      expect(markup).toContain("Briefing not configured");
+      expect(markup).toContain("Download Briefing");
+      expect(markup).toContain("/documents/gemstone-briefing.pdf");
       expect(markup).toContain("Request Information form has not yet been connected.");
-      expect(markup).not.toContain("<iframe");
+      expect(markup).toContain("<iframe");
       expect(markup).not.toContain("<script");
     }
   }

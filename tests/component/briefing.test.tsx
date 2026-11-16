@@ -14,11 +14,14 @@ const validConfig: BriefingConfig = {
   embed: true,
 };
 describe("BriefingSection and MediaViewer", () => {
-  it("renders the centralized missing configuration without an iframe", () => {
+  it("renders the configured PDF briefing", () => {
     render(<BriefingSection />);
     expect(screen.getByRole("heading", { name: "GEMSTONE Briefing" })).toBeInTheDocument();
-    expect(screen.getByRole("status")).toHaveTextContent("Briefing not configured");
-    expect(screen.queryByTitle("GEMSTONE Briefing")).not.toBeInTheDocument();
+    expect(screen.getByText("PDF document")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Download Briefing" })).toHaveAttribute(
+      "href",
+      "/documents/gemstone-briefing.pdf",
+    );
   });
   it("renders format, recovery actions, a responsive lazy frame, and loading state", () => {
     render(<MediaViewer config={validConfig} />);
@@ -26,9 +29,8 @@ describe("BriefingSection and MediaViewer", () => {
     expect(
       screen.getByRole("link", { name: /View Briefing.*opens in a new tab/i }),
     ).toHaveAttribute("href", validConfig.url);
-    expect(
-      screen.getByRole("link", { name: /Download Briefing.*opens in a new tab/i }),
-    ).toHaveAttribute("download");
+    expect(screen.getByRole("link", { name: "Download Briefing" })).toHaveAttribute("download");
+    expect(screen.getByRole("link", { name: "Download Briefing" })).not.toHaveAttribute("target");
     expect(
       screen.getByRole("link", { name: /Open in New Tab.*opens in a new tab/i }),
     ).toBeInTheDocument();

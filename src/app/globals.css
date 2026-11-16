@@ -274,6 +274,12 @@ body {
     max-width: 13ch;
   }
 
+  .gemstone-hero-title {
+    max-width: 22ch;
+    font-size: clamp(2rem, 4.6vw, 4.25rem);
+    line-height: 1.15;
+  }
+
   .gemstone-body {
     color: rgb(var(--gemstone-text-muted-rgb));
     font-size: clamp(1rem, 1.2vw, 1.25rem);

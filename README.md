@@ -141,7 +141,7 @@ The files below are compatibility adapters used by the application and tests. Le
 | Website wording, section titles, cards, FAQs, starter topology, and optional image paths | `src/content/site-manifest.ts`                                    |
 | Replace a logo file                                                                      | `public/branding/`                                                |
 | Add a Hero, Architecture, or background image                                            | `public/images/` and then its matching path in `site-manifest.ts` |
-| Add a downloadable PowerPoint briefing                                                   | `public/documents/` and `src/config/integration-config.ts`        |
+| Add a downloadable PDF briefing                                                          | `public/documents/` and `briefingPdf` in `site-manifest.ts`       |
 | Change website navigation, motion, form connection, or technical deployment settings     | `src/config/`                                                     |
 
 For everyday page content and asset updates, edit `site-manifest.ts` and the matching file under `public/`. The other files are technical settings and normally do not need to change.
@@ -158,7 +158,7 @@ Quick locations:
 
 - Official logos: `public/branding/`
 - Website images: `public/images/`
-- Downloadable PowerPoint briefings: `public/documents/`
+- Downloadable PDF briefing: `public/documents/`
 - Drafts and examples that must not appear publicly: `public/images/inspiration/`
 
 Use only approved files. Do not place passwords, personal information, or unapproved material in public folders.

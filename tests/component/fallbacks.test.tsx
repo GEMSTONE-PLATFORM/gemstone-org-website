@@ -131,9 +131,7 @@ describe("shared fallback composition", () => {
       expect(
         screen.getAllByRole("link", { name: /View Briefing.*opens in a new tab/i }),
       ).not.toHaveLength(0);
-      expect(
-        screen.getAllByRole("link", { name: /Download Briefing.*opens in a new tab/i }),
-      ).not.toHaveLength(0);
+      expect(screen.getAllByRole("link", { name: "Download Briefing" })).not.toHaveLength(0);
       expect(screen.getAllByRole("link")[0]).toHaveAttribute("rel", "noopener noreferrer");
     } finally {
       vi.useRealTimers();
@@ -156,30 +154,23 @@ describe("shared fallback composition", () => {
   });
 
   it("keeps configured form recovery available when embedding fails", () => {
-    vi.useFakeTimers();
-    try {
-      render(
-        <MicrosoftFormEmbed
-          url="https://forms.example.com/request"
-          title="GEMSTONE Request More Information form"
-          privacyNotice="Privacy notice placeholder"
-        />,
-      );
-      act(() => {
-        vi.advanceTimersByTime(8000);
-      });
+    render(
+      <MicrosoftFormEmbed
+        url="https://forms.example.com/request"
+        title="GEMSTONE Request More Information form"
+        privacyNotice="Privacy notice placeholder"
+      />,
+    );
+    fireEvent.error(screen.getByTitle("GEMSTONE Request More Information form"));
 
-      expect(screen.getByRole("status")).toHaveTextContent(
-        "Request Information form unavailable here",
-      );
-      const recovery = screen.getAllByRole("link", {
-        name: /Open Request Information Form.*opens in a new tab/i,
-      });
-      expect(recovery.length).toBeGreaterThan(0);
-      expect(recovery[0]).toHaveAttribute("rel", "noopener noreferrer");
-    } finally {
-      vi.useRealTimers();
-    }
+    expect(screen.getByRole("status")).toHaveTextContent(
+      "Request Information form unavailable here",
+    );
+    const recovery = screen.getAllByRole("link", {
+      name: /Open Request Information Form.*opens in a new tab/i,
+    });
+    expect(recovery.length).toBeGreaterThan(0);
+    expect(recovery[0]).toHaveAttribute("rel", "noopener noreferrer");
   });
 
   it("does not emit empty recovery links", () => {
@@ -210,7 +201,8 @@ describe("shared fallback composition", () => {
   it("keeps the landing page fallback content in server-rendered HTML", () => {
     const markup = renderToStaticMarkup(<HomePage />);
 
-    expect(markup).toContain("Briefing not configured");
+    expect(markup).toContain("Download Briefing");
+    expect(markup).toContain("/documents/gemstone-briefing.pdf");
     expect(markup).toContain("Request Information form has not yet been connected.");
     expect(markup).toContain('data-topology-explorer="true"');
     expect(markup).toContain("Benefits");
