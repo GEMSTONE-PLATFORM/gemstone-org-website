@@ -88,26 +88,24 @@ export function HeroSection({
   const briefingEnabled = enabledSections?.briefing ?? true;
 
   return (
-    <section
-      id="hero"
-      aria-labelledby="hero-heading"
-      className="gemstone-page gemstone-network relative overflow-hidden"
-    >
-      <AnimatedSection className="gemstone-container relative z-10 py-20 sm:py-28 lg:py-32">
+    <section id="hero" aria-labelledby="hero-heading" className="relative overflow-hidden">
+      <AnimatedSection className="gemstone-container relative py-20 sm:py-28 lg:py-32">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
           <div className="gemstone-surface-raised gemstone-hero-panel gemstone-illumination rounded-[var(--gemstone-radius-lg)] p-6 sm:p-8 lg:col-span-2 lg:mx-auto lg:max-w-5xl lg:p-10 lg:text-center">
             <BrandLogo
               src={logoSrc}
               alt="GEMSTONE logo"
-              width={480}
-              height={488}
+              width={640}
+              height={651}
               priority
-              className="mx-auto mb-8 h-48 w-auto object-contain sm:h-56 lg:h-64"
+              className="mx-auto mb-8 h-64 w-auto object-contain sm:h-72 lg:h-96"
             />
             <h1 id="hero-heading" className="sr-only">
               {content.title}
             </h1>
-            <p className="gemstone-body mt-6 lg:mx-auto">{content.description}</p>
+            <p className="gemstone-body gemstone-hero-description mt-6 lg:mx-auto">
+              {content.description}
+            </p>
             {(requestInformationEnabled || briefingEnabled) && (
               <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4 lg:justify-center">
                 {requestInformationEnabled ? <ContentLinkView link={content.primaryCta} /> : null}

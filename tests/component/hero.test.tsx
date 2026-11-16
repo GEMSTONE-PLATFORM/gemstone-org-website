@@ -36,15 +36,21 @@ describe("HeroSection", () => {
     expect(screen.getByRole("heading", { level: 1, name: heroContent.title })).toBeVisible();
   });
 
-  it("renders the existing configured logo above the smaller Hero title", () => {
+  it("renders the existing configured logo in a transparent outer Hero region", () => {
     const { container } = render(
       <HeroSection content={heroContent} logoSrc="/branding/gemstone-logo.svg" />,
     );
 
     const logo = screen.getByRole("img", { name: "GEMSTONE logo" });
     const title = screen.getByRole("heading", { level: 1, name: heroContent.title });
+    const hero = container.querySelector("#hero");
+    const heroPanel = container.querySelector(".gemstone-hero-panel");
     expect(logo).toHaveAttribute("src", "/branding/gemstone-logo.svg");
+    expect(logo).toHaveClass("h-64", "lg:h-96");
     expect(title).toHaveClass("sr-only");
+    expect(hero).not.toHaveClass("gemstone-page", "gemstone-network");
+    expect(heroPanel).toHaveClass("gemstone-surface-raised");
+    expect(screen.getByText(heroContent.description)).toHaveClass("gemstone-hero-description");
     expect(container.querySelector("[data-topology-explorer]")).not.toBeInTheDocument();
   });
 

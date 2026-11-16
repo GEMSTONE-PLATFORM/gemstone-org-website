@@ -248,11 +248,24 @@ body {
   }
 
   .gemstone-hero-panel {
+    border-color: rgb(var(--gemstone-text-rgb) / 0.72);
     background: linear-gradient(
       135deg,
-      rgb(var(--gemstone-surface-elevated-rgb) / 0.94),
-      rgb(var(--gemstone-blue-rgb) / 0.72)
+      rgb(var(--gemstone-text-rgb) / 0.9),
+      rgb(var(--gemstone-text-muted-rgb) / 0.76)
     );
+    -webkit-backdrop-filter: blur(1.125rem) saturate(130%);
+    backdrop-filter: blur(1.125rem) saturate(130%);
+  }
+
+  .gemstone-hero-description {
+    color: rgb(var(--gemstone-surface-rgb));
+  }
+
+  .gemstone-hero-panel .gemstone-link,
+  .gemstone-hero-panel .gemstone-link:hover {
+    color: rgb(var(--gemstone-surface-rgb));
+    text-decoration-color: rgb(var(--gemstone-blue-rgb) / 0.72);
   }
 
   .gemstone-hero-graphic {
