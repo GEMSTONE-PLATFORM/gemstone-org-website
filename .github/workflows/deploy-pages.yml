@@ -39,7 +39,7 @@ jobs:
         run: npm run build
         env:
           # configure-pages supplies /<repository-name> for a project Pages site.
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_BASE_PATH: ""
           # Optional public build variable. Leave the repository variable unset
           # to deploy the intentional no-form fallback.
           NEXT_PUBLIC_MICROSOFT_FORM_URL: ${{ vars.NEXT_PUBLIC_MICROSOFT_FORM_URL }}
